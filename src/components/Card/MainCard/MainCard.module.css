@@ -1,0 +1,13 @@
+.container {
+  height: 55px;
+  background-color: #CEB4F91a;
+  border: 2px solid #CEB4F9;
+  border-radius: 10px;
+  padding: 10px;
+  display: grid;
+  place-content: center;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-content: center;
+  color: #6A6A6A;
+} 
