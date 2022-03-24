@@ -1,10 +1,12 @@
-import { MainCard } from "./components/MainCard"
+import { MainCard, TaskCard } from "./components"
 
 function App() {
 
   return (
-    <div style={{width:"90%", margin: "10% auto" }}>
+    <div style={{ width: "90%", margin: "10% auto", display: "flex", flexDirection: "column", gap: "1rem" }}>
       <MainCard />
+      <TaskCard />
+
     </div>
   )
 }
