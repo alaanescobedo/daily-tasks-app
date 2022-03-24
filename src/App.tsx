@@ -1,4 +1,4 @@
-import { MainCard, TaskCard } from "./components"
+import { MainCard, TaskCard } from "./components/Card"
 
 function App() {
 
