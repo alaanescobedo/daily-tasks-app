@@ -1,11 +1,5 @@
-import { Client, Entity, Schema } from 'redis-om'
-
-class Task extends Entity { }
-const taskSchema = new Schema(Task, {
-  title: { type: 'string' },
-  status: { type: 'string' },
-  scheduledFor: { type: 'string' }
-})
+import { Client } from 'redis-om'
+import taskSchema, { ITask } from '@task/taskModel'
 
 const client = new Client()
 
@@ -20,10 +14,10 @@ const disconnect = async (): Promise<void> => {
   }
 }
 
-export const createTask = async (data: any) => {
+export const createTask = async (data: ITask) => {
   await connect()
   const repository = client.fetchRepository(taskSchema)
-  
+
   const task = repository.createEntity({
     title: data.title,
     status: data.status,
