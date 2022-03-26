@@ -1,18 +1,5 @@
-import { Client } from 'redis-om'
+import client, { connect, disconnect } from '@lib/redis/client'
 import taskSchema, { ITask } from '@task/taskModel'
-
-const client = new Client()
-
-const connect = async (): Promise<void> => {
-  if (!client.isOpen()) {
-    await client.open(process.env['REDIS_URL'])
-  }
-}
-const disconnect = async (): Promise<void> => {
-  if (client.isOpen()) {
-    await client.close()
-  }
-}
 
 export const createTask = async (data: ITask): Promise<{
   entityId: string
