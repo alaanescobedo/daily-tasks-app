@@ -35,6 +35,13 @@ export const createTask = async (data: ITask) => {
 
   return taskCreated
 }
+export const searchTasks = async () => {
+  await connect()
+  const repository = client.fetchRepository(taskSchema)
+  const tasks = await repository.search().return.all()
+  await disconnect()
+  return tasks
+}
 export const createIndex = async (): Promise<void> => {
   await connect()
   const repository = client.fetchRepository(taskSchema)

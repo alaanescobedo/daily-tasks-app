@@ -25,3 +25,10 @@ describe("POST /api/v1/tasks", () => {
     }
   })
 })
+describe("GET /api/v1/tasks", () => {
+  test("should return all tasks", async () => {
+    const response = await request(app).get("/api/v1/tasks/search").send()
+    expect(response.status).toBe(200)
+    expect(response.body).toBeInstanceOf(Array)
+  })
+})
