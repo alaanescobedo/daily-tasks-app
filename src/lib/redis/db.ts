@@ -48,3 +48,22 @@ export const createIndex = async (): Promise<void> => {
   await repository.createIndex()
   await disconnect()
 }
+
+
+export const deleteTaskDB = async (id: string): Promise<{ status: number, message: string }> => {
+  await connect()
+  const repository = client.fetchRepository(taskSchema)
+
+  const tasks = await repository.fetch(id)
+  const isValidId = Object.keys(tasks.entityData).length > 0
+  if (!isValidId) {
+    await disconnect()
+    return { status: 400, message: 'Wrong id' }
+  }
+
+  await repository.remove(id)
+
+  await disconnect()
+
+  return { status: 200, message: 'Task deleted' }
+}

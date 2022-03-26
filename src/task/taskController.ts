@@ -1,5 +1,5 @@
 import type { Request, Response } from "express"
-import { createIndex, createTask, searchTasks } from "@lib/redis/db"
+import { createIndex, createTask, deleteTaskDB, searchTasks } from "@lib/redis/db"
 
 export const postTask = async (req: Request, res: Response) => {
   const { title, status, scheduledFor } = req.body
@@ -17,4 +17,9 @@ export const getAllTask = async (_req: Request, res: Response) => {
 export const getIndex = async (_req: Request, res: Response) => {
   await createIndex()
   return res.status(200).send({ message: "Index created" })
+}
+export const deleteTask = async (req: Request, res: Response) => {
+  const { id = '' } = req.params
+  const { status, message } = await deleteTaskDB(id)
+  return res.status(status).send({ message })
 }

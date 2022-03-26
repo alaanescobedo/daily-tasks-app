@@ -40,5 +40,18 @@ describe("GET /api/v1/tasks", () => {
   })
 })
 
+describe('DELETE /api/v1/tasks/:id', () => {
+  test('should return status 200 and message Task deleted', async () => {
+    const task = await request(app).post("/api/v1/tasks").send(newTask)
+    const { entityId } = task.body
+
+    const response = await request(app).delete(`/api/v1/tasks/${entityId}`)
+    expect(response.status).toBe(200)
+    expect(response.body).toHaveProperty('message', 'Task deleted')
+  })
+  test('should return error 400 if id is wrong', async () => {
+    const response = await request(app).delete('/api/v1/tasks/wrong-id')
+    expect(response.status).toBe(400)
+    expect(response.body).toHaveProperty('message', 'Wrong id')
   })
 })

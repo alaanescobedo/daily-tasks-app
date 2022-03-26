@@ -1,11 +1,15 @@
 import { Router } from 'express';
-import { getAllTask, getIndex, postTask } from '@task/taskController';
+import { deleteTask, getAllTask, getIndex, postTask } from '@task/taskController';
 
 const router = Router();
 
 router
   .route("/")
   .post(postTask)
+
+router
+  .route('/:id')
+  .delete(deleteTask)
 
 router
   .route('/search')
