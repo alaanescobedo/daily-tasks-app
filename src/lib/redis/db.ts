@@ -30,7 +30,7 @@ export const createTask = async (data: ITask) => {
 
   const taskCreated = {
     ...data,
-    id
+    entityId: id
   }
 
   return taskCreated
