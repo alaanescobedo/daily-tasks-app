@@ -4,7 +4,7 @@ import taskSchema, { ITask } from '@task/taskModel'
 const client = new Client()
 
 const connect = async (): Promise<void> => {
-  if (!client.isOpen()) {
+  if (!client.isOpen()) { 
     await client.open(process.env['REDIS_URL'])
   }
 }
@@ -70,4 +70,12 @@ export const deleteTaskDB = async (id: string): Promise<{ status: number, messag
   await disconnect()
 
   return { status: 200, message: 'Task deleted' }
+}
+
+export const flushDB = async (): Promise<{ status: number, message: string }> => {
+  await connect()
+  await client.execute(['FLUSHDB'])
+  await disconnect()
+
+  return { status: 200, message: 'DB flushed' }
 }

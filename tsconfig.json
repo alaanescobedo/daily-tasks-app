@@ -6,7 +6,8 @@
     "paths": {
       "@task/*": ["task/*"],
       "@config/*": ["config/*"],
-      "@lib/redis/*": ["lib/redis/*"]
+      "@lib/redis/*": ["lib/redis/*"],
+      "@seed/*": ["seed/*"]
     }
   },
   "include": ["src"],
