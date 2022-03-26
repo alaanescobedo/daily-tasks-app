@@ -1,19 +1,13 @@
 {
   "extends": "@tsconfig/node16-strictest-esm/tsconfig.json",
   "compilerOptions": {
-  "module": "CommonJS",
-  "baseUrl": ".",
-  "paths": {
-    "@task/*": [
-      "src/task/*"
-    ],
-    "@config/*": [
-      "src/config/*"
-    ],
-    "@lib/redis/*": [
-      "src/lib/redis/*"
-    ],
-  }
+    "module": "CommonJS",
+    "baseUrl": "./src",
+    "paths": {
+      "@task/*": ["task/*"],
+      "@config/*": ["config/*"],
+      "@lib/redis/*": ["lib/redis/*"]
+    }
   },
   "include": ["src"],
   "exclude": ["node_modules"]
