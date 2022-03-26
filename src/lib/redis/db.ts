@@ -4,7 +4,7 @@ import taskSchema, { ITask } from '@task/taskModel'
 const client = new Client()
 
 const connect = async (): Promise<void> => {
-  if (!client.isOpen()) { 
+  if (!client.isOpen()) {
     await client.open(process.env['REDIS_URL'])
   }
 }

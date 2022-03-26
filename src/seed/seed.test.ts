@@ -1,15 +1,13 @@
 import request from 'supertest'
-import app from "@config/app"
-import { seedTasks } from "@seed/seed-tasks"
+import app from '@config/app'
+import { seedTasks } from '@seed/seed-tasks'
 
 describe('Test Seeds /api/v1/seeds/task', () => {
-
   beforeAll(async () => {
     await request(app).get('/api/v1/seeds/flush')
   })
 
   test('should return status 200 and message "Seed DB created"', async () => {
-
     const response = await request(app).get('/api/v1/seeds/generate')
     expect(response.status).toBe(200)
     expect(response.body).toHaveProperty('message', 'Seed DB created')

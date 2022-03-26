@@ -66,5 +66,4 @@ describe('CRUD operations', () => {
       expect(response.body).toHaveProperty('message', 'Wrong id')
     })
   })
-
 })

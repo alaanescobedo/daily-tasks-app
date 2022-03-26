@@ -1,6 +1,6 @@
-import type { Request, Response } from "express"
-import { createTask, flushDB } from "@lib/redis/db"
-import { seedTasks } from "@seed/seed-tasks"
+import type { Request, Response } from 'express'
+import { createTask, flushDB } from '@lib/redis/db'
+import { seedTasks } from '@seed/seed-tasks'
 
 export const generateSeedDB = async (_req: Request, res: Response): Promise<Response> => {
   for (const task of seedTasks.tasks) {
