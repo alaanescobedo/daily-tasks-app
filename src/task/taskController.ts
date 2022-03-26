@@ -1,7 +1,7 @@
-import type { Request, Response } from "express"
-import { createIndex, createTask, deleteTaskDB, searchTasks } from "@lib/redis/db"
+import type { Request, Response } from 'express'
+import { createIndex, createTask, deleteTaskDB, searchTasks } from '@lib/redis/db'
 
-export const postTask = async (req: Request, res: Response) => {
+export const postTask = async (req: Request, res: Response): Promise<Response> => {
   const { title, status, scheduledFor } = req.body
 
   const data = { title, status, scheduledFor }
@@ -10,15 +10,15 @@ export const postTask = async (req: Request, res: Response) => {
 
   return res.status(201).send(taskCreated)
 }
-export const getAllTask = async (_req: Request, res: Response) => {
+export const getAllTask = async (_req: Request, res: Response): Promise<Response> => {
   const tasks = await searchTasks()
   return res.status(200).send(tasks)
 }
-export const getIndex = async (_req: Request, res: Response) => {
+export const getIndex = async (_req: Request, res: Response): Promise<Response> => {
   await createIndex()
-  return res.status(200).send({ message: "Index created" })
+  return res.status(200).send({ message: 'Index created' })
 }
-export const deleteTask = async (req: Request, res: Response) => {
+export const deleteTask = async (req: Request, res: Response): Promise<Response> => {
   const { id = '' } = req.params
   const { status, message } = await deleteTaskDB(id)
   return res.status(status).send({ message })

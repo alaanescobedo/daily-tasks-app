@@ -6,6 +6,7 @@
     "scripts": {
         "dev": "nodemon --exec ts-node -r tsconfig-paths/register src/config/server.ts",
         "docker": "docker-compose up",
+        "lint": "ts-standard",
         "test": "jest"
     },
     "keywords": [],
@@ -22,6 +23,7 @@
         "supertest": "^6.2.2",
         "ts-jest": "^27.1.4",
         "ts-node": "^10.7.0",
+        "ts-standard": "^11.0.0",
         "tsconfig-paths": "^3.14.1",
         "typescript": "^4.6.3"
     },

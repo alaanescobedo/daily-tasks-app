@@ -14,7 +14,12 @@ const disconnect = async (): Promise<void> => {
   }
 }
 
-export const createTask = async (data: ITask) => {
+export const createTask = async (data: ITask): Promise<{
+  entityId: string
+  title: string
+  status: string
+  scheduledFor: string
+}> => {
   await connect()
   const repository = client.fetchRepository(taskSchema)
 
@@ -35,7 +40,7 @@ export const createTask = async (data: ITask) => {
 
   return taskCreated
 }
-export const searchTasks = async () => {
+export const searchTasks = async (): Promise<ITask[]> => {
   await connect()
   const repository = client.fetchRepository(taskSchema)
   const tasks = await repository.search().return.all()
@@ -48,7 +53,6 @@ export const createIndex = async (): Promise<void> => {
   await repository.createIndex()
   await disconnect()
 }
-
 
 export const deleteTaskDB = async (id: string): Promise<{ status: number, message: string }> => {
   await connect()

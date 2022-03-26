@@ -1,10 +1,10 @@
-import { Router } from 'express';
-import { deleteTask, getAllTask, getIndex, postTask } from '@task/taskController';
+import { Router } from 'express'
+import { deleteTask, getAllTask, getIndex, postTask } from '@task/taskController'
 
-const router = Router();
+const router = Router()
 
 router
-  .route("/")
+  .route('/')
   .post(postTask)
 
 router

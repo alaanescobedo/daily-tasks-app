@@ -1,4 +1,4 @@
-import { Entity, Schema } from "redis-om";
+import { Entity, Schema } from 'redis-om'
 
 export interface ITask {
   title: string
@@ -7,7 +7,7 @@ export interface ITask {
 }
 // Name should be the same as the name of the entity
 // https://github.com/redis/redis-om-node#a-note-for-typescript-users
-interface Task extends ITask {}
+interface Task extends ITask { }
 class Task extends Entity { }
 
 const taskSchema = new Schema(Task, {
