@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { deleteTask, getAllTask, getIndex, postTask } from '@task/taskController'
+import { deleteTask, getAllTask, getIndex, getTaskById, postTask } from '@task/taskController'
 
 const router = Router()
 
@@ -14,6 +14,10 @@ router
 router
   .route('/search')
   .get(getAllTask)
+
+router
+  .route('/search/:id')
+  .get(getTaskById)
 
 router
   .route('/create-index')

@@ -47,6 +47,17 @@ describe('TASK TESTS /api/v1/tasks', () => {
         expect(response.body.length).toBe(seedTasks.tasks.length)
       })
     })
+
+    describe('GET /api/v1/tasks/search/:id', () => {
+      test('should return status 200 and a task', async () => {
+        const { body: task } = await request(app).post('/api/v1/tasks').send(newTask)
+
+        const response = await request(app).get(`/api/v1/tasks/search/${task.entityId as string}`)
+        expect(response.status).toBe(200)
+        expect(response.body).toHaveProperty('entityId', task.entityId)
+      })
+    })
+
     describe('DELETE /api/v1/tasks/:id', () => {
       test('should return status 200 and message Task deleted', async () => {
         const task = await request(app).post('/api/v1/tasks').send(newTask)

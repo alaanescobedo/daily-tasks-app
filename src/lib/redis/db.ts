@@ -66,3 +66,28 @@ export const flushDB = async (): Promise<{ status: number, message: string }> =>
 
   return { status: 200, message: 'DB flushed' }
 }
+
+export const searchTasksById = async (id: string): Promise<{
+  entityId: string
+  title: string
+  status: string
+  scheduledFor: string
+}> => {
+  await connect()
+
+  const repository = client.fetchRepository(taskSchema)
+  const { entityData } = await repository.fetch(id)
+  await disconnect()
+
+  const task = {
+    ...entityData,
+    entityId: id
+  }
+
+  return task as {
+    entityId: string
+    title: string
+    status: string
+    scheduledFor: string
+  }
+}
