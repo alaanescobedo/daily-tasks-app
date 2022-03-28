@@ -1,8 +1,9 @@
 import type { Request, Response } from 'express'
 import { createIndex, createTask, deleteTaskDB, searchTasks, searchTasksById } from '@lib/redis/db'
 import type { TaskClientData, Task } from './taskInterface'
+import { catchAsync } from '@utils/errors/catchAsync'
 
-export const postTask = async (req: Request, res: Response): Promise<Response> => {
+export const postTask = catchAsync(async (req: Request, res: Response): Promise<Response> => {
   const { title, scheduledFor, description = null }: TaskClientData = req.body
 
   const data: Task = {
@@ -14,9 +15,8 @@ export const postTask = async (req: Request, res: Response): Promise<Response> =
   }
 
   const taskCreated = await createTask(data)
-
   return res.status(201).send(taskCreated)
-}
+})
 export const getAllTask = async (_req: Request, res: Response): Promise<Response> => {
   const tasks = await searchTasks()
   return res.status(200).send(tasks)
