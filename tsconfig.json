@@ -8,7 +8,8 @@
       "@config/*": ["config/*"],
       "@lib/redis/*": ["lib/redis/*"],
       "@seed/*": ["seed/*"],
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@error/*": ["error/*"]
     }
   },
   "include": ["src"],
