@@ -1,33 +1,15 @@
 import client, { connect, disconnect } from '@lib/redis/client'
-import taskSchema, { ITask } from '@task/taskModel'
+import type { Task } from '@task/taskInterface'
+import taskSchema from '@task/taskModel'
 
-export const createTask = async (data: ITask): Promise<{
-  entityId: string
-  title: string
-  status: string
-  scheduledFor: string
-}> => {
+export const createTask = async (data: Task): Promise<Task> => {
   await connect()
   const repository = client.fetchRepository(taskSchema)
-
-  const task = repository.createEntity({
-    title: data.title,
-    status: data.status,
-    scheduledFor: data.scheduledFor
-  })
-
-  const id = await repository.save(task)
-
+  const task = repository.createAndSave({ ...data })
   await disconnect()
-
-  const taskCreated = {
-    ...data,
-    entityId: id
-  }
-
-  return taskCreated
+  return await task
 }
-export const searchTasks = async (): Promise<ITask[]> => {
+export const searchTasks = async (): Promise<Task[]> => {
   await connect()
   const repository = client.fetchRepository(taskSchema)
   const tasks = await repository.search().return.all()
@@ -40,7 +22,6 @@ export const createIndex = async (): Promise<void> => {
   await repository.createIndex()
   await disconnect()
 }
-
 export const deleteTaskDB = async (id: string): Promise<{ status: number, message: string }> => {
   await connect()
   const repository = client.fetchRepository(taskSchema)
@@ -67,27 +48,12 @@ export const flushDB = async (): Promise<{ status: number, message: string }> =>
   return { status: 200, message: 'DB flushed' }
 }
 
-export const searchTasksById = async (id: string): Promise<{
-  entityId: string
-  title: string
-  status: string
-  scheduledFor: string
-}> => {
+export const searchTasksById = async (id: string): Promise<Task> => {
   await connect()
 
   const repository = client.fetchRepository(taskSchema)
-  const { entityData } = await repository.fetch(id)
+  const task = await repository.fetch(id)
   await disconnect()
 
-  const task = {
-    ...entityData,
-    entityId: id
-  }
-
-  return task as {
-    entityId: string
-    title: string
-    status: string
-    scheduledFor: string
-  }
+  return task
 }

@@ -1,10 +1,17 @@
 import type { Request, Response } from 'express'
 import { createIndex, createTask, deleteTaskDB, searchTasks, searchTasksById } from '@lib/redis/db'
+import type { TaskClientData, Task } from './taskInterface'
 
 export const postTask = async (req: Request, res: Response): Promise<Response> => {
-  const { title, status, scheduledFor } = req.body
+  const { title, scheduledFor, description = null }: TaskClientData = req.body
 
-  const data = { title, status, scheduledFor }
+  const data: Task = {
+    title,
+    description,
+    scheduledFor,
+    status: 'Pending',
+    createdAt: new Date().toISOString()
+  }
 
   const taskCreated = await createTask(data)
 
@@ -26,8 +33,6 @@ export const deleteTask = async (req: Request, res: Response): Promise<Response>
 
 export const getTaskById = async (req: Request, res: Response): Promise<Response> => {
   const { id } = req.params
-
   const task = await searchTasksById(id as string)
-
   return res.status(200).send(task)
 }
