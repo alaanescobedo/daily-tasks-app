@@ -7,7 +7,8 @@
       "@task/*": ["task/*"],
       "@config/*": ["config/*"],
       "@lib/redis/*": ["lib/redis/*"],
-      "@seed/*": ["seed/*"]
+      "@seed/*": ["seed/*"],
+      "@utils/*": ["utils/*"]
     }
   },
   "include": ["src"],
