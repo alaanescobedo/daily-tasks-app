@@ -1,6 +1,5 @@
 import request from 'supertest'
 import app from '@config/app'
-import { seedTasks } from '@seed/seed-tasks'
 
 const TestTask = {
   title: 'Im a title',
@@ -41,13 +40,6 @@ describe('TASK TESTS /api/v1/tasks', () => {
         for (const field of fields) {
           expect(response.body[0]).toHaveProperty(field)
         }
-      })
-      // TODO: Remove repeted test =>
-      test('should return all the initial data', async () => {
-        await request(app).get('/api/v1/seeds/generate')
-        const response = await request(app).get('/api/v1/tasks/search')
-
-        expect(response.body.length).toBe(seedTasks.tasks.length)
       })
     })
 
