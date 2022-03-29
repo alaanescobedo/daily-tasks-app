@@ -4,6 +4,7 @@
     "description": "",
     "main": "src/config/server.ts",
     "scripts": {
+        "compile": "tsc",
         "dev": "nodemon --exec ts-node -r tsconfig-paths/register src/config/server.ts",
         "docker": "docker-compose up",
         "lint": "ts-standard",
