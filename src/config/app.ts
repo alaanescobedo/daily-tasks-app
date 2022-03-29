@@ -7,7 +7,10 @@ const app = express()
 app.use(express.json())
 
 app.use('/api/v1/tasks', taskRouter)
-app.use('/api/v1/seeds', seedRouter)
+
+if (process.env['NODE_ENV'] === 'development' || process.env['NODE_ENV'] === 'test') {
+  app.use('/api/v1/seeds', seedRouter)
+}
 
 app.use(errorHandler)
 
