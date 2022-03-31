@@ -1,5 +1,5 @@
 import type { NewUserClientData } from '@user/userInterface'
-import agent from '@utils/tests/agent'
+import { signup } from '@utils/tests/auth/signup'
 
 const TestSignupUser: NewUserClientData = {
   username: 'user',
@@ -12,7 +12,7 @@ const fields = [...Object.keys(TestSignupUser), 'tasks', 'active', 'createdAt', 
 describe('AUTH MODULE', () => {
   describe('/signup route', () => {
     test('should create a new user', async () => {
-      const { status, body } = await agent.post('/api/v1/auth/signup').send(TestSignupUser)
+      const { status, body } = await signup(TestSignupUser)
 
       expect(status).toBe(201)
       expect(body.status).toBe('success')
@@ -21,7 +21,7 @@ describe('AUTH MODULE', () => {
       }
     })
     test('should fill the user with the correct information', async () => {
-      const { body } = await agent.post('/api/v1/auth/signup').send(TestSignupUser)
+      const { body } = await signup(TestSignupUser)
 
       expect(body.data.user).toHaveProperty('username', TestSignupUser.username)
       expect(body.data.user).toHaveProperty('email', TestSignupUser.email)
@@ -29,7 +29,7 @@ describe('AUTH MODULE', () => {
       expect(body.data.user).toHaveProperty('tasks', [])
     })
     test('should return the user with the empty password', async () => {
-      const { body } = await agent.post('/api/v1/auth/signup').send(TestSignupUser)
+      const { body } = await signup(TestSignupUser)
       expect(body.data.user).toHaveProperty('password', '')
     })
   })

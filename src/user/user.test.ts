@@ -1,4 +1,5 @@
 import agent from '@utils/tests/agent'
+import { signup } from '@utils/tests/auth/signup'
 import { flushDB } from '@utils/tests/seed'
 import type { NewUserClientData } from './userInterface'
 
@@ -28,7 +29,7 @@ describe('Users Module', () => {
   })
 
   test('should return User by id', async () => {
-    const { body: { data: { user: { entityId } } } } = await agent.post('/api/v1/auth/signup').send(TestSignupUser)
+    const { body: { data: { user: { entityId } } } } = await signup(TestSignupUser)
     const { status, body } = await agent.get(`/api/v1/users/${entityId as string}`)
     expect(status).toBe(200)
     for (const field of fields) {
@@ -37,7 +38,7 @@ describe('Users Module', () => {
   })
 
   test('should change the email and the username but not the entityId', async () => {
-    const { body: { data: { user: userSignUp } } } = await agent.post('/api/v1/auth/signup').send(TestSignupUser)
+    const { body: { data: { user: userSignUp } } } = await signup(TestSignupUser)
 
     const { status, body } = await agent.patch(`/api/v1/users/${userSignUp.entityId as string}`).send({ username: 'userChanged', email: 'changed@email.com' })
     expect(status).toBe(200)
@@ -49,7 +50,7 @@ describe('Users Module', () => {
     }
   })
   test('should change the property active to false and return status 200 with the message "User status updated"', async () => {
-    const { body: { data: { user: userSignUp } } } = await agent.post('/api/v1/auth/signup').send(TestSignupUser)
+    const { body: { data: { user: userSignUp } } } = await signup(TestSignupUser)
 
     const { status, body } = await agent.delete(`/api/v1/users/${userSignUp.entityId as string}`)
     expect(status).toBe(200)
