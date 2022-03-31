@@ -1,11 +1,13 @@
 import express from 'express'
 import taskRouter from '@task/taskRouter'
 import seedRouter from '@seed/seedRouter'
+import authRouter from '@auth/authRouter'
 import errorHandler from '@error/errorHandler'
 
 const app = express()
 app.use(express.json())
 
+app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/tasks', taskRouter)
 
 if (process.env['NODE_ENV'] === 'development' || process.env['NODE_ENV'] === 'test') {

@@ -6,6 +6,8 @@
     "baseUrl": "./src",
     "paths": {
       "@task/*": ["task/*"],
+      "@user/*": ["user/*"],
+      "@auth/*": ["auth/*"],
       "@config/*": ["config/*"],
       "@lib/redis/*": ["lib/redis/*"],
       "@seed/*": ["seed/*"],
