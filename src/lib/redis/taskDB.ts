@@ -1,18 +1,18 @@
 import client, { connect, disconnect } from '@lib/redis/client'
-import type { Task } from '@task/taskInterface'
+import type { Task, TaskEntity } from '@task/taskInterface'
 import taskSchema from '@task/taskModel'
 
-export const createTask = async (data: Task): Promise<Task> => {
+export const createTask = async (data: Task): Promise<TaskEntity> => {
   await connect()
   const repository = client.fetchRepository(taskSchema)
-  const task = repository.createAndSave({ ...data })
+  const task = await repository.createAndSave({ ...data })
   await disconnect()
-  return await task
+  return task
 }
-export const searchTasks = async (): Promise<Task[]> => {
+export const searchTasks = async (userID: string): Promise<TaskEntity[]> => {
   await connect()
   const repository = client.fetchRepository(taskSchema)
-  const tasks = await repository.search().return.all()
+  const tasks = await repository.search().where('userID').equals(userID).returnAll()
   await disconnect()
   return tasks
 }
@@ -39,16 +39,7 @@ export const deleteTaskDB = async (id: string): Promise<{ status: number, messag
 
   return { status: 200, message: 'Task deleted' }
 }
-
-export const flushDB = async (): Promise<{ status: number, message: string }> => {
-  await connect()
-  await client.execute(['FLUSHDB'])
-  await disconnect()
-
-  return { status: 200, message: 'DB flushed' }
-}
-
-export const searchTasksById = async (id: string): Promise<Task> => {
+export const searchTasksById = async (id: string): Promise<TaskEntity> => {
   await connect()
 
   const repository = client.fetchRepository(taskSchema)

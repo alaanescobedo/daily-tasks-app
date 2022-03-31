@@ -1,16 +1,20 @@
 {
   "extends": "@tsconfig/node16-strictest-esm/tsconfig.json",
   "compilerOptions": {
+    "outDir": "./dist/",
     "module": "CommonJS",
     "baseUrl": "./src",
     "paths": {
       "@task/*": ["task/*"],
+      "@user/*": ["user/*"],
+      "@auth/*": ["auth/*"],
       "@config/*": ["config/*"],
       "@lib/redis/*": ["lib/redis/*"],
       "@seed/*": ["seed/*"],
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@error/*": ["error/*"]
     }
   },
   "include": ["src"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules","src/utils/tests"]
 }
