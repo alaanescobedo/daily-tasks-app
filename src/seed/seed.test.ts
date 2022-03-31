@@ -1,6 +1,7 @@
 import { seedTasks } from '@seed/seed-tasks'
-import { createIndex, getAllTasks } from '@utils/tests/task'
+import { createIndex } from '@utils/tests/task'
 import { flushDB, generateSeed } from '@utils/tests/seed'
+import { searchTasks } from '@lib/redis/taskDB'
 
 describe('SEED.TEST.TS -- TASK /api/v1/seeds/task', () => {
   describe('Generate Seeds tasks', () => {
@@ -14,8 +15,8 @@ describe('SEED.TEST.TS -- TASK /api/v1/seeds/task', () => {
       await generateSeed()
       await createIndex()
 
-      const { body: tasks } = await getAllTasks()
-      expect(tasks).toHaveLength(seedTasks.tasks.length)
+      const tasks = await searchTasks('ABC123')
+      expect(tasks).toHaveLength(seedTasks.length)
     })
   })
   describe('Flush database', () => {
@@ -27,7 +28,7 @@ describe('SEED.TEST.TS -- TASK /api/v1/seeds/task', () => {
     test('should empty the database', async () => {
       await createIndex()
 
-      const { body: tasks } = await getAllTasks()
+      const tasks = await searchTasks('ABC123')
       expect(tasks).toBeInstanceOf(Array)
       expect(tasks).toHaveLength(0)
     })

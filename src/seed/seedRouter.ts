@@ -1,11 +1,11 @@
 import { Router } from 'express'
-import { flushData, generateSeedDB } from '@seed/seedController'
+import { flushData, generateSeed } from '@seed/seedController'
 
 const router = Router()
 
 router
   .route('/generate')
-  .get(generateSeedDB)
+  .get(generateSeed)
 
 router
   .route('/flush')

@@ -1,12 +1,14 @@
 import type { Request, Response } from 'express'
-import { createTask, flushDB } from '@lib/redis/db'
 import { seedTasks } from '@seed/seed-tasks'
-import type { Task } from '@task/taskInterface'
+import { seedUsers } from '@seed/seed-users'
+import { flushDB, generateSeedDB } from '@lib/redis/seedDB'
+import taskSchema from '@task/taskModel'
+import userSchema from '@user/userModel'
 
-export const generateSeedDB = async (_req: Request, res: Response): Promise<Response> => {
-  for (const task of seedTasks.tasks) {
-    await createTask(task as Task)
-  }
+export const generateSeed = async (_req: Request, res: Response): Promise<Response> => {
+  await generateSeedDB(userSchema, seedUsers)
+  await generateSeedDB(taskSchema, seedTasks)
+
   return res.status(200).send({ message: 'Seed DB created' })
 }
 
