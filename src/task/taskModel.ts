@@ -13,7 +13,8 @@ const taskSchema = new Schema(TaskEntity, {
   scheduledFor: { type: 'string' },
   createdAt: { type: 'string' },
   completedAt: { type: 'string' },
-  updatedAt: { type: 'string' }
+  updatedAt: { type: 'string' },
+  userID: { type: 'string' }
 })
 
 export default taskSchema

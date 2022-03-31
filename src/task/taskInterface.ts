@@ -1,12 +1,16 @@
 export interface TaskClientData {
   title: string
   scheduledFor: string
-  description?: string | null
+  description?: string
 }
 
 export interface Task extends TaskClientData {
-  status: string
+  status: 'Pending' | 'Completed' | 'In-Progress'
+  userID: string
   createdAt: string
   completedAt?: string
   updatedAt?: string
+}
+export interface TaskEntity extends Task {
+  entityId: string
 }
