@@ -35,4 +35,27 @@ describe('Users Module', () => {
       expect(body).toHaveProperty(field)
     }
   })
+
+  test('should change the email and the username but not the entityId', async () => {
+    const { body: { data: { user: userSignUp } } } = await agent.post('/api/v1/auth/signup').send(TestSignupUser)
+
+    const { status, body } = await agent.patch(`/api/v1/users/${userSignUp.entityId as string}`).send({ username: 'userChanged', email: 'changed@email.com' })
+    expect(status).toBe(200)
+    expect(body.entityId).toBe(userSignUp.entityId)
+    expect(body.username).toBe('userChanged')
+    expect(body.email).toBe('changed@email.com')
+    for (const field of fields) {
+      expect(body).toHaveProperty(field)
+    }
+  })
+  test('should change the property active to false and return status 200 with the message "User status updated"', async () => {
+    const { body: { data: { user: userSignUp } } } = await agent.post('/api/v1/auth/signup').send(TestSignupUser)
+
+    const { status, body } = await agent.delete(`/api/v1/users/${userSignUp.entityId as string}`)
+    expect(status).toBe(200)
+    expect(body).toHaveProperty('message', 'User status updated')
+
+    const { body: body2 } = await agent.get(`/api/v1/users/${userSignUp.entityId as string}`)
+    expect(body2.active).toBe(false)
+  })
 })

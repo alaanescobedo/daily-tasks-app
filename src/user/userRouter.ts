@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { getAllUsers, getIndex, getUserById } from '@user/userController'
+import { deactivateUser, getAllUsers, getIndex, getUserById, updateUser } from '@user/userController'
 
 const router = Router()
 
@@ -14,4 +14,7 @@ router
 router
   .route('/:id')
   .get(getUserById)
+  .patch(updateUser)
+  .delete(deactivateUser)
+
 export default router
