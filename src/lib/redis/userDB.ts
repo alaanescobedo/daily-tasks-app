@@ -1,6 +1,6 @@
 import userSchema from '@user/userModel'
 import client, { connect, disconnect } from '@lib/redis/client'
-import type { NewUserClientData, User, IUserEntity } from '@user/userInterface'
+import type { IUserEntity, NewUserClientData, User } from '@user/userInterface'
 
 export const createIndex = async (): Promise<void> => {
   await connect()
@@ -31,4 +31,12 @@ export const searchUsers = async (): Promise<User[]> => {
   const users = await usersRepository.search().where('active').equalTo(true).returnAll()
   await disconnect()
   return users
+}
+export const searchUserById = async (id: string): Promise<IUserEntity> => {
+  await connect()
+  const usersRepository = client.fetchRepository(userSchema)
+
+  const user = await usersRepository.fetch(id)
+  await disconnect()
+  return user
 }
