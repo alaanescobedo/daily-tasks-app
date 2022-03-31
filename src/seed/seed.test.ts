@@ -2,10 +2,22 @@ import { seedTasks } from '@seed/seed-tasks'
 import { createIndex } from '@utils/tests/task'
 import { flushDB, generateSeed } from '@utils/tests/seed'
 import { searchTasks } from '@lib/redis/taskDB'
-
+import { signup } from '@utils/tests/auth/signup'
+import type { NewUserClientData } from '@user/userInterface'
+const TestUser: NewUserClientData = {
+  username: 'user',
+  password: 'password123',
+  email: 'user@user.com'
+}
 describe('SEED.TEST.TS -- TASK /api/v1/seeds/task', () => {
   describe('Generate Seeds tasks', () => {
-    beforeEach(async () => await flushDB())
+    let token: string
+
+    beforeEach(async () => {
+      await flushDB()
+      const { body } = await signup(TestUser)
+      token = body.token
+    })
     test('should return status 200 and message "Seed DB created"', async () => {
       const { status, body } = await generateSeed()
       expect(status).toBe(200)
@@ -13,20 +25,27 @@ describe('SEED.TEST.TS -- TASK /api/v1/seeds/task', () => {
     })
     test('should add the initial data to the database', async () => {
       await generateSeed()
-      await createIndex()
+      await createIndex(token)
 
       const tasks = await searchTasks('ABC123')
       expect(tasks).toHaveLength(seedTasks.length)
     })
   })
   describe('Flush database', () => {
+    let token: string
+
+    beforeEach(async () => {
+      const { body } = await signup(TestUser)
+      token = body.token
+    })
+
     test('should return status 200 and message "Data flushed"', async () => {
       const { status, body } = await flushDB()
       expect(status).toBe(200)
       expect(body).toHaveProperty('message', 'DB flushed')
     })
     test('should empty the database', async () => {
-      await createIndex()
+      await createIndex(token)
 
       const tasks = await searchTasks('ABC123')
       expect(tasks).toBeInstanceOf(Array)

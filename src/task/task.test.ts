@@ -19,8 +19,13 @@ const fields = [...Object.keys(TestTask), 'status', 'userID', 'createdAt', 'comp
 
 describe('TASK TESTS /api/v1/tasks', () => {
   describe('GET /createindex', () => {
+    let token: string
+    beforeAll(async () => {
+      const { body } = await signup(TestUser)
+      token = body.token
+    })
     test('should return status 200 and message Index created', async () => {
-      const { status, body } = await createIndex()
+      const { status, body } = await createIndex(token)
 
       expect(status).toBe(200)
       expect(body).toHaveProperty('message', 'Index created')
@@ -31,9 +36,9 @@ describe('TASK TESTS /api/v1/tasks', () => {
     let token: string
     beforeEach(async () => {
       await flushDB()
-      await createIndex()
       const response = await signup(TestUser)
       token = response.body.token
+      await createIndex(token)
     })
 
     describe('POST /api/v1/tasks', () => {

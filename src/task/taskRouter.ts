@@ -1,7 +1,10 @@
 import { Router } from 'express'
 import { deleteTask, getAllTask, getIndex, getTaskById, postTask } from '@task/taskController'
+import { authProtect } from 'middleware/authProtect'
 
 const router = Router()
+
+router.use(authProtect)
 
 router
   .route('/')
