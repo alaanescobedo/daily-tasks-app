@@ -86,29 +86,4 @@ describe('TASK TESTS /api/v1/tasks', () => {
       })
     })
   })
-
-  describe('ERROR Handlers', () => {
-    describe('Couldnt connect to Database', () => {
-      const TempStorage = process.env['REDIS_URL']
-      let token: string
-      beforeAll(async () => {
-        const response = await signup(TestUser)
-        token = response.body.token
-
-        process.env['REDIS_URL'] = undefined
-      })
-      test('POST /api/v1/tasks should return status 500 with detailed errors', async () => {
-        const { status, body } = await postTask(TestTask, token)
-
-        expect(status).toBe(500)
-        expect(body).toHaveProperty('message', 'Invalid URL')
-        expect(body).toHaveProperty('status', 'error')
-        expect(body).toHaveProperty('stack')
-        expect(body.error).toBeInstanceOf(Object)
-      })
-      afterAll(() => {
-        process.env['REDIS_URL'] = TempStorage
-      })
-    })
-  })
 })

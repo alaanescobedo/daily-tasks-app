@@ -5,6 +5,7 @@ import { comparePassword, hashPassword } from '@lib/bcryptjs'
 import { catchAsync } from '@utils/errors/catchAsync'
 import type { NewUserClientData } from '@user/userInterface'
 import { createToken } from '@lib/jsonwebtoken'
+import { EMPTY_STRING } from '@constants'
 
 export const signup = catchAsync(async (req: Request, res: Response) => {
   const { username, email, password }: NewUserClientData = req.body
@@ -25,7 +26,7 @@ export const signup = catchAsync(async (req: Request, res: Response) => {
   })
 
   // Remove password from output
-  userCreated.password = ''
+  userCreated.password = EMPTY_STRING
 
   return res.status(201).send({
     status: 'success',
@@ -37,8 +38,8 @@ export const signup = catchAsync(async (req: Request, res: Response) => {
 })
 
 export const login = catchAsync(async (req: Request, res: Response) => {
-  const { email = '', password = '' }: { email: string, password: string } = req.body
-  if (email === '' || password === '') throw new AppError('Please provide email and password!', 400)
+  const { email = EMPTY_STRING, password = EMPTY_STRING }: { email: string, password: string } = req.body
+  if (email === EMPTY_STRING || password === EMPTY_STRING) throw new AppError('Please provide email and password!', 400)
 
   const user = await searchUserToLogin(email)
   const passwordCorrect = await comparePassword(password, user.password)
@@ -52,7 +53,7 @@ export const login = catchAsync(async (req: Request, res: Response) => {
     secure: req.secure || req.headers['x-forwarded-proto'] === 'https'
   })
 
-  user.password = ''
+  user.password = EMPTY_STRING
 
   return res.status(200).send({
     status: 'success',

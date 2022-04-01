@@ -1,4 +1,5 @@
 import app from '@config/app'
+import { EMPTY_STRING } from '@constants'
 import { createIndex } from '@lib/redis/userDB'
 import type { NewUserClientData } from '@user/userInterface'
 import { signup } from '@utils/tests/auth/signup'
@@ -33,7 +34,7 @@ describe('AUTH MODULE', () => {
     })
     test('should return the user with the empty password', async () => {
       const { body } = await signup(TestSignupUser)
-      expect(body.data.user).toHaveProperty('password', '')
+      expect(body.data.user).toHaveProperty('password', EMPTY_STRING)
     })
   })
 
@@ -42,7 +43,7 @@ describe('AUTH MODULE', () => {
       await createIndex()
       const { status, body } = await agent(app).post('/api/v1/auth/login').send({ email: TestSignupUser.email, password: TestSignupUser.password })
       expect(status).toBe(200)
-      expect(body.data.user).toHaveProperty('password', '')
+      expect(body.data.user).toHaveProperty('password', EMPTY_STRING)
       expect(body.data.user).toHaveProperty('username', TestSignupUser.username)
       expect(body.data.user).toHaveProperty('email', TestSignupUser.email)
       expect(body.data.user).toHaveProperty('active', true)

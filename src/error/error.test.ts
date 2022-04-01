@@ -1,10 +1,11 @@
 import type { Request, Response } from 'express'
 import AppError from '@error/errorApp'
 import errorHandler from '@error/errorHandler'
+import { EMPTY_STRING } from '@constants'
 
 const mockReq: Partial<Request> = { originalUrl: '/api/v1' }
 let mockRes: Partial<Response> = {}
-let responseObject = { message: '', status: 0 }
+let responseObject = { message: EMPTY_STRING, status: 0 }
 
 const mockResponse = (mock: 'status' | 'message'): jest.Mock<Response> => jest.fn().mockImplementationOnce((result: number | string): Partial<Response> => {
   responseObject = { ...responseObject, [mock]: result }

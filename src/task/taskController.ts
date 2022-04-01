@@ -7,6 +7,7 @@ import { catchAsync } from '@utils/errors/catchAsync'
 
 import jwt from 'jsonwebtoken'
 import AppError from '@error/errorApp'
+import { EMPTY_STRING, JWT_SECRET } from '@constants'
 
 // JWT
 const getTokenFrom = (request: Request): string | null => {
@@ -23,15 +24,15 @@ export const getIndex = async (_req: Request, res: Response): Promise<Response> 
 }
 // CRUD Operations
 export const postTask = catchAsync(async (req: Request, res: Response): Promise<Response> => {
-  const { title, scheduledFor, description = '' }: TaskClientData = req.body
+  const { title, scheduledFor, description = EMPTY_STRING }: TaskClientData = req.body
   // const { entityId: userID } = req.cookies.currentUser
   const token = getTokenFrom(req)
 
   // TODO - Refactor in middleware
   if (token === null) throw new AppError('Token is missing', 401)
-  if (process.env['JWT_SECRET'] === undefined) throw new AppError('JWT_SECRET is missing', 400)
+  if (JWT_SECRET === EMPTY_STRING) throw new AppError('JWT_SECRET is missing', 400)
 
-  const { id } = jwt.verify(token, process.env['JWT_SECRET']) as any
+  const { id } = jwt.verify(token, JWT_SECRET) as any
   const data: Task = {
     title,
     description,
@@ -50,9 +51,9 @@ export const getAllTask = async (req: Request, res: Response): Promise<Response>
   const token = getTokenFrom(req)
 
   if (token === null) throw new AppError('Token not found', 401)
-  if (process.env['JWT_SECRET'] === undefined) throw new AppError('JWT_SECRET not found', 401)
+  if (JWT_SECRET === EMPTY_STRING) throw new AppError('JWT_SECRET not found', 401)
 
-  const { id } = jwt.verify(token, process.env['JWT_SECRET']) as { id: string }
+  const { id } = jwt.verify(token, JWT_SECRET) as { id: string }
 
   const tasks = await searchTasks(id)
   return res.status(200).send(tasks)
@@ -63,7 +64,7 @@ export const getTaskById = async (req: Request, res: Response): Promise<Response
   return res.status(200).send(task)
 }
 export const deleteTask = async (req: Request, res: Response): Promise<Response> => {
-  const { id = '' } = req.params
+  const { id = EMPTY_STRING } = req.params
   const { status, message } = await deleteTaskDB(id)
   return res.status(status).send({ message })
 }

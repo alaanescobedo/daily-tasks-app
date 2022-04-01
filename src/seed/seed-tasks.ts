@@ -1,3 +1,4 @@
+import { EMPTY_STRING } from '@constants'
 import type { Task } from '@task/taskInterface'
 
 export const seedTasks: Task[] = [
@@ -7,9 +8,9 @@ export const seedTasks: Task[] = [
     userID: 'ABC123',
     status: 'Pending',
     createdAt: new Date().toISOString(),
-    completedAt: '',
+    completedAt: EMPTY_STRING,
     description: 'Learn how to use Figma',
-    updatedAt: ''
+    updatedAt: EMPTY_STRING
   },
   {
     title: 'Learn React',
@@ -17,7 +18,7 @@ export const seedTasks: Task[] = [
     userID: 'ABC123',
     status: 'Pending',
     createdAt: new Date().toISOString(),
-    completedAt: '',
+    completedAt: EMPTY_STRING,
     description: 'Learn how to use React'
   },
   {
@@ -26,7 +27,7 @@ export const seedTasks: Task[] = [
     userID: 'ABC123',
     status: 'Pending',
     createdAt: new Date().toISOString(),
-    completedAt: '',
+    completedAt: EMPTY_STRING,
     description: 'Continue with the Next project'
   },
   {
@@ -35,7 +36,7 @@ export const seedTasks: Task[] = [
     userID: 'ABC123',
     status: 'Pending',
     createdAt: new Date().toISOString(),
-    completedAt: '',
+    completedAt: EMPTY_STRING,
     description: 'Learn how to use Vue'
   },
   {
@@ -44,7 +45,7 @@ export const seedTasks: Task[] = [
     userID: 'ABC123',
     status: 'Pending',
     createdAt: new Date().toISOString(),
-    completedAt: '',
+    completedAt: EMPTY_STRING,
     description: 'Continue learning Java'
   },
   {
@@ -53,7 +54,7 @@ export const seedTasks: Task[] = [
     userID: 'ABC123',
     status: 'Pending',
     createdAt: new Date().toISOString(),
-    completedAt: '',
+    completedAt: EMPTY_STRING,
     description: 'Learn how to use Redis'
   },
   {
@@ -71,6 +72,6 @@ export const seedTasks: Task[] = [
     status: 'Completed',
     completedAt: new Date().toISOString(),
     description: 'Add test to the daily-task app',
-    updatedAt: ''
+    updatedAt: EMPTY_STRING
   }
 ]

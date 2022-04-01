@@ -1,3 +1,4 @@
+import { EMPTY_STRING } from '@constants'
 import type { User } from '@user/userInterface'
 
 export const seedUsers: User[] = [
@@ -8,7 +9,7 @@ export const seedUsers: User[] = [
     tasks: [],
     active: true,
     createdAt: '2020-05-10T00:00:00.000Z',
-    updatedAt: ''
+    updatedAt: EMPTY_STRING
   },
   {
     username: 'user',
@@ -17,7 +18,7 @@ export const seedUsers: User[] = [
     tasks: [],
     active: true,
     createdAt: '2020-05-10T00:00:00.000Z',
-    updatedAt: ''
+    updatedAt: EMPTY_STRING
   },
   {
     username: 'inactive',
@@ -26,6 +27,6 @@ export const seedUsers: User[] = [
     tasks: [],
     active: false,
     createdAt: '2020-05-10T00:00:00.000Z',
-    updatedAt: ''
+    updatedAt: EMPTY_STRING
   }
 ]
