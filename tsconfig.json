@@ -11,6 +11,7 @@
       "@config/*": ["config/*"],
       "@lib/redis/*": ["lib/redis/*"],
       "@lib/bcryptjs": ["lib/bcryptjs"],
+      "@lib/jsonwebtoken": ["lib/jsonwebtoken"],
       "@seed/*": ["seed/*"],
       "@utils/*": ["utils/*"],
       "@error/*": ["error/*"]

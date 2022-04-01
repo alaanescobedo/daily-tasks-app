@@ -1,18 +1,10 @@
 import type { Request, Response } from 'express'
-import jwt from 'jsonwebtoken'
 import AppError from '@error/errorApp'
 import { createUser, searchUserToLogin } from '@lib/redis/userDB'
 import { comparePassword, hashPassword } from '@lib/bcryptjs'
 import { catchAsync } from '@utils/errors/catchAsync'
 import type { NewUserClientData } from '@user/userInterface'
-
-const createToken = (id: string): string => {
-  if (process.env['JWT_SECRET'] === undefined) {
-    throw new AppError('JWT_SECRET is not defined', 400)
-  }
-  const token = jwt.sign({ id }, process.env['JWT_SECRET'])
-  return token
-}
+import { createToken } from '@lib/jsonwebtoken'
 
 export const signup = catchAsync(async (req: Request, res: Response) => {
   const { username, email, password }: NewUserClientData = req.body
