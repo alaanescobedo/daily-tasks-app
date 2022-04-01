@@ -10,6 +10,9 @@
       "@auth/*": ["auth/*"],
       "@config/*": ["config/*"],
       "@lib/redis/*": ["lib/redis/*"],
+      "@lib/bcryptjs": ["lib/bcryptjs"],
+      "@lib/jsonwebtoken": ["lib/jsonwebtoken"],
+      "@constants": ["constants/index.ts"],
       "@seed/*": ["seed/*"],
       "@utils/*": ["utils/*"],
       "@error/*": ["error/*"]

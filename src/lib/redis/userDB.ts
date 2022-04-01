@@ -41,6 +41,13 @@ export const searchUserById = async (id: string): Promise<IUserEntity> => {
   await disconnect()
   return user
 }
+export const searchUserToLogin = async (email: string): Promise<IUserEntity> => {
+  await connect()
+  const usersRepository = client.fetchRepository(userSchema)
+  const user = await usersRepository.search().where('email').equalTo(email).returnFirst()
+  await disconnect()
+  return user
+}
 export const updateUserDB = async (id: string, data: UserUpdateData): Promise<IUserEntity> => {
   await connect()
   const usersRepository = client.fetchRepository(userSchema)
