@@ -1,12 +1,20 @@
+import { CSSProperties, useContext } from "react"
+
 import { MainCard, TaskCard } from "./components/Card"
+import { ThemeContext } from "./context"
+
+import styles from './App.module.css'
 
 function App() {
-
+  const { generalConfiguration, theme } = useContext(ThemeContext)
+  const configVariables = { ...generalConfiguration, ...theme }
   return (
-    <div style={{ width: "90%", margin: "10% auto", display: "flex", flexDirection: "column", gap: "1rem" }}>
-      <MainCard />
-      <TaskCard />
+    <div className={styles.app} style={{ ...configVariables as CSSProperties }}>
+      <div className={styles.container}>
+        <MainCard />
+        <TaskCard />
 
+      </div>
     </div>
   )
 }
