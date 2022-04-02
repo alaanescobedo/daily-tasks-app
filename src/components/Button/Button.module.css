@@ -1,0 +1,14 @@
+.container {
+    width: 100%;
+    background-color: rgb(var(--primary));
+    border-radius: 10px;
+    height: 8vh;
+    display: grid;
+    place-content: center;
+}
+
+.label {
+    font-weight: 600;
+    font-size: 1.4rem;
+    color: rgb(var(--background), var(--opacity-7));
+}

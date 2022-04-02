@@ -9,5 +9,6 @@ export enum Color {
   DOVE_GRAY = 'rgb(106,106,106)'
 }
 export enum Opacity {
-  '--opacity-1' = 0.1
+  '--opacity-1' = 0.1,
+  '--opacity-7' = 0.7,
 }

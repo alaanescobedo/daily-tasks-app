@@ -1,9 +1,11 @@
 import { CSSProperties, useContext } from 'react'
 
-import { MainCard, TaskCard } from './components/Card'
+import { MainCard } from './components/Card'
 import { ThemeContext } from './context'
 
 import styles from './App.module.css'
+import { Tasks } from './components/Scroll'
+import { Button } from './components/Button/Button'
 
 function App (): JSX.Element {
   const { generalConfiguration, theme } = useContext(ThemeContext)
@@ -12,7 +14,8 @@ function App (): JSX.Element {
     <div className={styles.app} style={{ ...configVariables as CSSProperties }}>
       <div className={styles.container}>
         <MainCard />
-        <TaskCard />
+        <Tasks />
+        <Button />
       </div>
     </div>
   )

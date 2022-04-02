@@ -1,4 +1,4 @@
-import { Theme } from '@interfaces'
+import { Theme } from '../interfaces'
 import { Color } from './config'
 
 export const themeLight: Theme = {
