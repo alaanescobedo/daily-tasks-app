@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 import { ThemeType } from '../../interfaces';
-import { THEMES } from '../../themes';
+import { GENERAL_CONFIGURATION, THEMES } from '../../themes';
 import { ThemeContext } from './ThemeContext';
 
 export const ThemeProvider: FC = ({ children }) => {
@@ -9,6 +9,7 @@ export const ThemeProvider: FC = ({ children }) => {
     <ThemeContext.Provider value={{
       themeType: currentTheme,
       theme: THEMES[currentTheme],
+      generalConfiguration: GENERAL_CONFIGURATION,
       setCurrentTheme
     }}>
       {children}

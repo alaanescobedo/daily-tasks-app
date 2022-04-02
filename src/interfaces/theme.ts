@@ -7,7 +7,8 @@ export interface Theme {
   '--secondary': Color,
   '--tertiary': Color,
   '--background': Color,
-  '--highlight': Color
+  '--highlight': Color,
+  '--text': Color
 }
 
 export interface GeneralConfiguration {
