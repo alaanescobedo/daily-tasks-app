@@ -1,4 +1,4 @@
-import { getValuesFromRGB } from "../scripts/getValuesFromRGB";
+import { getValuesFromRGB } from "../utils/getValuesFromRGB";
 import { Color } from "./config";
 
 export const themeDark = {

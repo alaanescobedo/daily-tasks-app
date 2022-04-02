@@ -1,5 +1,5 @@
 import { Theme, ThemeType } from "../interfaces"
-import { getValuesFromRGB } from "../scripts/getValuesFromRGB"
+import { getValuesFromRGB } from "../utils/getValuesFromRGB"
 import { Opacity } from "./config"
 import { themeDark } from "./dark"
 import { themeLight } from "./light"

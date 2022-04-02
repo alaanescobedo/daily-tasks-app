@@ -1,4 +1,4 @@
-import { getValuesFromRGB } from '../../src/scripts/getValuesFromRGB';
+import { getValuesFromRGB } from '../../src/utils/getValuesFromRGB';
 import { THEMES } from '../../src/themes';
 
 const fields = Object.keys(THEMES.dark)
