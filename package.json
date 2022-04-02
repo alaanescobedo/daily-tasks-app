@@ -7,7 +7,8 @@
         "build": "tsc && vite build",
         "preview": "vite preview",
         "lint": "ts-standard",
-        "test": "jest --runInBand"
+        "test": "jest --runInBand",
+        "prepare": "husky install"
     },
     "dependencies": {
         "react": "17.0.2",
@@ -19,10 +20,18 @@
         "@types/react": "17.0.33",
         "@types/react-dom": "17.0.10",
         "@vitejs/plugin-react": "1.0.7",
+        "husky": "7.0.0",
         "jest": "27.5.1",
+        "lint-staged": "12.3.7",
         "ts-jest": "27.1.4",
         "ts-standard": "11.0.0",
         "typescript": "4.5.4",
         "vite": "2.8.0"
+    },
+    "lint-staged": {
+        "**/*.{ts,tsx}": [
+            "yarn lint --fix",
+            "yarn test --watchAll=false --findRelatedTests"
+        ]
     }
 }
