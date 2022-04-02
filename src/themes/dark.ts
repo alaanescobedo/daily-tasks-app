@@ -1,6 +1,6 @@
-import { Theme } from "../interfaces";
-import { getValuesFromRGB } from "../utils/getValuesFromRGB";
-import { Color } from "./config";
+import { Theme } from '../interfaces'
+import { getValuesFromRGB } from '../utils/getValuesFromRGB'
+import { Color } from './config'
 
 export const themeDark: Theme = {
   '--primary': Color.PERFUME,

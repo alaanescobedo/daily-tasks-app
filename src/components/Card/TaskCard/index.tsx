@@ -1,6 +1,6 @@
-import styles from "./TaskCard.module.css"
+import styles from './TaskCard.module.css'
 
-export const TaskCard = () => {
+export const TaskCard = (): JSX.Element => {
   return (
     <div className={styles.container}>
       <ul className={styles.list}>

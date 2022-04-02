@@ -1,13 +1,13 @@
-import { Color } from "../themes/config";
+import { Color } from '../themes/config'
 
-export type ThemeType = 'dark' | 'light';
+export type ThemeType = 'dark' | 'light'
 
 export interface Theme {
-  '--primary': Color,
-  '--secondary': Color,
-  '--tertiary': Color,
-  '--background': Color,
-  '--highlight': Color,
+  '--primary': Color
+  '--secondary': Color
+  '--tertiary': Color
+  '--background': Color
+  '--highlight': Color
   '--text': Color
 }
 

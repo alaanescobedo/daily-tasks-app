@@ -1,8 +1,8 @@
-import { Theme, ThemeType } from "../interfaces"
-import { getValuesFromRGB } from "../utils/getValuesFromRGB"
-import { Opacity } from "./config"
-import { themeDark } from "./dark"
-import { themeLight } from "./light"
+import { Theme, ThemeType } from '../interfaces'
+import { getValuesFromRGB } from '../utils/getValuesFromRGB'
+import { Opacity } from './config'
+import { themeDark } from './dark'
+import { themeLight } from './light'
 
 export const THEMES: Record<ThemeType, Theme> = {
   dark: getValuesFromRGB(themeDark),

@@ -1,11 +1,11 @@
-import { CSSProperties, useContext } from "react"
+import { CSSProperties, useContext } from 'react'
 
-import { MainCard, TaskCard } from "./components/Card"
-import { ThemeContext } from "./context"
+import { MainCard, TaskCard } from './components/Card'
+import { ThemeContext } from './context'
 
 import styles from './App.module.css'
 
-function App() {
+function App (): JSX.Element {
   const { generalConfiguration, theme } = useContext(ThemeContext)
   const configVariables = { ...generalConfiguration, ...theme }
   return (
@@ -13,7 +13,6 @@ function App() {
       <div className={styles.container}>
         <MainCard />
         <TaskCard />
-
       </div>
     </div>
   )

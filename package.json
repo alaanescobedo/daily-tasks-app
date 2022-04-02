@@ -6,6 +6,7 @@
         "dev": "vite",
         "build": "tsc && vite build",
         "preview": "vite preview",
+        "lint": "ts-standard",
         "test": "jest --runInBand"
     },
     "dependencies": {

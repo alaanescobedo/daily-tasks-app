@@ -1,15 +1,15 @@
-import { Theme } from "../interfaces"
-import { Color } from "../themes/config"
+import { Theme } from '../interfaces'
+import { Color } from '../themes/config'
 
-export const getValuesFromRGB = (theme: Theme) => {
+export const getValuesFromRGB = (theme: Theme): Theme => {
   const entries = Object.entries(theme)
-  
-  const values = entries.reduce((acc, curr) => {
+
+  const values = entries.reduce<Theme>((acc, curr) => {
     const [key, value] = curr as [keyof Theme, string]
     const sanitizedRGB = value.replace('rgb(', '').replace(')', '').split(',').join(', ')
     acc[key] = sanitizedRGB as Color
     return acc
-  }, {} as Theme)
+  }, theme)
 
   return values
 }

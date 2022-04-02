@@ -1,7 +1,6 @@
-import styles from "./MainCard.module.css";
+import styles from './MainCard.module.css'
 
-export const MainCard = () => {
-  
+export const MainCard = (): JSX.Element => {
   return (
     <div className={styles.container}>
       <h4 className={styles.username}>Username</h4>
