@@ -1,9 +1,11 @@
 import { MainCard } from '../components'
+import { ActivitiesCard } from '../components/Card/ActivitiesCard'
 
 export const Activities = (): JSX.Element => {
   return (
-    <div>
+    <>
       <MainCard />
-    </div>
+      <ActivitiesCard />
+    </>
   )
 }
