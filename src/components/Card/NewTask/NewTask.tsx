@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { AppContainerLayout } from '../../layouts/AppContainerLayout'
 import styles from './NewTask.module.css'
 
 const CheckIcon = (): JSX.Element => (
@@ -34,62 +34,54 @@ export const NewTask = (): JSX.Element => {
   }
 
   return (
-    <div className={styles.super_container}>
-      <div className={styles.container}>
-        <h1 className={styles.heading}>New task</h1>
-        <form className={styles.form} onSubmit={handleSubmit}>
+    <AppContainerLayout>
+      <h1 className={styles.heading}>New task</h1>
+      <form className={styles.form} onSubmit={handleSubmit}>
 
-          <textarea
-            onChange={handleTextArea}
-            className={styles.input_task}
-            placeholder='Task'
-            maxLength={70}
-            value={textValue}
-          />
+        <textarea
+          onChange={handleTextArea}
+          className={styles.input_task}
+          placeholder='Task'
+          maxLength={70}
+          value={textValue}
+        />
 
-          <div className={styles.group_date_day}>
-            <select name='date_day' id='date_day' className={styles.input_date_day}>
-              <option value='today'>Today</option>
-              <option value='tomorrow'>Tomorrow</option>
-              <option value='friday'>Friday</option>
-              <option value='saturday'>Saturday</option>
-              <option value='sunday'>Sunday</option>
-              <option value='monday'>Monday</option>
-            </select>
-            <label htmlFor='date_day'>Day</label>
-          </div>
+        <div className={styles.group_date_day}>
+          <select name='date_day' id='date_day' className={styles.input_date_day}>
+            <option value='today'>Today</option>
+            <option value='tomorrow'>Tomorrow</option>
+            <option value='friday'>Friday</option>
+            <option value='saturday'>Saturday</option>
+            <option value='sunday'>Sunday</option>
+            <option value='monday'>Monday</option>
+          </select>
+          <label htmlFor='date_day'>Day</label>
+        </div>
 
-          <div className={styles.group_date_hour}>
-            <input name='date_hour' id='date_hour' type='time' className={styles.input_date_hour} />
-            <label htmlFor='date_hour'>Hour</label>
-          </div>
+        <div className={styles.group_date_hour}>
+          <input name='date_hour' id='date_hour' type='time' className={styles.input_date_hour} />
+          <label htmlFor='date_hour'>Hour</label>
+        </div>
 
-          <div className={styles.group_recurrent}>
-            <span className={styles.input_recurrent} onClick={handleCheckbox}>
-              {checked ? <CheckIcon /> : ''}
-              <input name='recurrent' id='recurrent' type='checkbox' className={styles.checkbox} checked={checked} readOnly />
-            </span>
-            <label htmlFor='recurrent'>Recurrent</label>
-          </div>
+        <div className={styles.group_recurrent}>
+          <span className={styles.input_recurrent} onClick={handleCheckbox}>
+            {checked ? <CheckIcon /> : ''}
+            <input name='recurrent' id='recurrent' type='checkbox' className={styles.checkbox} checked={checked} readOnly />
+          </span>
+          <label htmlFor='recurrent'>Recurrent</label>
+        </div>
 
-          <div className={styles.group_priority}>
-            <select name='priority' id='priority' className={styles.input_priority} defaultValue='high'>
-              <option value='low'>Low</option>
-              <option value='medium'>Medium</option>
-              <option value='high'>High</option>
-            </select>
-            <label htmlFor='priority'>Priority</label>
-          </div>
+        <div className={styles.group_priority}>
+          <select name='priority' id='priority' className={styles.input_priority} defaultValue='high'>
+            <option value='low'>Low</option>
+            <option value='medium'>Medium</option>
+            <option value='high'>High</option>
+          </select>
+          <label htmlFor='priority'>Priority</label>
+        </div>
 
-          <button className={styles.input_submit}>Create</button>
-        </form>
-
-      </div>
-      <div className={styles.return_container}>
-        <NavLink to='/' className={styles.return}>
-          Return
-        </NavLink>
-      </div>
-    </div>
+        <button className={styles.input_submit}>Create</button>
+      </form>
+    </AppContainerLayout>
   )
 }

@@ -1,8 +1,9 @@
+import { AppContainerLayout } from '../../layouts/AppContainerLayout'
 import styles from './Activities.module.css'
 
 export const ActivitiesCard = (): JSX.Element => {
   return (
-    <div className={styles.container}>
+    <AppContainerLayout>
       <h1 className={styles.heading}>Activities</h1>
       <ul className={styles.list}>
         <li>Terminar el frontend</li>
@@ -15,6 +16,6 @@ export const ActivitiesCard = (): JSX.Element => {
       <div className={styles.date_container}>
         <p className={styles.date}>Tommorrow</p>
       </div>
-    </div>
+    </AppContainerLayout>
   )
 }

@@ -1,8 +1,13 @@
 .container {
-    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(14, 1fr);
+}
+
+.btn {
+    grid-column: 4 / 11;
     background-color: rgb(var(--primary));
     border-radius: 10px;
-    height: 8vh;
+    height: 5vh;
     display: grid;
     place-content: center;
 }
