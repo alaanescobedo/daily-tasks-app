@@ -1,5 +1,5 @@
 import { AuthInput } from '../components/Form/AuthInput'
-import { AuthLayout } from '../components/layouts/AuthLayout'
+import { AuthLayout } from '../layouts/AuthLayout'
 
 export const CreateUserView = (): JSX.Element => {
   return (

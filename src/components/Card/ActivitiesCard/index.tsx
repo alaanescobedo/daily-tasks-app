@@ -1,4 +1,4 @@
-import { AppContainerLayout } from '../../layouts/AppContainerLayout'
+import { AppContainerLayout } from '../../../layouts/AppContainerLayout'
 import styles from './Activities.module.css'
 
 export const ActivitiesCard = (): JSX.Element => {
