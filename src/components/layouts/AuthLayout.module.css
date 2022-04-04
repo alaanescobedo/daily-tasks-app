@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    margin: 0 auto;
+    flex: 1;
+}
+
+.container_heading {
+    margin-bottom: .8rem;
+}
+
+.heading {
+    color: rgb(var(--primary));
+}
+
+.form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+}
+
+.btn_container {
+    margin-top: 1.6rem;
+}
+
+.btn_continue {
+    background-color: rgb(var(--primary));
+    border: none;
+    font-size: 1.6rem;
+    padding: .6rem 0;
+    width: 100%;
+    border-radius: 10px;
+    font-weight: 600;
+    color: rgb(var(--background));
+}
