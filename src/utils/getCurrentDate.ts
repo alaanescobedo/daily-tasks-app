@@ -1,6 +1,6 @@
 export const getCurrentDate = (locale: string = 'en-US'): string => {
   const date = new Intl.DateTimeFormat(locale, {
-    weekday: 'short',
+    weekday: 'long',
     day: 'numeric',
     month: 'numeric',
     year: 'numeric',

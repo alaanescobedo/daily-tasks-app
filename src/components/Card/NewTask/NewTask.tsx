@@ -1,5 +1,6 @@
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { AppContainerLayout } from '../../../layouts/AppContainerLayout'
+import { getCurrentDate } from '../../../utils/getCurrentDate'
 import styles from './NewTask.module.css'
 
 const CheckIcon = (): JSX.Element => (
@@ -7,13 +8,25 @@ const CheckIcon = (): JSX.Element => (
     <path d='M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z' />
   </svg>
 )
+
+const weekDaysArr = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+
 export const NewTask = (): JSX.Element => {
   const [textValue, setTextValue] = useState('')
   const [checked, setChecked] = useState(false)
+  const [weekDays, setWeekDays] = useState([] as string[])
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
   }
+
+  useEffect(() => {
+    const currentDay = getCurrentDate().split(',')[0]
+    const indexOfDay = weekDaysArr.indexOf(currentDay)
+    const sortedWeekDays = ['Today', 'Tomorrow'].concat(weekDaysArr.slice(indexOfDay + 2)).concat(weekDaysArr.slice(0, indexOfDay))
+
+    setWeekDays(sortedWeekDays)
+  }, [])
 
   const handleTextArea = (e: ChangeEvent<HTMLTextAreaElement>): void => {
     const textarea = e.currentTarget
@@ -47,13 +60,10 @@ export const NewTask = (): JSX.Element => {
         />
 
         <div className={styles.group_date_day}>
-          <select name='date_day' id='date_day' className={styles.input_date_day}>
-            <option value='today'>Today</option>
-            <option value='tomorrow'>Tomorrow</option>
-            <option value='friday'>Friday</option>
-            <option value='saturday'>Saturday</option>
-            <option value='sunday'>Sunday</option>
-            <option value='monday'>Monday</option>
+          <select name='date_day' id='date_day' className={styles.input_date_day} onChange={handleSelectChange}>
+            {weekDays.map((day, index) => (
+              <option key={index} value={index + 1}>{day}</option>
+            ))}
           </select>
           <label htmlFor='date_day'>Day</label>
         </div>
