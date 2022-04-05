@@ -1,5 +1,4 @@
 import { Theme } from '../interfaces'
-import { getValuesFromRGB } from '../utils/getValuesFromRGB'
 import { Color } from './config'
 
 export const themeDark: Theme = {
@@ -10,5 +9,3 @@ export const themeDark: Theme = {
   '--highlight': Color.SUPERNOVA,
   '--text': Color.WHITE
 }
-
-getValuesFromRGB(themeDark)
