@@ -1,3 +1,4 @@
+import './decorators';
 import { Color } from '../src/themes/config';
 
 export const parameters = {
