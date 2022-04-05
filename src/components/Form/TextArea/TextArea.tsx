@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react'
-import styles from './TextArea.module.css'
+import styles from '../shared/styles.module.css'
 
 interface Props {
   value: string

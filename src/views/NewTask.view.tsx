@@ -13,7 +13,7 @@ const priorityOptions: Array<{ id: PriorityId, label: PriorityLabel }> = [
   { id: 'high', label: 'High' }
 ]
 
-export const NewTask = (): JSX.Element => {
+export const NewTaskView = (): JSX.Element => {
   const {
     weekdays,
     handleSubmit,
