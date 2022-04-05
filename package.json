@@ -1,38 +1,48 @@
 {
-    "name": "daily-tasks",
-    "private": true,
-    "version": "0.0.0",
-    "scripts": {
-        "dev": "vite",
-        "build": "tsc && vite build",
-        "preview": "vite preview",
-        "lint": "ts-standard",
-        "test": "jest --runInBand",
-        "prepare": "husky install"
-    },
-    "dependencies": {
-        "react": "17.0.2",
-        "react-dom": "17.0.2",
-        "react-router-dom": "6"
-    },
-    "devDependencies": {
-        "@types/babel__core": "7.1.19",
-        "@types/jest": "27.4.1",
-        "@types/react": "17.0.33",
-        "@types/react-dom": "17.0.10",
-        "@vitejs/plugin-react": "1.0.7",
-        "husky": "7.0.0",
-        "jest": "27.5.1",
-        "lint-staged": "12.3.7",
-        "ts-jest": "27.1.4",
-        "ts-standard": "11.0.0",
-        "typescript": "4.5.4",
-        "vite": "2.8.0"
-    },
-    "lint-staged": {
-        "**/*.{ts,tsx}": [
-            "yarn lint --fix",
-            "yarn test --watchAll=false --findRelatedTests"
-        ]
-    }
+  "name": "daily-tasks",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "ts-standard",
+    "test": "jest --runInBand",
+    "prepare": "husky install",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "dependencies": {
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-router-dom": "6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.8",
+    "@storybook/addon-actions": "^6.4.20",
+    "@storybook/addon-essentials": "^6.4.20",
+    "@storybook/addon-interactions": "^6.4.20",
+    "@storybook/addon-links": "^6.4.20",
+    "@storybook/react": "^6.4.20",
+    "@storybook/testing-library": "^0.0.9",
+    "@types/babel__core": "7.1.19",
+    "@types/jest": "27.4.1",
+    "@types/react": "17.0.33",
+    "@types/react-dom": "17.0.10",
+    "@vitejs/plugin-react": "1.0.7",
+    "babel-loader": "^8.2.4",
+    "husky": "7.0.0",
+    "jest": "27.5.1",
+    "lint-staged": "12.3.7",
+    "ts-jest": "27.1.4",
+    "ts-standard": "11.0.0",
+    "typescript": "4.5.4",
+    "vite": "2.8.0"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx}": [
+      "yarn lint --fix",
+      "yarn test --watchAll=false --findRelatedTests"
+    ]
+  }
 }
