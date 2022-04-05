@@ -1,0 +1,30 @@
+.heading {
+    color: rgb(var(--highlight));
+    font-size: 1.6rem;
+    margin-bottom: .6rem;
+}
+
+label {
+    color: rgb(var(--text));
+}
+
+option {
+    direction: rtl;
+}
+
+.form {
+    display: grid;
+    gap: 1.2rem .6rem;
+    grid-template-columns: repeat(16, 1fr);
+    margin-bottom: auto;
+}
+
+.input_submit {
+    grid-column: 4 / 14;
+    height: 2.6rem;
+    border-radius: 10px;
+    border: 2px solid rgb(var(--background));
+    background-color: rgb(var(--primary));
+    font-weight: 600;
+    color: rgba(var(--background), var(--opacity-7));
+}
