@@ -1,28 +1,12 @@
-import { Task } from '../../hooks/useTasks'
-import { getCurrentDate } from '../../utils/getCurrentDate'
-import { TaskCard } from '../Card'
 import styles from './Scroll.module.css'
-
 interface Props {
-  tasks: Task[]
+  children: React.ReactNode
 }
 
-export const TasksList = ({ tasks }: Props): JSX.Element => {
-  const TasksByDayObj = tasks.reduce<{ [key: string]: Task[] }>((acc, task) => {
-    const weekday = getCurrentDate('en-US', task.scheduledFor).split(',')[0]
-
-    acc[weekday] = acc[weekday] !== undefined ? [...acc[weekday], task] : [task]
-
-    return acc
-  }, {})
-
-  const TasksByDayArr = Object.entries(TasksByDayObj)
-
+export const Scroll = ({ children }: Props): JSX.Element => {
   return (
     <div className={styles.container}>
-      {TasksByDayArr.map(([day, tasks]) => (
-        <TaskCard tasks={tasks} day={day} key={day} />
-      ))}
+      {children}
     </div>
   )
 }
