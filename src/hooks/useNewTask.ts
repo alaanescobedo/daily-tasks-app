@@ -61,6 +61,8 @@ export const useNewTask = (): UseNewTask => {
       scheduledFor: dateDayHour.toISOString()
     }
 
+    setTextareaValue('')
+
     console.log(getCurrentDate('en-US', newTask.scheduledFor))
   }
 
