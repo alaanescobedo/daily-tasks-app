@@ -1,12 +1,7 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { PriorityId, WeekdaysId, WeekdaysLabel } from '../components/Form/Select/Select'
 import { getCurrentDate } from '../utils/getCurrentDate'
-
-interface TaskClientData {
-  title: string
-  scheduledFor: string
-  description?: string
-}
+import { Task, useTasks } from './useTasks'
 
 interface UseNewTask {
   weekdays: Array<{ id: WeekdaysId, label: WeekdaysLabel }>
@@ -30,6 +25,8 @@ export const useNewTask = (): UseNewTask => {
   const [selectedHour, setSelectedHour] = useState('')
   const [checked, setChecked] = useState(false)
   const [selectedPriority, setSelectedPriority] = useState('medium' as PriorityId)
+
+  const { handleLocalTasks } = useTasks()
 
   useEffect(() => {
     const getSevenDays = new Array(7).fill(0).map((_, i) => {
@@ -56,11 +53,16 @@ export const useNewTask = (): UseNewTask => {
 
     const dateDayHour = new Date(`${selectedDay}, ${selectedHour}`)
 
-    const newTask: TaskClientData = {
+    const newTask: Task = {
       title: textareaValue,
-      scheduledFor: dateDayHour.toISOString()
+      scheduledFor: dateDayHour.toISOString(),
+      createdAt: new Date().toISOString(),
+      status: 'Pending',
+      userID: 'GUEST',
+      entityId: Math.random().toString()
     }
 
+    handleLocalTasks(newTask)
     setTextareaValue('')
 
     console.log(getCurrentDate('en-US', newTask.scheduledFor))
