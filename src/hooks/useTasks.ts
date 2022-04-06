@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 export interface Task {
   title: string
@@ -18,13 +18,9 @@ interface UseTasksHook {
 }
 
 export const useTasks = (): UseTasksHook => {
-  const [localTasks, setLocalTasks] = useState([] as Task[])
-
-  useEffect(() => {
-    window.localStorage.getItem('tasks') !== undefined
-      ? setLocalTasks(JSON.parse(window.localStorage.getItem('tasks') as string))
-      : setLocalTasks([])
-  }, [])
+  const [localTasks, setLocalTasks] = useState(() => {
+    return JSON.parse(window.localStorage.getItem('tasks') ?? '[]')
+  })
 
   const handleLocalTasks = (task: Task): void => {
     setLocalTasks(() => [...localTasks, task])
