@@ -14,7 +14,7 @@ export const AppView = (): JSX.Element => {
       <MainCard />
       <Scroll>
         {tasksByDay.map(([day, tasks]) => (
-          <TaskCard tasks={tasks} day={day} key={day} />
+          <TaskCard tasks={tasks} day={day} key={day} navigateTo={`/activities/${day}`} />
         ))}
       </Scroll>
       <Button />

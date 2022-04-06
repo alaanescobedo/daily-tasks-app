@@ -5,11 +5,12 @@ import styles from './TaskCard.module.css'
 interface Props {
   tasks: Task[]
   day: string
+  navigateTo: string
 }
 
-export const TaskCard = ({ tasks, day }: Props): JSX.Element => {
+export const TaskCard = ({ tasks, day, navigateTo }: Props): JSX.Element => {
   return (
-    <NavLink to='/activities'>
+    <NavLink to={navigateTo}>
       <div className={styles.container}>
         <ul className={styles.list}>
           {tasks.map(task => (
