@@ -1,12 +1,15 @@
 import { MainCard } from '../components'
 import { Button } from '../components/Button/Button'
-import { Tasks } from '../components/Scroll'
+import { TasksList } from '../components/Scroll'
+import { useTasks } from '../hooks/useTasks'
 
 export const AppView = (): JSX.Element => {
+  const { localTasks } = useTasks()
+
   return (
     <>
       <MainCard />
-      <Tasks />
+      <TasksList tasks={localTasks} />
       <Button />
     </>
   )

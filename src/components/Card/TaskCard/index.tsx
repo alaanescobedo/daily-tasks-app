@@ -1,17 +1,23 @@
 import { NavLink } from 'react-router-dom'
+import { Task } from '../../../hooks/useTasks'
 import styles from './TaskCard.module.css'
 
-export const TaskCard = (): JSX.Element => {
+interface Props {
+  tasks: Task[]
+  day: string
+}
+
+export const TaskCard = ({ tasks, day }: Props): JSX.Element => {
   return (
     <NavLink to='/activities'>
       <div className={styles.container}>
         <ul className={styles.list}>
-          <li>&gt; Practicar Figma</li>
-          <li>&gt; Continuar con el repositorio de java</li>
-          <li>&gt; Aprender un algoritmo</li>
+          {tasks.map(task => (
+            <li key={task.entityId}>&gt; {task.title}</li>
+          ))}
         </ul>
         <div className={styles.day}>
-          <p>Today</p>
+          <p>{day}</p>
         </div>
       </div>
     </NavLink>
