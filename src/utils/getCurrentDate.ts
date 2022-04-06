@@ -7,7 +7,7 @@ export const getCurrentDate = (locale: string = 'en-US', customDate?: string | n
     month: 'numeric',
     year: 'numeric',
     hour: '2-digit',
-    hourCycle: 'h24',
+    hourCycle: 'h23',
     minute: 'numeric',
     second: 'numeric',
     timeZone: timezone ?? timeZone

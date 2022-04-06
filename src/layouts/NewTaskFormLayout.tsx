@@ -14,7 +14,7 @@ export const NewTaskFormLayout = ({ children, handleSubmit, title = 'New Task', 
       <h1 className={styles.heading}>{title}</h1>
       <form className={styles.form} onSubmit={handleSubmit}>
         {children}
-        <button className={styles.input_submit}>{sendLabel}</button>
+        <button type='submit' className={styles.input_submit}>{sendLabel}</button>
       </form>
     </AppContainerLayout>
   )
