@@ -10,6 +10,7 @@ export const AppRouter = (): JSX.Element => {
         <Route path='/' element={<AppView />} />
         <Route path='/new-task' element={<NewTaskView />} />
         <Route path='/activities/:day' element={<Activities />} />
+        <Route path='*' element={<AppView />} />
       </Routes>
     </BrowserRouter>
   )
