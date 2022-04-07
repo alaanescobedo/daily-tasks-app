@@ -32,8 +32,21 @@ export const useTasks = (): UseTasksHook => {
     window.localStorage.setItem('tasks', JSON.stringify(updatedTasks))
   }
 
+  const replaceByTodayAndTomorrow = (tasks: TasksState): TasksState => {
+    const today = new Date(Date.now()).toLocaleDateString('en-US', { weekday: 'long' })
+    const tomorrow = new Date(Date.now() + 1000 * 60 * 60 * 24).toLocaleDateString('en-US', { weekday: 'long' })
+
+    const tasksWithKeyReplaced = Object.entries(tasks).reduce<TasksState>((acc, task) => {
+      const [key, value] = task
+      const weekday = key === today ? 'Today' : key === tomorrow ? 'Tomorrow' : key
+      return { ...acc, [weekday]: value }
+    }, {})
+
+    return tasksWithKeyReplaced
+  }
+
   return {
-    tasks,
+    tasks: replaceByTodayAndTomorrow(tasks),
     handleLocalTasks
   }
 }

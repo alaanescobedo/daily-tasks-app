@@ -9,10 +9,6 @@ interface Props {
 }
 
 export const TaskCard = ({ tasks, day, navigateTo }: Props): JSX.Element => {
-  const today = new Date(Date.now()).toLocaleDateString('en-US', { weekday: 'long' })
-  const tomorrow = new Date(Date.now() + 1000 * 60 * 60 * 24).toLocaleDateString('en-US', { weekday: 'long' })
-  const labelDay = day === today ? 'Today' : day === tomorrow ? 'Tomorrow' : day
-
   return (
     <NavLink to={navigateTo} state={{ tasks, day }}>
       <div className={styles.container}>
@@ -22,7 +18,7 @@ export const TaskCard = ({ tasks, day, navigateTo }: Props): JSX.Element => {
           ))}
         </ul>
         <div className={styles.day}>
-          <p>{labelDay}</p>
+          <p>{day}</p>
         </div>
       </div>
     </NavLink>

@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
+import { Navigate, useLocation, useParams } from 'react-router-dom'
 import { MainCard } from '../components'
 import { ActivitiesCard } from '../components/Card/ActivitiesCard'
 import { Task, useTasks } from '../hooks/useTasks'
-import { getCurrentDate } from '../utils/getCurrentDate'
+import { getSevenDays } from '../utils/getSevenDays'
 
 interface LocationState {
   tasks: Task[]
@@ -14,34 +13,20 @@ export const Activities = (): JSX.Element => {
   const params = useParams()
   const { tasks } = useTasks()
   const { state: locationState } = useLocation() as { state: LocationState }
+  const avaibleDays = getSevenDays().map(day => day.label)
 
-  const [tasksState, setTasksState] = useState([] as Task[])
-  const [day, setDay] = useState('')
+  const weekday = locationState?.day ?? params?.day ?? ''
 
-  const today = getCurrentDate().split(',')[0]
-  const tomorrow = getCurrentDate('en-US', Date.now() + 1000 * 60 * 60 * 24).split(',')[0]
-  let weekday: string
-
-  if (locationState !== null) {
-    weekday = locationState.day === today ? 'Today' : locationState.day === tomorrow ? 'Tomorrow' : locationState.day
-  } else {
-    weekday = params.day === 'Today' ? today : params.day === 'Tomorrow' ? tomorrow : params.day ?? 'Redirect'
+  if (!avaibleDays.includes(weekday)) {
+    return <Navigate replace to='/' />
   }
 
-  useEffect(() => {
-    if (locationState !== null) {
-      setTasksState(locationState.tasks)
-      setDay(weekday)
-      return
-    }
-    setTasksState(weekday !== undefined ? tasks[weekday] : [])
-    setDay(params.day !== undefined ? params.day : '')
-  }, [])
+  const weekdayTasks = locationState?.tasks ?? tasks[weekday] ?? []
 
   return (
     <>
       <MainCard />
-      <ActivitiesCard tasks={tasksState} day={day} />
+      <ActivitiesCard tasks={weekdayTasks} day={weekday} />
     </>
   )
 }

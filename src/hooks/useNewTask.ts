@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { PriorityId, WeekdaysId, WeekdaysLabel } from '../components/Form/Select/Select'
 import { getCurrentDate } from '../utils/getCurrentDate'
+import { getSevenDays } from '../utils/getSevenDays'
 import { Task, useTasks } from './useTasks'
 
 interface UseNewTask {
