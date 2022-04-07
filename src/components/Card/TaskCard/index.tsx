@@ -10,7 +10,7 @@ interface Props {
 
 export const TaskCard = ({ tasks, day, navigateTo }: Props): JSX.Element => {
   return (
-    <NavLink to={navigateTo}>
+    <NavLink to={navigateTo} state={{ tasks, day }}>
       <div className={styles.container}>
         <ul className={styles.list}>
           {tasks.map(task => (
