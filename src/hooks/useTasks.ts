@@ -14,7 +14,7 @@ export interface Task {
 }
 
 interface UseTasksHook {
-  localtasks: { [key: string]: Task[] }
+  tasks: TasksState
   handleLocalTasks: (task: Task) => void
 }
 
@@ -33,7 +33,7 @@ export const useTasks = (): UseTasksHook => {
   }
 
   return {
-    localtasks: tasks,
+    tasks,
     handleLocalTasks
   }
 }

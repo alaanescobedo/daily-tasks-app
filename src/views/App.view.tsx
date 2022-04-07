@@ -4,13 +4,13 @@ import { Scroll } from '../components/Scroll'
 import { useTasks } from '../hooks/useTasks'
 
 export const AppView = (): JSX.Element => {
-  const { localTasks } = useTasks()
+  const { tasks } = useTasks()
 
   return (
     <>
       <MainCard />
       <Scroll>
-        {Object.entries(localTasks).map(([day, tasks]) => (
+        {Object.entries(tasks).map(([day, tasks]) => (
           <TaskCard tasks={tasks} day={day} key={day} navigateTo={`/activities/${day}`} />
         ))}
       </Scroll>
