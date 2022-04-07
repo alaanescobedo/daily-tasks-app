@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { getCurrentDate } from '../utils/getCurrentDate'
 
 export interface Task {
   title: string
@@ -13,23 +14,26 @@ export interface Task {
 }
 
 interface UseTasksHook {
-  localTasks: Task[]
+  localtasks: { [key: string]: Task[] }
   handleLocalTasks: (task: Task) => void
 }
 
+interface TasksState { [key: string]: Task[] }
+
 export const useTasks = (): UseTasksHook => {
-  const [localTasks, setLocalTasks] = useState(() => {
-    return JSON.parse(window.localStorage.getItem('tasks') ?? '[]')
+  const [tasks, setTasks] = useState<TasksState>(() => {
+    return JSON.parse(window.localStorage.getItem('tasks') ?? '{}')
   })
 
   const handleLocalTasks = (task: Task): void => {
-    setLocalTasks(() => [...localTasks, task])
-
-    window.localStorage.setItem('tasks', JSON.stringify([...localTasks, task]))
+    const weekday = getCurrentDate('en-US', task.scheduledFor).split(',')[0]
+    const updatedTasks = { ...tasks, [weekday]: tasks[weekday] !== undefined ? [...tasks[weekday], task] : [task] }
+    setTasks(() => updatedTasks)
+    window.localStorage.setItem('tasks', JSON.stringify(updatedTasks))
   }
 
   return {
-    localTasks,
+    localtasks: tasks,
     handleLocalTasks
   }
 }
