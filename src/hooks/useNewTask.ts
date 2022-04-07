@@ -29,17 +29,7 @@ export const useNewTask = (): UseNewTask => {
   const { handleLocalTasks } = useTasks()
 
   useEffect(() => {
-    const getSevenDays = new Array(7).fill(0).map((_, i) => {
-      return getCurrentDate('en-US', Date.now() + i * 1000 * 60 * 60 * 24)
-    })
-
-    const weekdays = getSevenDays.map((day, i) => {
-      const [weekday, date] = day.split(',')
-      return {
-        id: date.toLocaleLowerCase(),
-        label: i === 0 ? 'Today' : i === 1 ? 'Tomorrow' : weekday
-      }
-    })
+    const weekdays = getSevenDays()
 
     const defaultHour = getCurrentDate('en-US', Date.now() + 5 * 1000 * 60).split(',')[2].split(':').slice(0, 2).join(':').trim()
 
