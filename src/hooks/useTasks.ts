@@ -4,7 +4,7 @@ export interface Task {
   title: string
   scheduledFor: string
   description?: string
-  status: 'Pending' | 'Completed' | 'In-Progress'
+  status: 'Pending' | 'Completed' | 'In-Progress' | 'Outdated'
   userID: string
   createdAt: string
   completedAt?: string
