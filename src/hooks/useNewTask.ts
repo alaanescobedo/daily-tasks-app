@@ -27,7 +27,7 @@ export const useNewTask = (): UseNewTask => {
   const [checked, setChecked] = useState(false)
   const [selectedPriority, setSelectedPriority] = useState('medium' as PriorityId)
 
-  const { handleLocalTasks } = useTasks()
+  const { saveTask } = useTasks()
 
   useEffect(() => {
     const weekdays = getSevenDays()
@@ -53,10 +53,10 @@ export const useNewTask = (): UseNewTask => {
       entityId: Math.random().toString()
     }
 
-    handleLocalTasks(newTask)
+    saveTask(newTask)
     setTextareaValue('')
 
-    console.log(getCurrentDate('en-US', newTask.scheduledFor))
+    // console.log(getCurrentDate('en-US', newTask.scheduledFor))
   }
 
   const handleTextArea = (e: ChangeEvent<HTMLTextAreaElement>): void => {

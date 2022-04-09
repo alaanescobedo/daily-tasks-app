@@ -10,8 +10,8 @@ export const AppView = (): JSX.Element => {
     <>
       <MainCard />
       <Scroll>
-        {Object.entries(tasks).map(([day, tasks]) => (
-          <TaskCard tasks={tasks} day={day} key={day} navigateTo={`/activities/${day}`} />
+        {Object.entries(tasks).map(([day, tasks]: any) => (
+          <TaskCard tasks={tasks} day={day} key={day} navigateTo={`/activities/${day as string}`} />
         ))}
       </Scroll>
       <Button />
