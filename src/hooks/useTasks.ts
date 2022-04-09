@@ -13,7 +13,7 @@ export interface Task {
   entityId: string
 }
 
-export const useTasks = (initialTasks: any): any => {
+export const useTasks = (): any => {
   const { tasks, setTasks } = useContext(TaskContext)
 
   const saveTask = (task: any): any => {
@@ -25,8 +25,31 @@ export const useTasks = (initialTasks: any): any => {
     window.localStorage.setItem('tasks', JSON.stringify(updatedState))
   }
 
+  const updateTask = (updatedTask: any, date: string): any => {
+    const updatedState = { ...tasks, [date]: tasks[date].map((task: any) => task.entityId === updatedTask.entityId ? updatedTask : task) }
+
+    setTasks(() => updatedState)
+    window.localStorage.setItem('tasks', JSON.stringify(updatedState))
+  }
+
+  const getActiveTasks = (tasks: any): any => {
+    return Object.values(tasks).reduce((acc: any, currentTasks: any) => {
+      if (currentTasks.length === 0) return acc
+
+      const currentDate = new Date(currentTasks[0]?.scheduledFor).toISOString().split('T')[0]
+      const activeTasks = currentTasks.filter((task: any) => task.status !== 'Outdated')
+
+      if (activeTasks.length === 0) return acc
+
+      acc[currentDate] = activeTasks
+      return acc
+    }, {})
+  }
+
   return {
     saveTask,
-    tasks
+    tasks,
+    updateTask,
+    getActiveTasks
   }
 }

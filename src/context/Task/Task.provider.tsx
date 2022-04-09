@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTasks } from '../../hooks/useTasks'
 import { TaskContext } from './Task.context'
 
 const getInitialTasks = (): any => {
@@ -9,10 +10,11 @@ const initialTasks = getInitialTasks()
 
 export const TaskProvider = ({ children }: any): any => {
   const [tasks, setTasks] = useState(initialTasks)
+  const { getActiveTasks } = useTasks()
 
   return (
     <TaskContext.Provider value={{
-      tasks,
+      tasks: getActiveTasks(tasks),
       setTasks
     }}
     >
