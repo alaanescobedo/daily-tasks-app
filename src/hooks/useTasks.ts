@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useContext } from 'react'
+import { TaskContext } from '../context/Task/Task.context'
 
 export interface Task {
   title: string
@@ -12,14 +13,8 @@ export interface Task {
   entityId: string
 }
 
-const getInitialTasks = (): any => {
-  const tasks = window.localStorage.getItem('tasks') ?? '{}'
-  return JSON.parse(tasks)
-}
-const initialTasks = getInitialTasks()
-
-export const useTasks = (): any => {
-  const [tasks, setTasks] = useState(initialTasks)
+export const useTasks = (initialTasks: any): any => {
+  const { tasks, setTasks } = useContext(TaskContext)
 
   const saveTask = (task: any): any => {
     const date = task.scheduledFor.split('T')[0]

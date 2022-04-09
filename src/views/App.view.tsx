@@ -1,10 +1,11 @@
+import { useContext } from 'react'
 import { MainCard, TaskCard } from '../components'
 import { Button } from '../components/Button/Button'
 import { Scroll } from '../components/Scroll'
-import { useTasks } from '../hooks/useTasks'
+import { TaskContext } from '../context/Task/Task.context'
 
 export const AppView = (): JSX.Element => {
-  const { tasks } = useTasks()
+  const { tasks } = useContext(TaskContext)
 
   return (
     <>
