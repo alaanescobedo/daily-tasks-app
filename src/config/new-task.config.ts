@@ -23,12 +23,12 @@ export const NEW_TASK_INPUT_CONFIG: Form_New_Task = {
     label: 'Hour',
     type: 'time',
     required: true
-    // defaultValue: getCurrentTimePlus5minutes()
   },
   recurrent: {
     id: 'recurrent',
     label: 'Recurrent',
     type: 'checkbox',
+    required: false,
     defaultValue: false
   },
   priority: {
@@ -36,6 +36,7 @@ export const NEW_TASK_INPUT_CONFIG: Form_New_Task = {
     label: 'Priority',
     type: 'select',
     defaultValue: 'medium',
+    required: true,
     options: [
       { id: 'low', label: 'Low' },
       { id: 'medium', label: 'Medium' },
