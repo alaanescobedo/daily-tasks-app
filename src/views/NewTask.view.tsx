@@ -1,57 +1,50 @@
 import { Checkbox } from '../components/Form/Checkbox/Checkbox'
 import { Time } from '../components/Form/Input/TimeInput/Time'
 import { InputGroup } from '../components/Form/InputGroup/InputGroup'
-import { PriorityId, PriorityLabel, Select } from '../components/Form/Select/Select'
+import { Select } from '../components/Form/Select/Select'
 import { TextArea } from '../components/Form/TextArea/TextArea'
+import { NEW_TASK_INPUT_CONFIG } from '../config/new-task.config'
 import { useForm } from '../hooks/useForm'
-import { useNewTask } from '../hooks/useNewTask'
+import { getCurrentTimePlus5minutes, useNewTask } from '../hooks/useNewTask'
 import { NewTaskFormLayout } from '../layouts/NewTaskFormLayout'
 import styles from './NewTask.module.css'
 
-const priorityOptions: Array<{ id: PriorityId, label: PriorityLabel }> = [
-  { id: 'low', label: 'Low' },
-  { id: 'medium', label: 'Medium' },
-  { id: 'high', label: 'High' }
-]
+// TODO: REFACTOR
 
-const initialData = {
-  ids: ['title_task', 'date_hour', 'date_day', 'recurrent', 'priority']
+export type Entries<T> = Array<{
+  [K in keyof T]: [K, T[K]]
+}[keyof T]>
+
+function entries<T> (obj: T): Entries<T> {
+  return Object.entries(obj as any) as any
 }
+/// ///
+const fieldsConfig = entries(NEW_TASK_INPUT_CONFIG)
 
 export const NewTaskView = (): JSX.Element => {
-  const {
-    weekdays,
-    handleSubmit,
-    textareaValue,
-    handleTextArea,
-    selectedDay,
-    handleSelectedDay,
-    selectedHour,
-    handleSelectedHour,
-    selectedPriority,
-    handlePriority
-  } = useNewTask()
+  const { fields, handleFieldsChange } = useForm(fieldsConfig)
+  const { weekdays, handleSubmit } = useNewTask()
 
-  const { fields } = useForm(initialData)
+  const { title, day, hour, recurrent, priority } = fields
 
   return (
     <NewTaskFormLayout sendLabel='Create Task' handleSubmit={handleSubmit}>
-      <TextArea value={textareaValue} handleChange={handleTextArea} placeholder='Task' id={fields.title_task} name={fields.title_task} />
+      <TextArea value={title.config.value} handleChange={handleFieldsChange} placeholder={title.config.placeholder} id={title.config.id} name={title.config.id} />
 
-      <InputGroup label='Day' htmlFor={fields.date_day} className={styles.group_date_day}>
-        <Select options={weekdays} id={fields.date_day} handleChange={handleSelectedDay} defaultValue={selectedDay} />
+      <InputGroup label={day.config.label} htmlFor={day.config.id} className={styles.group_date_day}>
+        <Select options={weekdays} id={day.config.id} handleChange={handleFieldsChange} defaultValue={day.config.defaultValue} />
       </InputGroup>
 
-      <InputGroup label='Hour' htmlFor={fields.date_hour} className={styles.group_date_hour}>
-        <Time id={fields.date_hour} handleChange={handleSelectedHour} defaultValue={selectedHour} />
+      <InputGroup label='Hour' htmlFor={hour.config.id} className={styles.group_date_hour}>
+        <Time id={hour.config.id} handleChange={handleFieldsChange} defaultValue={getCurrentTimePlus5minutes()} />
       </InputGroup>
 
-      <InputGroup label='Recurrent' htmlFor={fields.recurrent} className={styles.group_recurrent}>
-        <Checkbox id={fields.recurrent} />
+      <InputGroup label='Recurrent' htmlFor={recurrent.config.id} className={styles.group_recurrent}>
+        <Checkbox id={recurrent.config.id} />
       </InputGroup>
 
-      <InputGroup label='Priority' htmlFor={fields.priority} className={styles.group_priority}>
-        <Select options={priorityOptions} id={fields.priority} handleChange={handlePriority} defaultValue={selectedPriority} />
+      <InputGroup label='Priority' htmlFor={priority.config.id} className={styles.group_priority}>
+        <Select options={priority.config.options} id={priority.config.id} handleChange={handleFieldsChange} defaultValue={priority.config.defaultValue} />
       </InputGroup>
     </NewTaskFormLayout>
   )
