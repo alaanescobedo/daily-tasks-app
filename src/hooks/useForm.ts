@@ -25,10 +25,11 @@ export const useForm = (fieldsConfig: Entries<Form_New_Task>): UseForm => {
 
   const handleFieldsChange = (e: ChangeEvent<Input_Types_New_Task>): any => {
     const { id, value } = e.target as { id: keyof Form_New_Task, value: string }
+    const updatedConfig = { ...fields[id].config, value }
 
     setFields(() => ({
       ...fields,
-      [id]: { ...fields[id], value }
+      [id]: { ...fields[id], config: updatedConfig }
     }))
   }
   return {
