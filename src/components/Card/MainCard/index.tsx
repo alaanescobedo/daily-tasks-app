@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { getCurrentDate } from '../../../utils/getCurrentDate'
+import { Clock } from '../../Clock/Clock'
 import styles from './MainCard.module.css'
 
 export const MainCard = (): JSX.Element => {
@@ -9,7 +10,10 @@ export const MainCard = (): JSX.Element => {
     <NavLink to='/'>
       <div className={styles.container}>
         <h4 className={styles.username}>Username</h4>
-        <h4 className={styles.date}>{currentDate}</h4>
+        <h4 className={styles.date}>
+          {currentDate}
+          <Clock />
+        </h4>
       </div>
     </NavLink>
   )
