@@ -19,21 +19,6 @@ export const useNewTask = (): UseNewTask => {
     setWeekDays(weekdays as Array<{ id: WeekdaysId, label: WeekdaysLabel }>)
   }, [])
 
-  // TODO: Refactor this to work as validation
-  // const handleTextArea = (e: ChangeEvent<HTMLTextAreaElement>): void => {
-  //   const textarea = e.currentTarget
-
-  //   if (textarea.value.includes('\n')) return
-
-  //   textarea.style.height = '2.6rem'
-  //   setTextareaValue(textarea.value)
-
-  //   if (textarea.scrollHeight < textarea.offsetHeight) return
-
-  //   const scrollHeight = e.currentTarget.scrollHeight
-  //   e.currentTarget.style.height = `${scrollHeight}px`
-  // }
-
   return {
     weekdays
   }

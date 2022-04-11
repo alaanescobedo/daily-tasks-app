@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useState } from 'react'
 import { Form_New_Task, Form_Values_New_Task, Input_Fields_New_Task, Input_Types_New_Task } from '../interfaces'
 import { validateInput } from '../utils/validations/validateInput'
 import { Entries } from '../views/NewTask.view'
-import { Task } from './useTasks'
+import { Task, useTasks } from './useTasks'
 
 const buildFields = (fieldsConfig: Entries<Form_New_Task>): Input_Fields_New_Task => {
   return fieldsConfig.reduce<any>((acc, [id, config]) => {
@@ -34,13 +34,27 @@ export const useForm = (fieldsConfig: Entries<Form_New_Task>): UseForm => {
   const [errors, setErrors] = useState(buildFieldsErrors(fieldsConfig))
   const [isValid, setIsValid] = useState(false)
 
+  const { saveTask } = useTasks()
+
   const handleFieldsChange = (e: ChangeEvent<Input_Types_New_Task>): any => {
     const { id, value } = e.target as { id: keyof Form_New_Task, value: string }
+
+    if (id === 'title' && value.includes('\n')) return
 
     const updatedConfig = { ...fields[id], value }
     const updatedFields = { ...fields, [id]: updatedConfig }
 
     handleSetFields(updatedFields)
+
+    //* Resize textarea
+    if (id === 'title') {
+      const textarea = e.target
+      textarea.style.height = '2.6rem'
+      if (textarea.scrollHeight < textarea.offsetHeight) return
+
+      const scrollHeight = textarea.scrollHeight
+      textarea.style.height = `${scrollHeight}px`
+    }
   }
 
   const handleSetFields = (updatedFields: Input_Fields_New_Task): void => {
@@ -86,7 +100,8 @@ export const useForm = (fieldsConfig: Entries<Form_New_Task>): UseForm => {
       userID: 'GUEST',
       entityId: Math.random().toString()
     }
-    console.log(newTask)
+
+    saveTask(newTask)
   }
 
   return {
