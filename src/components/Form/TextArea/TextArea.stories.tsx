@@ -1,4 +1,5 @@
-import { ComponentMeta, Story } from '@storybook/react'
+import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { useState } from 'react'
 
 import { TextArea, TextAreaProps } from './TextArea'
 
@@ -8,7 +9,20 @@ const InputTextAreaStory: ComponentMeta<typeof TextArea> = {
 }
 export default InputTextAreaStory
 
-const Template: Story<TextAreaProps> = (args) => <TextArea {...args} />
+const Template: ComponentStory<typeof TextArea> = (args) => {
+  const [value, setValue] = useState(args.value ?? '')
+
+  return (
+    <TextArea
+      {...args}
+      handleChange={(e) => {
+        args.handleChange(e)
+        setValue(() => e.target.value)
+      }}
+      value={value}
+    />
+  )
+}
 
 export const Primary = Template.bind({})
 const primaryArgs: TextAreaProps = {

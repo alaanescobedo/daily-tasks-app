@@ -1,4 +1,5 @@
 import { ChangeEvent } from 'react'
+import { resizeTextArea } from '../../../utils/Form'
 import styles from '../shared/styles.module.css'
 
 export interface TextAreaProps {
@@ -12,7 +13,10 @@ export interface TextAreaProps {
 export const TextArea = ({ handleChange, value, id, maxLength = 70, placeholder = 'Write here...' }: TextAreaProps): JSX.Element => {
   return (
     <textarea
-      onChange={handleChange}
+      onChange={(e) => {
+        handleChange(e)
+        resizeTextArea(e)
+      }}
       className={styles.input_task}
       placeholder={placeholder}
       maxLength={maxLength}
