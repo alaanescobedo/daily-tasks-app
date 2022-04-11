@@ -34,31 +34,19 @@ interface Input_New_Task_Priority_Options {
 
 //* New Task Fields
 export interface Input_Fields_New_Task {
-  title: {
-    config: Input_New_Task_Title
-    isValid: boolean
-    errorMessage: string
-  }
-  day: {
-    config: Input_New_Task_Day
-    isValid: boolean
-    errorMessage: string
-  }
-  hour: {
-    config: Input_New_Task_Hour
-    isValid: boolean
-    errorMessage: string
-  }
-  recurrent: {
-    config: Input_New_Task_Recurrent
-    isValid: boolean
-    errorMessage: string
-  }
-  priority: {
-    config: Input_New_Task_Priority
-    isValid: boolean
-    errorMessage: string
-  }
+  title: Input_New_Task_Title
+  day: Input_New_Task_Day
+  hour: Input_New_Task_Hour
+  recurrent: Input_New_Task_Recurrent
+  priority: Input_New_Task_Priority
+}
+
+export interface Form_Values_New_Task {
+  title: string
+  day: string
+  hour: string
+  recurrent: boolean
+  priority: Task_Priority_Id
 }
 
 //* Form Interfaces
@@ -73,4 +61,3 @@ export interface Form_Email {
   email: string
   password: string
 }
-export interface Form_Validations extends Form_New_Task, Form_Email { }
