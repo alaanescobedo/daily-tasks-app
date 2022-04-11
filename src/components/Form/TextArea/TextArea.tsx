@@ -1,14 +1,15 @@
 import { ChangeEvent } from 'react'
 import styles from '../shared/styles.module.css'
 
-interface Props {
+export interface TextAreaProps {
   value: string
   id: string
   placeholder: string
   handleChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
   maxLength?: number
 }
-export const TextArea = ({ handleChange, value, id, maxLength = 70, placeholder = 'Write here...' }: Props): JSX.Element => {
+
+export const TextArea = ({ handleChange, value, id, maxLength = 70, placeholder = 'Write here...' }: TextAreaProps): JSX.Element => {
   return (
     <textarea
       onChange={handleChange}

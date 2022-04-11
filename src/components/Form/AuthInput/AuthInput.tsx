@@ -1,13 +1,12 @@
-import { FC } from 'react'
 import styles from './AuthInput.module.css'
 
-interface Props {
+export interface InputAuthProps {
   label: string
   type: string
   name: string
 }
 
-export const AuthInput: FC<Props> = ({ label, type, name }) => {
+export const AuthInput = ({ label, type, name }: InputAuthProps): JSX.Element => {
   return (
     <div className={styles.form_group}>
       <label htmlFor={name}>{label}</label>

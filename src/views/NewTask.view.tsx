@@ -1,5 +1,5 @@
 import { Checkbox } from '../components/Form/Checkbox/Checkbox'
-import { Time } from '../components/Form/Input/TimeInput/Time'
+import { Time } from '../components/Form/Time/Time'
 import { InputGroup } from '../components/Form/InputGroup/InputGroup'
 import { Select } from '../components/Form/Select/Select'
 import { TextArea } from '../components/Form/TextArea/TextArea'

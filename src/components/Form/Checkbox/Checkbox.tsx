@@ -2,13 +2,13 @@ import { CheckIcon } from '../../Icons/Check'
 
 import sharedStyles from '../shared/styles.module.css'
 
-interface Props {
+export interface InputCheckboxProps {
   id: string
   checked: boolean
   handleCheckbox?: (id: string) => void
 }
 
-export const Checkbox = ({ id, checked, handleCheckbox }: Props): JSX.Element => {
+export const Checkbox = ({ id, checked, handleCheckbox }: InputCheckboxProps): JSX.Element => {
   return (
     <span className={sharedStyles.input_recurrent} onClick={handleCheckbox}>
       {checked ? <CheckIcon /> : ''}
