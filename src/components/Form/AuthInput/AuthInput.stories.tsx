@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { AuthInput } from './AuthInput'
+import { AuthInput, InputAuthProps } from './AuthInput'
 
 const AuthInputStory: ComponentMeta<typeof AuthInput> = {
   title: 'Inputs/Auth',
@@ -10,9 +10,10 @@ export default AuthInputStory
 
 const Template: ComponentStory<typeof AuthInput> = (args) => <AuthInput {...args} />
 
-export const Primary = Template.bind({})
-Primary.args = {
+export const Email = Template.bind({})
+const emailArgs: InputAuthProps = {
   label: 'Email',
   type: 'email',
   name: 'email'
 }
+Email.args = emailArgs

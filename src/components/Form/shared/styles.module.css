@@ -52,6 +52,7 @@
 .input_recurrent {
     width: 2rem;
     box-sizing: border-box;
+    display: block;
 }
 
 .input_recurrent svg {

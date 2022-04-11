@@ -77,7 +77,7 @@ export const useForm = (fieldsConfig: Entries<Form_New_Task>): UseForm => {
         ...acc,
         [id]: errorMessage
       }
-    }, {} as any)
+    }, {})
 
     const errorFinded: any = Object.values(updatedErrors).find((error: any) => error?.errorMessage !== '')
 

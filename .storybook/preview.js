@@ -1,6 +1,8 @@
 import './decorators';
 import { Color } from '../src/themes/config';
 
+import '../src/index.css'
+
 export const parameters = {
     actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {

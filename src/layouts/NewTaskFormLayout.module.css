@@ -4,14 +4,6 @@
     margin-bottom: .6rem;
 }
 
-label {
-    color: rgb(var(--text));
-}
-
-option {
-    direction: rtl;
-}
-
 .form {
     display: grid;
     gap: 1.2rem .6rem;
