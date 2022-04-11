@@ -1,7 +1,32 @@
 .container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     overflow: scroll;
     height: 65vh;
     border-radius: 10px;
+}
+
+.container::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background-color: transparent;
+}
+
+.container::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgba(var(--primary), .4);
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(var(--primary), var(--opacity-7));
+}
+
+.container::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: transparent;
+}
+
+.container::-webkit-scrollbar-corner {
+    background-color: transparent;
 }
