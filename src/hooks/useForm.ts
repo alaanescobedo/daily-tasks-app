@@ -77,8 +77,7 @@ export const useForm = (fieldsConfig: Entries<Form_New_Task>): UseForm => {
         ...acc,
         [id]: errorMessage
       }
-    }, {})
-    setErrors(() => updatedErrors)
+    }, {} as any)
 
     const errorFinded: any = Object.values(updatedErrors).find((error: any) => error?.errorMessage !== '')
 
@@ -102,6 +101,8 @@ export const useForm = (fieldsConfig: Entries<Form_New_Task>): UseForm => {
     }
 
     saveTask(newTask)
+    //* Clear textarea
+    handleSetFields({ ...fields, title: { ...fields.title, value: '' } })
   }
 
   return {
