@@ -10,7 +10,8 @@
         "test": "jest --runInBand",
         "prepare": "husky install",
         "storybook": "start-storybook -p 6006",
-        "build-storybook": "build-storybook"
+        "build-storybook": "build-storybook",
+        "chromatic": "npx chromatic --project-token=4c2bf6fd4495"
     },
     "dependencies": {
         "react": "17.0.2",
@@ -31,11 +32,13 @@
         "@types/react-dom": "17.0.10",
         "@vitejs/plugin-react": "1.0.7",
         "babel-loader": "8.2.4",
+        "chromatic": "^6.5.4",
         "husky": "7.0.0",
         "jest": "27.5.1",
         "lint-staged": "12.3.7",
         "ts-jest": "27.1.4",
         "ts-standard": "11.0.0",
+        "tsconfig-paths-webpack-plugin": "^3.5.2",
         "typescript": "4.5.4",
         "vite": "2.8.0",
         "vite-tsconfig-paths": "3.4.1"
