@@ -1,3 +1,5 @@
+const { TsconfigPathsPlugin } = require('tsconfig-paths-webpack-plugin')
+
 module.exports = {
     "stories": [
         "../src/**/*.stories.mdx",
@@ -16,17 +18,21 @@ module.exports = {
         config.module.rules.find(rule => rule.test.toString() === '/\\.css$/').exclude = /\.module\.css$/
 
         config.module.rules.push({
-            test: /\.module\.css$/,
-            use: [
-                'style-loader',
-                {
-                    loader: 'css-loader',
-                    options: {
-                        modules: true,
+                test: /\.module\.css$/,
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,
+                        }
                     }
-                }
-            ]
-        })
+                ]
+            })
+            // Webpack configuration to work storybook with ts alias paths
+            // console.log('>>CONFIG.RESOLVE', config.resolve)
+        config.resolve.plugins = [new TsconfigPathsPlugin({ extensions: config.resolve.extensions })]
+
         return config
     }
 }
