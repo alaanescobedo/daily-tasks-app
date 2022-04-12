@@ -1,5 +1,5 @@
+import { Link } from 'react-router-dom'
 import { Task } from '../../../hooks/useTasks'
-import { AppContainerLayout } from '../../../layouts/AppContainerLayout'
 import styles from './Activities.module.css'
 
 interface Props {
@@ -9,16 +9,20 @@ interface Props {
 
 export const ActivitiesCard = ({ tasks, day }: Props): JSX.Element => {
   return (
-    <AppContainerLayout>
+    <>
       <h1 className={styles.heading}>Activities</h1>
       <ul className={styles.list}>
         {tasks.map(task => (
-          <li key={task.entityId} className={styles.listItem}>{task.title}</li>
+          <span style={{ display: 'flex', gap: '1rem' }} key={task.entityId}>
+            <li className={styles.listItem}>{task.title}</li>
+            <span style={{ cursor: 'pointer' }}>Remove</span>
+            <Link to={`/activities/update/${day}`}>Update</Link>
+          </span>
         ))}
       </ul>
       <div className={styles.date_container}>
         <p className={styles.date}>{day}</p>
       </div>
-    </AppContainerLayout>
+    </ >
   )
 }

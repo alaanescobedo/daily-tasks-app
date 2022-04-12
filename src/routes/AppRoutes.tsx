@@ -1,7 +1,7 @@
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
-import { Activities } from '../views/Activities.view'
-import { AppView } from '../views/App.view'
-import { NewTaskView } from '../views/NewTask.view'
+import { Activities } from '../views/Activities/Activities.view'
+import { AppView } from '../views/Home/Home.view'
+import { NewTaskView } from '../views/NewTask/NewTask.view'
 
 export const AppRouter = (): JSX.Element => {
   return (

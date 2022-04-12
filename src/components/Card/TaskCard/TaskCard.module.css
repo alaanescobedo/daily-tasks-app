@@ -1,6 +1,6 @@
 .container {
     display: grid;
-    height: 110px;
+    height: 180px;
     background: rgba(var(--secondary), var(--opacity-1));
     border: 2px solid rgb(var(--secondary));
     border-radius: 10px;
@@ -20,7 +20,7 @@
     margin: 0;
     padding: 0 10px;
     list-style: none;
-    justify-items: center;
+    width: 100%;
     font-weight: 500
 }
 

@@ -14,7 +14,7 @@ export const TaskCard = ({ tasks, day, navigateTo }: Props): JSX.Element => {
       <div className={styles.container}>
         <ul className={styles.list}>
           {tasks.map(task => (
-            <li key={task.entityId}>&gt; {task.title}</li>
+            <li key={task.entityId}>- {task.title}</li>
           ))}
         </ul>
         <div className={styles.day}>

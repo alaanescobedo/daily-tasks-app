@@ -1,7 +1,7 @@
 import { Navigate, useParams } from 'react-router-dom'
-import { MainCard } from '../components'
-import { ActivitiesCard } from '../components/Card/ActivitiesCard'
-import { useTasks } from '../hooks/useTasks'
+import { ActivitiesCard } from '../../components/Card/ActivitiesCard'
+import { useTasks } from '../../hooks/useTasks'
+import { AppContainerLayout } from '../../layouts/AppContainerLayout'
 
 export const Activities = (): JSX.Element => {
   const params = useParams()
@@ -14,9 +14,8 @@ export const Activities = (): JSX.Element => {
   }
 
   return (
-    <>
-      <MainCard />
+    <AppContainerLayout>
       <ActivitiesCard tasks={activities} day={params.day ?? ''} />
-    </>
+    </AppContainerLayout>
   )
 }

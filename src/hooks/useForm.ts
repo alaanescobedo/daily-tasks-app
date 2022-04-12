@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { Form_New_Task, Form_Values_New_Task, Input_Fields_New_Task, Input_Types_New_Task } from '../interfaces'
 import { validateInput } from '../utils/validations/validateInput'
-import { Entries } from '../views/NewTask.view'
+import { Entries } from '../views/NewTask/NewTask.view'
 import { Task, useTasks } from './useTasks'
 
 const buildFields = (fieldsConfig: Entries<Form_New_Task>): Input_Fields_New_Task => {

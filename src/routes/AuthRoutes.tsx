@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { CreateUserView } from '../views/CreateUser.view'
-import { ForgotPasswordView } from '../views/ForgotPassword.view'
-import { SigninView } from '../views/Signin.view'
-import { SignupView } from '../views/Signup.view'
+import { CreateUserView } from '../views/CreateUser/CreateUser.view'
+import { ForgotPasswordView } from '../views/ForgotPassowrd/ForgotPassword.view'
+import { SigninView } from '../views/Signing/Signin.view'
+import { SignupView } from '../views/Signup/Signup.view'
 
 export const AuthRoutes = (): JSX.Element => {
   return (
