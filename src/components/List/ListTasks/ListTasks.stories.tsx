@@ -1,16 +1,16 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { Task } from '../../hooks/useTasks'
+import { Task } from '../../../hooks/useTasks'
 
 import { ListTasks as ListTasksComponent, ListTasksProps } from './ListTasks'
 
 const ListTasksStory: ComponentMeta<typeof ListTasksComponent> = {
-  title: 'Inputs/List',
+  title: 'Inputs/ListTasks',
   component: ListTasksComponent
 }
 export default ListTasksStory
 
 const Template: ComponentStory<typeof ListTasksComponent> = (args) => <ListTasksComponent {...args} />
-const tasks: { [key: string]: Task[] } = {
+export const tasks: { [key: string]: Task[] } = {
   '2022-04-11': [
     {
       title: 'Task 1',

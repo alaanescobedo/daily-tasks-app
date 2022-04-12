@@ -1,5 +1,5 @@
-import { Task } from '../../hooks/useTasks'
-import { TaskCard } from '../Card'
+import { Task } from '../../../hooks/useTasks'
+import { TaskCard } from '../../Card/TaskCard'
 
 import styles from './ListTasks.module.css'
 

@@ -7,7 +7,7 @@ import { InputTime } from '../Time/Time.stories'
 import { InputTimeProps } from '../Time/Time'
 import { InputCheckbox } from '../Checkbox/Checkbox.stories'
 import { InputCheckboxProps } from '../Checkbox/Checkbox'
-import styles from '../../../views/NewTask.module.css'
+import styles from '../../../views/NewTask/NewTask.module.css'
 
 const InputGroupStory: ComponentMeta<typeof InputGroup> = {
   title: 'Inputs/InputGroup',

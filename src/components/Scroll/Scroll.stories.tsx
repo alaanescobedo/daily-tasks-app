@@ -5,7 +5,7 @@ import { ListTasks } from '../List/ListTasks.stories'
 import { Scroll as ScrollComponent, ScrollProps } from './Scroll'
 
 const ScrollStory: ComponentMeta<typeof ScrollComponent> = {
-  title: 'Layout/Scroll',
+  title: 'Grid/Scroll',
   component: ScrollComponent
 }
 export default ScrollStory

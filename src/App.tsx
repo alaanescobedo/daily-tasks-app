@@ -6,7 +6,7 @@ import { TaskProvider } from './context/Task/Task.provider'
 function App (): JSX.Element {
   return (
     <div className={styles.app_bg}>
-      <div className={styles.container}>
+      <div className={styles.app_container}>
         <AuthRoutes />
         <TaskProvider>
           <AppRouter />
