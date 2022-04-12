@@ -5,6 +5,7 @@ import { Checkbox, Time, InputGroup, Select, TextArea, WeekdaysId, WeekdaysLabel
 
 import styles from './NewTask.module.css'
 import { getSevenDays } from '@utils/getSevenDays'
+import { getCurrentTimePlus5minutes } from '@utils/getCurrentTimePlus5minutes'
 
 // TODO: REFACTOR interface and util folder
 export type Entries<T> = Array<{
