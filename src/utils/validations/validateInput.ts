@@ -27,9 +27,9 @@ const validateTextArea = ({ value, errors }: any): any => {
   return errors
 }
 const validateDay = ({ value, errors }: any): any => {
-  const currentDay = getCurrentDate('en-US', Date.now()).split(',')[1].trim()
+  // const currentDay = getCurrentDate('en-US', Date.now()).split(',')[1].trim()
   const valueTime = new Date(value).getTime()
-  const currentTime = new Date(currentDay).getTime()
+  const currentTime = Date.now()
 
   if (isNaN(valueTime)) {
     errors.day = 'Selected day is invalid'
@@ -49,11 +49,19 @@ const validateDay = ({ value, errors }: any): any => {
   return errors
 }
 const validateHour = ({ value, errors }: any): any => {
+  const currentDay = getCurrentDate('en-US', Date.now()).split(',')[1].trim()
+  const valueTime = new Date(`${currentDay},${value as string}`).getTime()
+  const currentTime = Date.now()
+
   if (value === undefined) {
     errors.hour = 'Hour is required'
     return errors
   }
-  return errors
+
+  if (valueTime < currentTime) {
+    errors.hour = 'Hour must be greater than current time'
+    return errors
+  } return errors
 }
 const validatePriority = ({ value, errors }: any): any => {
   if (value === undefined) {
