@@ -1,5 +1,5 @@
 import { CSSProperties, FC, useState } from 'react'
-import { ThemeType } from '@interfaces/theme'
+import { ThemeType } from '@interfaces'
 import { GENERAL_CONFIGURATION, THEMES } from '@themes'
 import { ThemeContext } from './ThemeContext'
 
