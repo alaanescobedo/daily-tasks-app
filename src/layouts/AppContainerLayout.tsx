@@ -2,11 +2,11 @@ import { NavLink } from 'react-router-dom'
 import { MainCard } from '../components'
 import styles from './AppContainerLayout.module.css'
 
-interface Props {
+export interface AppContainerLayoutProps {
   children: React.ReactNode
 }
 
-export const AppContainerLayout = ({ children }: Props): JSX.Element => {
+export const AppContainerLayout = ({ children }: AppContainerLayoutProps): JSX.Element => {
   return (
     <>
       <MainCard />

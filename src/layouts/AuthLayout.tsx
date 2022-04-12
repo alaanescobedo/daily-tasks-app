@@ -1,15 +1,14 @@
-import { ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import styles from './AuthLayout.module.css'
 
-interface Props {
-  children: ReactNode
+export interface AuthLayoutProps {
+  children: React.ReactNode
   title: string
   navigateTo: string
 }
 
-export const AuthLayout = ({ children, title, navigateTo }: Props): JSX.Element => {
+export const AuthLayout = ({ children, title, navigateTo }: AuthLayoutProps): JSX.Element => {
   const navigate = useNavigate()
 
   const handleSignup = (e: React.FormEvent<HTMLFormElement>): void => {
