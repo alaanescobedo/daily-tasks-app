@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 import { InputTimeProps, Time } from './Time'
 
 const InputTimeStory: ComponentMeta<typeof Time> = {
-  title: 'Inputs/Time',
+  title: 'Form/Time',
   component: Time
 }
 export default InputTimeStory

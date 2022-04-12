@@ -1,16 +1,20 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
+
+import { InputGroup, InputGroupProps } from './InputGroup'
+
 import { InputSelectProps } from '../Select/Select'
 import { DateSelect, PrioritySelect } from '../Select/Select.stories'
 
-import { InputGroup, InputGroupProps } from './InputGroup'
 import { InputTime } from '../Time/Time.stories'
 import { InputTimeProps } from '../Time/Time'
+
 import { InputCheckbox } from '../Checkbox/Checkbox.stories'
 import { InputCheckboxProps } from '../Checkbox/Checkbox'
-import styles from '@views/NewTask/NewTask.module.css'
+
+import styles from '../../../views/NewTask/NewTask.module.css'
 
 const InputGroupStory: ComponentMeta<typeof InputGroup> = {
-  title: 'Inputs/InputGroup',
+  title: 'Form/InputGroup',
   component: InputGroup
 }
 export default InputGroupStory

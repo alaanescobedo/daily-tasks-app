@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { ListActivities as ListActivitiesComponent, ListActivitiesProps } from './ListActivities'
 
 const ListActivitiesStory: ComponentMeta<typeof ListActivitiesComponent> = {
-  title: 'Inputs/ListActivities',
+  title: 'List/Activities',
   component: ListActivitiesComponent
 }
 export default ListActivitiesStory

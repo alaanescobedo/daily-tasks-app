@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { Select, InputSelectProps } from './Select'
 
 const InputSelectStory: ComponentMeta<typeof Select> = {
-  title: 'Inputs/Select',
+  title: 'Form/Select',
   component: Select
 }
 export default InputSelectStory

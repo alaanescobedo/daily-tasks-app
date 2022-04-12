@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { Checkbox, InputCheckboxProps } from './Checkbox'
 
 const InputCheckboxStory: ComponentMeta<typeof Checkbox> = {
-  title: 'Inputs/Checkbox',
+  title: 'Form/Checkbox',
   component: Checkbox
 }
 export default InputCheckboxStory

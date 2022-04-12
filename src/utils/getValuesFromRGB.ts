@@ -1,4 +1,4 @@
-import { Theme } from '@interfaces/theme'
+import { Theme } from '@interfaces'
 import { Color } from '../themes/config'
 
 export const getValuesFromRGB = (theme: Theme): Theme => {

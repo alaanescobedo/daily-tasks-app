@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { TextArea, TextAreaProps } from './TextArea'
 
 const InputTextAreaStory: ComponentMeta<typeof TextArea> = {
-  title: 'Inputs/Textarea',
+  title: 'Form/Textarea',
   component: TextArea
 }
 export default InputTextAreaStory

@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { AuthInput, InputAuthProps } from './AuthInput'
 
 const AuthInputStory: ComponentMeta<typeof AuthInput> = {
-  title: 'Inputs/Auth',
+  title: 'Form/Auth',
   component: AuthInput
 }
 export default AuthInputStory

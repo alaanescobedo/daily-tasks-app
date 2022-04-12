@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import { AppContainerLayout as AppContainerLayoutComponent, AppContainerLayoutProps } from './AppContainerLayout'
 
-import styles from '../App.module.css'
+import styles from '../../App.module.css'
 
 const AppContainerStory: ComponentMeta<typeof AppContainerLayoutComponent> = {
   title: 'Layout/AppContainer',
