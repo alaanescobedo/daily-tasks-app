@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { getCurrentDate } from '../../../utils/getCurrentDate'
+import { getCurrentDate } from '@utils/index'
 import { Clock } from '../../Clock/Clock'
 import styles from './MainCard.module.css'
 

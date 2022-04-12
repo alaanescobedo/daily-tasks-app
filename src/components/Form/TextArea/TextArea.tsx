@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react'
-import { resizeTextArea } from '../../../utils/Form'
-import styles from '../shared/styles.module.css'
+import { resizeTextArea } from '@utils/Form'
+import styles from '@components/Form/shared/styles.module.css'
 
 export interface TextAreaProps {
   value: string

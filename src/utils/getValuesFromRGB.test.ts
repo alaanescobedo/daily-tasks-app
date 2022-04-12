@@ -1,5 +1,5 @@
 import { getValuesFromRGB } from './getValuesFromRGB'
-import { THEMES } from '../themes'
+import { THEMES } from '@themes'
 
 const fields = Object.keys(THEMES.dark)
 

@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { MainCard } from '../components'
+import { MainCard } from '@components/index'
 import styles from './AppContainerLayout.module.css'
 
 export interface AppContainerLayoutProps {

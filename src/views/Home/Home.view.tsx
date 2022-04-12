@@ -1,9 +1,6 @@
 import { useContext } from 'react'
-import { MainCard } from '../../components'
-import { Button } from '../../components/Button/Button'
-import { ListTasks } from '../../components/List/ListTasks'
-import { Scroll } from '../../components/Scroll/Scroll'
-import { TaskContext } from '../../context/Task/Task.context'
+import { MainCard, Button, ListTasks, Scroll } from '@components/index'
+import { TaskContext } from '@context/Task'
 
 export const AppView = (): JSX.Element => {
   const { tasks } = useContext(TaskContext)

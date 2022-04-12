@@ -1,13 +1,10 @@
-import { Checkbox } from '../../components/Form/Checkbox/Checkbox'
-import { Time } from '../../components/Form/Time/Time'
-import { InputGroup } from '../../components/Form/InputGroup/InputGroup'
-import { Select } from '../../components/Form/Select/Select'
-import { TextArea } from '../../components/Form/TextArea/TextArea'
-import { NEW_TASK_INPUT_CONFIG } from '../../config/new-task.config'
-import { useForm } from '../../hooks/useForm'
-import { getCurrentTimePlus5minutes, useNewTask } from '../../hooks/useNewTask'
-import { NewTaskFormLayout } from '../../layouts/NewTaskFormLayout'
+import { NEW_TASK_INPUT_CONFIG } from '@config/new-task.config'
+import { useForm } from '@hooks'
+import { NewTaskFormLayout } from '@layouts'
+import { Checkbox, Time, InputGroup, Select, TextArea, WeekdaysId, WeekdaysLabel } from '@components/Form'
+
 import styles from './NewTask.module.css'
+import { getSevenDays } from '@utils/getSevenDays'
 
 // TODO: REFACTOR interface and util folder
 export type Entries<T> = Array<{
@@ -20,9 +17,11 @@ export function entries<T> (obj: T): Entries<T> {
 ///
 const fieldsConfig = entries(NEW_TASK_INPUT_CONFIG)
 
+const weekdays = getSevenDays() as Array<{ id: WeekdaysId, label: WeekdaysLabel }>
+
 export const NewTaskView = (): JSX.Element => {
   const { fields, handleFieldsChange, handleSubmit, errors } = useForm(fieldsConfig)
-  const { weekdays } = useNewTask()
+
   const { title, day, hour, recurrent, priority } = fields
 
   return (

@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { Task } from '../../../hooks/useTasks'
+import { Task } from '@hooks'
 
 import { ListTasks as ListTasksComponent, ListTasksProps } from './ListTasks'
 
@@ -70,8 +70,8 @@ export const tasks: { [key: string]: Task[] } = {
   ]
 }
 
-export const ListTasks = Template.bind({})
+export const ListOfTasks = Template.bind({})
 const listTasksArgs: ListTasksProps = {
   tasks
 }
-ListTasks.args = listTasksArgs
+ListOfTasks.args = listTasksArgs

@@ -20,6 +20,19 @@
       "vite/client",
       "jest"
     ],
+    "baseUrl": "./src",
+    "paths":{
+      "@components/*":["components/*"],
+      "@layouts":["layouts"],
+      "@interfaces/*":["interfaces/*"],
+      "@hooks":["hooks"],
+      "@routes":["routes"],
+      "@utils/*":["utils/*"],
+      "@context/*":["context/*"],
+      "@themes":["themes"],
+      "@views":["views"],
+      "@config/*":["config/*"]
+    }
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]

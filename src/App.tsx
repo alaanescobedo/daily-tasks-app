@@ -1,7 +1,7 @@
-import { AppRouter } from './routes/AppRoutes'
+import { AppRouter, AuthRoutes } from '@routes'
+import { TaskProvider } from '@context/Task'
+
 import styles from './App.module.css'
-import { AuthRoutes } from './routes/AuthRoutes'
-import { TaskProvider } from './context/Task/Task.provider'
 
 function App (): JSX.Element {
   return (

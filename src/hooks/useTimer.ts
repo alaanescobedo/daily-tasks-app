@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { TaskContext } from '../context/Task/Task.context'
+import { TaskContext } from '@context/Task'
 import { useTasks } from './useTasks'
 
 interface UseTimer {

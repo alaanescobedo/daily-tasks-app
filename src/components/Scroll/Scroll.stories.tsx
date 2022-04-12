@@ -1,11 +1,11 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { ListTasksProps } from '../List/ListTasks'
-import { ListTasks } from '../List/ListTasks.stories'
+import { ListTasksProps } from '@components/List/ListTasks'
+import { ListOfTasks } from '@components/List/ListTasks/ListTasks.stories'
 
 import { Scroll as ScrollComponent, ScrollProps } from './Scroll'
 
 const ScrollStory: ComponentMeta<typeof ScrollComponent> = {
-  title: 'Grid/Scroll',
+  title: 'Scroll/Scroll',
   component: ScrollComponent
 }
 export default ScrollStory
@@ -14,6 +14,6 @@ const Template: ComponentStory<typeof ScrollComponent> = (args) => <ScrollCompon
 
 export const Scroll = Template.bind({})
 const scrollProps: ScrollProps = {
-  children: <ListTasks {...ListTasks.args as ListTasksProps} />
+  children: <ListOfTasks {...ListOfTasks.args as ListTasksProps} />
 }
 Scroll.args = scrollProps

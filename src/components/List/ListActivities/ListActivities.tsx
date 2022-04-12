@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Task } from '../../hooks/useTasks'
+import { Task } from '@hooks'
 import styles from './ListActivities.module.css'
 
 export interface ListActivitiesProps {

@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { TaskContext } from '../context/Task/Task.context'
+import { TaskContext } from '@context/Task'
 
 export interface Task {
   title: string

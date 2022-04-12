@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react'
-import sharedStyles from '../shared/styles.module.css'
+import sharedStyles from '@components/Form/shared/styles.module.css'
 
 export type PriorityId = 'low' | 'medium' | 'high'
 export type WeekdaysId = 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday' | 'sunday'

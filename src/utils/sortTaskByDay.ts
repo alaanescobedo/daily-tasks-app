@@ -1,4 +1,4 @@
-import { Task } from '../hooks/useTasks'
+import { Task } from '@hooks'
 import { getCurrentDate } from './getCurrentDate'
 
 export const sortTasksByDay = (tasks: Task[]): { [key: string]: Task[] } => {

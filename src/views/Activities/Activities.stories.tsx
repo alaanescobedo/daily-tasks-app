@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { tasks } from '../../components/List/ListTasks/ListTasks.stories'
+import { tasks } from '@components/List'
 import { Activities as ActivitiesComponent } from './Activities.view'
 
 const ActivitiesStory: ComponentMeta<typeof ActivitiesComponent> = {

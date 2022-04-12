@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { Task } from '../../../hooks/useTasks'
+import { Task } from '@hooks'
 import styles from './TaskCard.module.css'
 
 interface Props {

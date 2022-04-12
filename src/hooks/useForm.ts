@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { Form_New_Task, Form_Values_New_Task, Input_Fields_New_Task, Input_Types_New_Task } from '../interfaces'
-import { validateInput } from '../utils/validations/validateInput'
-import { Entries } from '../views/NewTask/NewTask.view'
+import { Form_New_Task, Form_Values_New_Task, Input_Fields_New_Task, Input_Types_New_Task } from '@interfaces'
+import { validateInput } from '@utils/Form'
+import { Entries } from 'views/NewTask/NewTask.view'
 import { Task, useTasks } from './useTasks'
 
 const buildFields = (fieldsConfig: Entries<Form_New_Task>): Input_Fields_New_Task => {
@@ -53,7 +53,7 @@ export const useForm = (fieldsConfig: Entries<Form_New_Task>): UseForm => {
       if (textarea.scrollHeight < textarea.offsetHeight) return
 
       const scrollHeight = textarea.scrollHeight
-      textarea.style.height = `${scrollHeight}px`
+      textarea.style.height = `${scrollHeight as string}px`
     }
   }
 
@@ -89,7 +89,7 @@ export const useForm = (fieldsConfig: Entries<Form_New_Task>): UseForm => {
 
     const { day, hour, title } = data as unknown as Form_Values_New_Task
 
-    const date = new Date(`${day}, ${hour}`)
+    const date = new Date(`${day as string}, ${hour as string}`)
 
     const newTask: Task = {
       title,

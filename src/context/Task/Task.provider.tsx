@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useTasks } from '../../hooks/useTasks'
+import { useTasks } from '@hooks'
 import { TaskContext } from './Task.context'
 
 const getInitialTasks = (): any => {

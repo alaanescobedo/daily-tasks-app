@@ -1,5 +1,5 @@
-import { getCurrentDate } from '../../../utils/getCurrentDate'
-import styles from '../shared/styles.module.css'
+import { getCurrentDate } from '@utils/index'
+import styles from '@components/Form/shared/styles.module.css'
 
 export interface InputTimeProps {
   id: string

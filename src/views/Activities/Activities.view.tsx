@@ -1,7 +1,8 @@
 import { Navigate, useParams } from 'react-router-dom'
-import { ListActivities } from '../../components/List/ListActivities'
-import { useTasks } from '../../hooks/useTasks'
-import { AppContainerLayout } from '../../layouts/AppContainerLayout'
+
+import { AppContainerLayout } from '@layouts'
+import { ListActivities } from '@components/List'
+import { useTasks } from '@hooks'
 
 import styles from './Activities.module.css'
 

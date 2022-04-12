@@ -1,5 +1,5 @@
-import { AuthInput } from '../../components/Form/AuthInput'
-import { AuthLayout } from '../../layouts/AuthLayout'
+import { AuthInput } from '@components/Form'
+import { AuthLayout } from '@layouts'
 
 export const SignupView = (): JSX.Element => {
   return (

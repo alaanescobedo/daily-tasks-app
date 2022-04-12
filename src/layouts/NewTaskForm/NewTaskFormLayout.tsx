@@ -1,4 +1,4 @@
-import { AppContainerLayout } from './AppContainerLayout'
+import { AppContainerLayout } from '@layouts'
 import styles from './NewTaskFormLayout.module.css'
 
 interface Props {
