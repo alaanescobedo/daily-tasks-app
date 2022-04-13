@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom'
 import { Task } from '@hooks'
 import styles from './ListActivities.module.css'
+import { ActivityCard } from '@components/Card/Activity'
+import { Scroll } from '@components/Scroll'
 
 export interface ListActivitiesProps {
   tasks: Task[]
@@ -9,14 +10,12 @@ export interface ListActivitiesProps {
 
 export const ListActivities = ({ tasks, day }: ListActivitiesProps): JSX.Element => {
   return (
-    <ul className={styles.container}>
-      {tasks.map(task => (
-        <span style={{ display: 'flex', gap: '1rem' }} key={task.entityId}>
-          <li className={styles.list_item}>{task.title}</li>
-          <span style={{ cursor: 'pointer' }}>Remove</span>
-          <Link to={`/activities/update/${day}`}>Update</Link>
-        </span>
-      ))}
-    </ul>
+    <Scroll>
+      <ul className={styles.container}>
+        {tasks.map(task => (
+          <ActivityCard title={task.title} key={task.entityId} />
+        ))}
+      </ul>
+    </Scroll>
   )
 }
