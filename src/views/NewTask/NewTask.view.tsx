@@ -6,6 +6,7 @@ import { Checkbox, Time, InputGroup, Select, TextArea, WeekdaysId, WeekdaysLabel
 import styles from './NewTask.module.css'
 import { getSevenDays } from '@utils/getSevenDays'
 import { getCurrentTimePlus5minutes } from '@utils/getCurrentTimePlus5minutes'
+import { getCurrentDate } from '@utils/getCurrentDate'
 
 // TODO: REFACTOR interface and util folder
 export type Entries<T> = Array<{
@@ -25,6 +26,8 @@ export const NewTaskView = (): JSX.Element => {
 
   const { title, day, hour, recurrent, priority } = fields
 
+  const minTime = getCurrentDate().split(',')[2].split(':').slice(0, 2).join(':').trim()
+
   return (
     <NewTaskFormLayout sendLabel='Create Task' handleSubmit={handleSubmit}>
       <div style={{ gridColumn: '1 / -1', color: 'tomato', backgroundColor: 'rebeccapurple', padding: '0 1rem' }}>
@@ -41,7 +44,7 @@ export const NewTaskView = (): JSX.Element => {
       </InputGroup>
 
       <InputGroup label='Hour' htmlFor={hour.id} className={styles.group_date_hour}>
-        <Time id={hour.id} handleChange={handleFieldsChange} defaultValue={getCurrentTimePlus5minutes()} />
+        <Time id={hour.id} handleChange={handleFieldsChange} defaultValue={getCurrentTimePlus5minutes()} minTime={minTime} />
       </InputGroup>
 
       <InputGroup label='Recurrent' htmlFor={recurrent.id} className={styles.group_recurrent}>
