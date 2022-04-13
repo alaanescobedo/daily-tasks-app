@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { MainCard } from '@components/index'
+import { getCurrentDate } from '@utils/getCurrentDate'
 import styles from './AppContainerLayout.module.css'
 
 export interface AppContainerLayoutProps {
@@ -7,9 +8,11 @@ export interface AppContainerLayoutProps {
 }
 
 export const AppContainerLayout = ({ children }: AppContainerLayoutProps): JSX.Element => {
+  const [weekday, date] = getCurrentDate().split(',')
+  const currentDate = `${weekday}, ${date}`
   return (
     <>
-      <MainCard />
+      <MainCard currentDate={currentDate} />
       <div className={styles.super_container}>
         <div className={styles.container}>
           {children}

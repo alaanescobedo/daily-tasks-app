@@ -5,7 +5,7 @@ import { AppContainerLayout as AppContainerLayoutComponent, AppContainerLayoutPr
 import styles from '../../App.module.css'
 
 const AppContainerStory: ComponentMeta<typeof AppContainerLayoutComponent> = {
-  title: 'Layout/AppContainer',
+  title: 'Layout/App Container',
   component: AppContainerLayoutComponent
 }
 export default AppContainerStory

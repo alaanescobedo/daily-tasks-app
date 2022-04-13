@@ -4,7 +4,7 @@ import { tasks } from '../../../config/test-tasks'
 import { ListTasks as ListTasksComponent, ListTasksProps } from './ListTasks'
 
 const ListTasksStory: ComponentMeta<typeof ListTasksComponent> = {
-  title: 'List/Tasks',
+  title: 'List/List Of Tasks',
   component: ListTasksComponent
 }
 export default ListTasksStory

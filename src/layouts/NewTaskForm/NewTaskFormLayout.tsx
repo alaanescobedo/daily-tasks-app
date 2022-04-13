@@ -1,14 +1,14 @@
 import { AppContainerLayout } from '@layouts'
 import styles from './NewTaskFormLayout.module.css'
 
-interface Props {
+export interface NewTaskFormLayoutProps {
   children: React.ReactNode
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void
   title?: string
   sendLabel?: string
 }
 
-export const NewTaskFormLayout = ({ children, handleSubmit, title = 'New Task', sendLabel = 'Send' }: Props): JSX.Element => {
+export const NewTaskFormLayout = ({ children, handleSubmit, title = 'New Task', sendLabel = 'Send' }: NewTaskFormLayoutProps): JSX.Element => {
   return (
     <AppContainerLayout>
       <h1 className={styles.heading}>{title}</h1>

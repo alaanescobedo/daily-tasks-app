@@ -2,13 +2,13 @@ import { NavLink } from 'react-router-dom'
 import { Task } from '@hooks'
 import styles from './TaskCard.module.css'
 
-interface Props {
+export interface TaskCardProps {
   tasks: Task[]
   day: string
   navigateTo: string
 }
 
-export const TaskCard = ({ tasks, day, navigateTo }: Props): JSX.Element => {
+export const TaskCard = ({ tasks, day, navigateTo }: TaskCardProps): JSX.Element => {
   return (
     <NavLink to={navigateTo} state={{ tasks, day }}>
       <div className={styles.container}>

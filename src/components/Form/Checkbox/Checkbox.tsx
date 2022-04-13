@@ -1,4 +1,4 @@
-import { CheckIcon } from '../../Icons/Check'
+import { CheckIcon } from '../../Icons/Check/Check'
 import sharedStyles from '../shared/styles.module.css'
 
 export interface InputCheckboxProps {

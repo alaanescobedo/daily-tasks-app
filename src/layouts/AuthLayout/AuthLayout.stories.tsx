@@ -5,7 +5,7 @@ import { AuthLayout as AuthLayoutComponent, AuthLayoutProps } from './AuthLayout
 import styles from '../../App.module.css'
 
 const AuthLayoutStory: ComponentMeta<typeof AuthLayoutComponent> = {
-  title: 'Layout/AuthLayout',
+  title: 'Layout/Auth Layout',
   component: AuthLayoutComponent
 }
 export default AuthLayoutStory

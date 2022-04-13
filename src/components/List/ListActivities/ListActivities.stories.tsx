@@ -3,14 +3,14 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { ListActivities as ListActivitiesComponent, ListActivitiesProps } from './ListActivities'
 
 const ListActivitiesStory: ComponentMeta<typeof ListActivitiesComponent> = {
-  title: 'List/Activities',
+  title: 'List/List Of Activities',
   component: ListActivitiesComponent
 }
 export default ListActivitiesStory
 
 const Template: ComponentStory<typeof ListActivitiesComponent> = (args) => <ListActivitiesComponent {...args} />
 
-export const ListActivities = Template.bind({})
+export const ListOfActivities = Template.bind({})
 const ListActivitiesArgs: ListActivitiesProps = {
   day: '2022-04-11',
   tasks: [
@@ -24,4 +24,4 @@ const ListActivitiesArgs: ListActivitiesProps = {
     }
   ]
 }
-ListActivities.args = ListActivitiesArgs
+ListOfActivities.args = ListActivitiesArgs
