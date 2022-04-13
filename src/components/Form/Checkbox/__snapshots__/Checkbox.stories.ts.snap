@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Form/Checkbox Input Checkbox 1`] = `
+Array [
+  " ",
+  <div
+    style={
+      Object {
+        "--background": "2, 40, 60",
+        "--highlight": "255,  202,  16",
+        "--opacity-1": 0.1,
+        "--opacity-7": 0.7,
+        "--primary": "206, 180, 249",
+        "--secondary": "189, 231, 255",
+        "--tertiary": "176, 239, 165",
+        "--text": "245, 245, 245",
+        "0.1": "--opacity-1",
+        "0.7": "--opacity-7",
+      }
+    }
+  >
+     
+    <span
+      className="input_recurrent"
+      onClick={[Function]}
+    >
+      <svg
+        viewBox="0 0 512 512"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
+        />
+      </svg>
+      <input
+        checked={true}
+        className="checkbox"
+        id="recurrent"
+        name="recurrent"
+        readOnly={true}
+        type="checkbox"
+      />
+    </span>
+     
+  </div>,
+  " ",
+]
+`;

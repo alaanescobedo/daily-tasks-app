@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Form/Textarea Primary 1`] = `
+Array [
+  " ",
+  <div
+    style={
+      Object {
+        "--background": "2, 40, 60",
+        "--highlight": "255,  202,  16",
+        "--opacity-1": 0.1,
+        "--opacity-7": 0.7,
+        "--primary": "206, 180, 249",
+        "--secondary": "189, 231, 255",
+        "--tertiary": "176, 239, 165",
+        "--text": "245, 245, 245",
+        "0.1": "--opacity-1",
+        "0.7": "--opacity-7",
+      }
+    }
+  >
+     
+    <textarea
+      className="input_task"
+      id="textarea"
+      maxLength={70}
+      name="textarea"
+      onChange={[Function]}
+      placeholder="Title"
+      value=""
+    />
+     
+  </div>,
+  " ",
+]
+`;

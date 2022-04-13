@@ -1,0 +1,160 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots List/List Of Tasks List Of Tasks 1`] = `
+Array [
+  " ",
+  <div
+    style={
+      Object {
+        "--background": "2, 40, 60",
+        "--highlight": "255,  202,  16",
+        "--opacity-1": 0.1,
+        "--opacity-7": 0.7,
+        "--primary": "206, 180, 249",
+        "--secondary": "189, 231, 255",
+        "--tertiary": "176, 239, 165",
+        "--text": "245, 245, 245",
+        "0.1": "--opacity-1",
+        "0.7": "--opacity-7",
+      }
+    }
+  >
+     
+    <ul
+      className="container"
+    >
+      <a
+        className=""
+        href="/activities/2022-04-11"
+        onClick={[Function]}
+      >
+        <div
+          className="container"
+        >
+          <ul
+            className="list"
+          >
+            <li>
+              - 
+              Task 1
+            </li>
+          </ul>
+          <div
+            className="day"
+          >
+            <p>
+              2022-04-11
+            </p>
+          </div>
+        </div>
+      </a>
+      <a
+        className=""
+        href="/activities/2022-04-12"
+        onClick={[Function]}
+      >
+        <div
+          className="container"
+        >
+          <ul
+            className="list"
+          >
+            <li>
+              - 
+              Task 2
+            </li>
+            <li>
+              - 
+              Task 3
+            </li>
+          </ul>
+          <div
+            className="day"
+          >
+            <p>
+              2022-04-12
+            </p>
+          </div>
+        </div>
+      </a>
+      <a
+        className=""
+        href="/activities/2022-04-13"
+        onClick={[Function]}
+      >
+        <div
+          className="container"
+        >
+          <ul
+            className="list"
+          >
+            <li>
+              - 
+              Task 4
+            </li>
+          </ul>
+          <div
+            className="day"
+          >
+            <p>
+              2022-04-13
+            </p>
+          </div>
+        </div>
+      </a>
+      <a
+        className=""
+        href="/activities/2022-04-14"
+        onClick={[Function]}
+      >
+        <div
+          className="container"
+        >
+          <ul
+            className="list"
+          >
+            <li>
+              - 
+              Task 5
+            </li>
+          </ul>
+          <div
+            className="day"
+          >
+            <p>
+              2022-04-14
+            </p>
+          </div>
+        </div>
+      </a>
+      <a
+        className=""
+        href="/activities/2022-04-15"
+        onClick={[Function]}
+      >
+        <div
+          className="container"
+        >
+          <ul
+            className="list"
+          >
+            <li>
+              - 
+              Task 6
+            </li>
+          </ul>
+          <div
+            className="day"
+          >
+            <p>
+              2022-04-15
+            </p>
+          </div>
+        </div>
+      </a>
+    </ul>
+     
+  </div>,
+  " ",
+]
+`;
