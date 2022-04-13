@@ -4,7 +4,7 @@ import { TaskContext } from '@context/Task'
 
 import styles from './Home.module.css'
 
-export const AppView = (): JSX.Element => {
+export const HomeView = (): JSX.Element => {
   const { tasks } = useContext(TaskContext)
   return (
     <>
@@ -15,7 +15,7 @@ export const AppView = (): JSX.Element => {
         </Scroll>
       </main>
       <div className={styles.container_btn}>
-        <Button />
+        <Button label='Add Task' />
       </div>
     </>
   )
