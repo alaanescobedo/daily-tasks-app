@@ -1,5 +1,4 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { getCurrentDate } from '@utils/getCurrentDate'
 
 import { MainCard as MainCardComponent, MainCardProps } from './MainCard'
 
@@ -13,7 +12,7 @@ const Template: ComponentStory<typeof MainCardComponent> = (args) => <MainCardCo
 
 export const Main = Template.bind({})
 const MainCardArgs: MainCardProps = {
-  currentDate: getCurrentDate().split(',').slice(0, 1).join(','),
+  currentDate: 'Wednesday, 04-11-2022',
   username: 'Guest'
 }
 Main.args = MainCardArgs

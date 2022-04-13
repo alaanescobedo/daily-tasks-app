@@ -17,7 +17,7 @@ const ListActivitiesArgs: ListActivitiesProps = {
     {
       title: 'Task 1',
       createdAt: '2020-01-01',
-      entityId: Math.random().toString(),
+      entityId: '123',
       scheduledFor: '2022-04-11',
       status: 'Pending',
       userID: 'user123'
@@ -25,7 +25,7 @@ const ListActivitiesArgs: ListActivitiesProps = {
     {
       title: 'Task 2',
       createdAt: '2020-01-01',
-      entityId: Math.random().toString(),
+      entityId: 'abc',
       scheduledFor: '2022-04-11',
       status: 'Pending',
       userID: 'user123'
