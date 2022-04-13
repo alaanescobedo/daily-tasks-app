@@ -1,4 +1,9 @@
-import initStoryshots from '@storybook/addon-storyshots'
+import initStoryshots, { multiSnapshotWithOptions, Stories2SnapsConverter } from '@storybook/addon-storyshots'
 import './.storybook/mocks'
 
-initStoryshots()
+initStoryshots({
+  test: multiSnapshotWithOptions({}),
+  stories2snapsConverter: new Stories2SnapsConverter({
+    snapshotExtension: '.ts.snap'
+  })
+})

@@ -1,4 +1,4 @@
-import { Form_New_Task } from '@interfaces/form'
+import { Form_New_Task } from '@interfaces'
 
 export const NEW_TASK_INPUT_CONFIG: Form_New_Task = {
   title: {
