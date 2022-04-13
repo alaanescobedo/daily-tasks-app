@@ -1,4 +1,4 @@
-import { Form_Values_New_Task } from '@interfaces/form'
+import { Form_Values_New_Task } from '@interfaces'
 import { getCurrentDate } from '@utils/getCurrentDate'
 
 // * Validate New Task form

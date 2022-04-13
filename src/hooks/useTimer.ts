@@ -10,7 +10,7 @@ export const useTimer = (): UseTimer => {
   const [currentDate, setCurrentDate] = useState(new Date())
 
   const { tasks } = useContext(TaskContext)
-  const { updateTask } = useTasks(tasks)
+  const { updateTask } = useTasks()
 
   useEffect(() => {
     const timer = setInterval(() => {

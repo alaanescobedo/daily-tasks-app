@@ -9,7 +9,7 @@ export interface InputCheckboxProps {
 
 export const Checkbox = ({ id, checked, handleCheckbox }: InputCheckboxProps): JSX.Element => {
   return (
-    <span className={sharedStyles.input_recurrent} onClick={handleCheckbox}>
+    <span className={sharedStyles.input_recurrent} onClick={() => (handleCheckbox != null) ? handleCheckbox(id) : null}>
       {checked ? <CheckIcon /> : ''}
       <input name={id} id={id} type='checkbox' className={sharedStyles.checkbox} checked={checked} readOnly />
     </span>

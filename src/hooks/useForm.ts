@@ -67,7 +67,7 @@ export const useForm = (fieldsConfig: Entries<Form_New_Task>): UseForm => {
     const data = Object.fromEntries(new FormData(e.currentTarget))
     const entries = Object.entries(data)
 
-    const updatedErrors = entries.reduce<Entries<Form_New_Task>>((acc, entry) => {
+    const updatedErrors = entries.reduce((acc, entry) => {
       const [id, value] = entry as [keyof Form_New_Task, string]
       const error = validateInput([id, value])
       const isError = Object.keys(error).length > 0
@@ -80,6 +80,8 @@ export const useForm = (fieldsConfig: Entries<Form_New_Task>): UseForm => {
     }, {})
 
     const errorFinded: any = Object.values(updatedErrors).find((error: any) => error?.errorMessage !== '')
+
+    console.log(errorFinded)
 
     if (errorFinded !== undefined && Object.keys(errorFinded).length > 0) {
       setIsValid(() => false)
