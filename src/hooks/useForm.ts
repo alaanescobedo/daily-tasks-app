@@ -1,44 +1,37 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { Form_New_Task, Form_Values_New_Task, Input_Fields_New_Task, Input_Types_New_Task } from '@interfaces'
+import { type Forms, Form_New_Task, Form_Values_New_Task, Input_Types, Form_Errors, Input_Base } from '@interfaces'
 import { validateInput } from '@utils/Form'
-import { Entries } from 'views/NewTask/NewTask.view'
+import { type Entries } from 'views/NewTask/NewTask.view'
 import { Task, useTasks } from './useTasks'
 
-const buildFields = (fieldsConfig: Entries<Form_New_Task>): Input_Fields_New_Task => {
-  return fieldsConfig.reduce<any>((acc, [id, config]) => {
-    acc[id] = config
-    return acc
-  }, {})
-}
+const buildFieldsErrors = <T extends Forms>(fieldsConfig: T): Form_Errors<T> => {
+  const fieldsArr = Object.values(fieldsConfig) as [Input_Base]
 
-const buildFieldsErrors = (fieldsConfig: Entries<Form_New_Task>): any => {
-  return fieldsConfig.reduce<any>((acc, [id]) => {
-    acc[id] = {
-      errorMessage: ''
+  return fieldsArr.reduce<any>((acc, { id }) => {
+    return {
+      ...acc,
+      [id]: { errorMessage: '' }
     }
-    return acc
   }, {})
 }
 
-interface UseForm {
-  fields: Input_Fields_New_Task
-  errors: any
+interface UseForm<T> {
+  fields: T
+  errors: Entries<T>
   isValid: boolean
-  handleFieldsChange: (e: ChangeEvent<Input_Types_New_Task>) => void
-  handleSetFields: (updatedFields: Input_Fields_New_Task) => void
+  handleFieldsChange: (e: ChangeEvent<Input_Types>) => void
+  handleSetFields: (updatedFields: T) => void
   handleSubmit: (e: FormEvent<HTMLFormElement>) => void
 }
 
-export const useForm = (fieldsConfig: Entries<Form_New_Task>): UseForm => {
-  const [fields, setFields] = useState(buildFields(fieldsConfig))
+export const useForm = <T extends Forms>(fieldsConfig: T): UseForm<T> => {
+  const [fields, setFields] = useState(fieldsConfig)
   const [errors, setErrors] = useState(buildFieldsErrors(fieldsConfig))
   const [isValid, setIsValid] = useState(false)
-
   const { saveTask } = useTasks()
 
-  const handleFieldsChange = (e: ChangeEvent<Input_Types_New_Task>): any => {
-    const { id, value } = e.target as { id: keyof Form_New_Task, value: string }
-
+  const handleFieldsChange = (e: ChangeEvent<Input_Types>): void => {
+    const { id, value } = e.target as { id: keyof T, value: string }
     if (id === 'title' && value.includes('\n')) return
 
     const updatedConfig = { ...fields[id], value }
@@ -46,7 +39,7 @@ export const useForm = (fieldsConfig: Entries<Form_New_Task>): UseForm => {
 
     handleSetFields(updatedFields)
 
-    //* Resize textarea
+    // TODO: Refactor -- Resize textarea
     if (id === 'title') {
       const textarea = e.target
       textarea.style.height = '2.6rem'
@@ -57,7 +50,7 @@ export const useForm = (fieldsConfig: Entries<Form_New_Task>): UseForm => {
     }
   }
 
-  const handleSetFields = (updatedFields: Input_Fields_New_Task): void => {
+  const handleSetFields = (updatedFields: T): void => {
     setFields(() => updatedFields)
   }
 
