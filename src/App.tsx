@@ -1,16 +1,14 @@
-import { AppRouter, AuthRoutes } from '@routes'
-import { TaskProvider } from '@context/Task'
-
+import { BrowserRouter } from 'react-router-dom'
+import { AppRouter } from '@routes'
 import styles from './App.module.css'
 
 function App (): JSX.Element {
   return (
     <div className={styles.app_bg}>
       <div className={styles.app_container}>
-        <AuthRoutes />
-        <TaskProvider>
+        <BrowserRouter>
           <AppRouter />
-        </TaskProvider>
+        </BrowserRouter>
       </div>
     </div>
   )
