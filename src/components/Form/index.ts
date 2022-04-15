@@ -1,4 +1,4 @@
-export * from './AuthInput'
+export * from './Input'
 export * from './Checkbox'
 export * from './InputGroup'
 export * from './Select'
