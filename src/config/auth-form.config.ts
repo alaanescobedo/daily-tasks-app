@@ -20,3 +20,12 @@ export const SIGNUP_INPUT_CONFIG: Form_Auth_Signup = {
     required: true
   }
 }
+
+export const CREATE_USER_INPUT_CONFIG = {
+  username: {
+    id: 'username',
+    label: 'Username',
+    type: 'text',
+    required: true
+  }
+}
