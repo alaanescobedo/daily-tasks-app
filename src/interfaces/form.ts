@@ -1,10 +1,10 @@
 //* Types
 type Task_Priority = 'Low' | 'Medium' | 'High'
 type Task_Priority_Id = Lowercase<Task_Priority>
-export type Input_Types_New_Task = HTMLTextAreaElement | HTMLSelectElement | HTMLInputElement
+export type Input_Types = HTMLTextAreaElement | HTMLSelectElement | HTMLInputElement
 
 //* Input Base
-interface Input_Base {
+export interface Input_Base {
   id: string
   label: string
   type: string
@@ -37,14 +37,7 @@ export interface Input_Email extends Input_Base { }
 export interface Input_Password extends Input_Base { }
 export interface Input_Username extends Input_Base { }
 
-//*  Fields New Task
-export interface Input_Fields_New_Task {
-  title: Input_New_Task_Title
-  day: Input_New_Task_Day
-  hour: Input_New_Task_Hour
-  recurrent: Input_New_Task_Recurrent
-  priority: Input_New_Task_Priority
-}
+//*  Fields Values New Task
 export interface Form_Values_New_Task {
   title: string
   day: string
@@ -73,4 +66,11 @@ export interface Form_Auth_Signup {
   email: Input_Email
   password: Input_Password
   passwordConfirm: Input_Password
+}
+export type Forms = Partial<Form_New_Task> & Partial<Form_Auth_Signup>
+
+//* Form Errors
+export interface ErrorMessage { errorMessage: string }
+export type Form_Errors<T extends Forms> = {
+  [K in keyof T]: ErrorMessage
 }

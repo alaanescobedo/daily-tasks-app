@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { TaskContext } from '@context/Task'
+import { Form_Values_New_Task } from '@interfaces'
 
 export interface Task {
   title: string
@@ -46,10 +47,27 @@ export const useTasks = (): any => {
     }, {})
   }
 
+  const submitNewTask = (data: Form_Values_New_Task): void => {
+    const { title, day, hour } = data
+    const date = new Date(`${day}, ${hour}`)
+
+    const newTask: Task = {
+      title,
+      scheduledFor: date.toISOString(),
+      createdAt: new Date().toISOString(),
+      status: 'Pending',
+      userID: 'GUEST',
+      entityId: Math.random().toString()
+    }
+
+    saveTask(newTask)
+  }
+
   return {
     saveTask,
     tasks,
     updateTask,
-    getActiveTasks
+    getActiveTasks,
+    submitNewTask
   }
 }

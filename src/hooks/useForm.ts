@@ -1,8 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { type Forms, Form_New_Task, Form_Values_New_Task, Input_Types, Form_Errors, Input_Base } from '@interfaces'
+import { Forms, Input_Types, Form_Errors, Input_Base, ErrorMessage } from '@interfaces'
 import { validateInput } from '@utils/Form'
-import { type Entries } from 'views/NewTask/NewTask.view'
-import { Task, useTasks } from './useTasks'
+import { useTasks } from './useTasks'
 
 const buildFieldsErrors = <T extends Forms>(fieldsConfig: T): Form_Errors<T> => {
   const fieldsArr = Object.values(fieldsConfig) as [Input_Base]
@@ -15,9 +14,9 @@ const buildFieldsErrors = <T extends Forms>(fieldsConfig: T): Form_Errors<T> => 
   }, {})
 }
 
-interface UseForm<T> {
+interface UseForm<T extends Forms> {
   fields: T
-  errors: Entries<T>
+  errors: Form_Errors<T>
   isValid: boolean
   handleFieldsChange: (e: ChangeEvent<Input_Types>) => void
   handleSetFields: (updatedFields: T) => void
@@ -28,7 +27,7 @@ export const useForm = <T extends Forms>(fieldsConfig: T): UseForm<T> => {
   const [fields, setFields] = useState(fieldsConfig)
   const [errors, setErrors] = useState(buildFieldsErrors(fieldsConfig))
   const [isValid, setIsValid] = useState(false)
-  const { saveTask } = useTasks()
+  const { submitNewTask } = useTasks()
 
   const handleFieldsChange = (e: ChangeEvent<Input_Types>): void => {
     const { id, value } = e.target as { id: keyof T, value: string }
@@ -54,14 +53,16 @@ export const useForm = <T extends Forms>(fieldsConfig: T): UseForm<T> => {
     setFields(() => updatedFields)
   }
 
-  const handleSubmit = (e: any): void => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
+    const { currentTarget } = e
 
-    const data = Object.fromEntries(new FormData(e.currentTarget))
+    const data = Object.fromEntries(new FormData(currentTarget))
     const entries = Object.entries(data)
 
-    const updatedErrors = entries.reduce((acc, entry) => {
-      const [id, value] = entry as [keyof Form_New_Task, string]
+    // TODO: Refactor -- Validate Input and Errors
+    const updatedErrors = entries.reduce<Form_Errors<T>>((acc, entry) => {
+      const [id, value] = entry as [keyof T, string]
       const error = validateInput([id, value])
       const isError = Object.keys(error).length > 0
 
@@ -70,34 +71,29 @@ export const useForm = <T extends Forms>(fieldsConfig: T): UseForm<T> => {
         ...acc,
         [id]: errorMessage
       }
-    }, {})
+    }, errors)
 
-    const errorFinded: any = Object.values(updatedErrors).find((error: any) => error?.errorMessage !== '')
+    const listErrors = Object.values(updatedErrors)
+    const { errorMessage } = listErrors.find(({ errorMessage }: ErrorMessage) => errorMessage !== '') ?? { errorMessage: '' }
 
-    console.log(errorFinded)
-
-    if (errorFinded !== undefined && Object.keys(errorFinded).length > 0) {
+    if (errorMessage === '') {
       setIsValid(() => false)
       return setErrors(() => updatedErrors)
     }
+    // TODO: --- END TODO
+
     setIsValid(() => true)
 
-    const { day, hour, title } = data as unknown as Form_Values_New_Task
-
-    const date = new Date(`${day}, ${hour}`)
-
-    const newTask: Task = {
-      title,
-      scheduledFor: date.toISOString(),
-      createdAt: new Date().toISOString(),
-      status: 'Pending',
-      userID: 'GUEST',
-      entityId: Math.random().toString()
+    const { id } = currentTarget as { id: 'New Task' }
+    const Formulary = {
+      'New Task': () => submitNewTask(data as any) // TODO: Remove any
     }
+    Formulary[id]()
 
-    saveTask(newTask)
-    //* Clear textarea
-    handleSetFields({ ...fields, title: { ...fields.title, value: '' } })
+    //* Clear Values
+    // TODO Iterate over each field and reset to defaulValue
+    console.log(fields)
+    // handleSetFields({ ...fields, title: { ...fields.title, value: '' } })
   }
 
   return {
