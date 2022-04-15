@@ -1,11 +1,11 @@
 import { BASE_URL } from '@config/constants'
 interface SignupProps {
-  username: string
   email: string
   password: string
+  passwordConfirm: string
 }
 
-export const signup = async ({ username, email, password }: SignupProps): Promise<any> => {
+export const signup = async ({ email, password, passwordConfirm }: SignupProps): Promise<any> => {
   try {
     const res = await fetch(`${BASE_URL}/auth/signup`, {
       method: 'POST',
@@ -13,9 +13,9 @@ export const signup = async ({ username, email, password }: SignupProps): Promis
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        username: username,
-        email: email,
-        password: password
+        email,
+        password,
+        passwordConfirm
       })
     })
     return await res.json()
