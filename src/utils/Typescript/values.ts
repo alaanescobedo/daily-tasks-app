@@ -12,4 +12,7 @@ export const objectKeys = <T>(obj: T): (Array<keyof T> & string[]) => {
   return Object.keys(obj as any) as any
 }
 
+// https://stackoverflow.com/questions/49285864/is-there-a-valueof-similar-to-keyof-in-typescript
+export type ValueOf<T> = T[keyof T]
+
 // Yes I copy paste this :c, I'm trying to understand it
