@@ -86,6 +86,10 @@ export interface Form_Create_Username {
     required: boolean
   }
 }
+//* Form Forgot Password
+export interface Form_Forgot_Password {
+  email: Input_Email
+}
 
 export type Forms = Partial<Form_New_Task> & Partial<Form_Auth_Signup> & Partial<Form_Create_Username>
 

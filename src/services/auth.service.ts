@@ -27,10 +27,9 @@ export const signup = async ({ email, password, passwordConfirm }: SignupProps):
     console.log(error)
   }
 }
-
 export const signin = async ({ email, password }: SigninProps): Promise<any> => {
   try {
-    const res = await fetch(`${BASE_URL}/auth/signup`, {
+    const res = await fetch(`${BASE_URL}/auth/signin`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

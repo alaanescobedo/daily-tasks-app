@@ -14,7 +14,7 @@ export const AppRouter = (): JSX.Element => {
       <Route element={<PrivateRoute />}>
         <Route path='/auth/signup' element={<SignupView />} />
         <Route path='/auth/signin' element={<SigninView />} />
-        <Route path='/auth/forgot-password' element={<ForgotPasswordView />} />
+        <Route path='/forgot-password' element={<ForgotPasswordView />} />
         <Route path='/create-username' element={<CreateUserView />} />
       </Route>
       <Route path='*' element={<Navigate to='/' />} />

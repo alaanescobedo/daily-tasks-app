@@ -3,6 +3,7 @@ import { Forms, Input_Types, Form_Errors, Input_Base, ErrorMessage } from '@inte
 import { validateInput } from '@utils/Form'
 import { useTasks } from './useTasks'
 import { signin, signup } from 'services/auth.service'
+import { forgotPassword } from 'services/user.service'
 
 const buildFieldsErrors = <T extends Forms>(fieldsConfig: T): Form_Errors<T> => {
   const fieldsArr = Object.values(fieldsConfig) as [Input_Base]
@@ -85,11 +86,12 @@ export const useForm = <T extends Forms>(fieldsConfig: T): UseForm<T> => {
 
     setIsValid(() => true)
 
-    const { id } = currentTarget as { id: 'newTask' | 'signup' | 'signin' }
+    const { id } = currentTarget as { id: 'newTask' | 'signup' | 'signin' | 'forgotPassword' }
     const Formulary = {
       newTask: () => submitNewTask(data as any), // TODO: Remove any
       signup: async () => await signup(data as any), // TODO: Remove any
-      signin: async () => await signin(data as any) // TODO: Remove any
+      signin: async () => await signin(data as any), // TODO: Remove any
+      forgotPassword: async () => await forgotPassword(data as any) // TODO: Remove any
     }
     Formulary[id]() ?? console.log('Formulary not found')
 
