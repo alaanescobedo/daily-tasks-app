@@ -1,7 +1,7 @@
 import { Input_Base } from '@interfaces'
 import styles from './Input.module.css'
 
-export interface InputProps extends Input_Base { }
+export interface InputProps extends Omit<Input_Base, 'label'> { }
 
 export const Input = ({ type, id, handleChange, required = false }: InputProps): JSX.Element => {
   return (
