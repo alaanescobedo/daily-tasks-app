@@ -2,13 +2,17 @@
 type Task_Priority = 'Low' | 'Medium' | 'High'
 type Task_Priority_Id = Lowercase<Task_Priority>
 export type Input_Types = HTMLTextAreaElement | HTMLSelectElement | HTMLInputElement
+type Event_Change_Types = React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | Input_Types>
 
 //* Input Base
 export interface Input_Base {
   id: string
-  label: string
+  label?: string
   type: string
-  required: boolean
+  handleChange: (e: Event_Change_Types) => void
+  required?: boolean,
+  value?: string
+  defaultValue?: string | boolean
 }
 //* Input New Task Interfaces
 interface Input_New_Task_Hour extends Input_Base { }
@@ -53,6 +57,7 @@ export interface Input_Fields_Auth_Signup {
 }
 //* Fields Auth Signup
 
+// ? Forms
 //* Form New Task Interfaces
 export interface Form_New_Task {
   title: Input_New_Task_Title
@@ -67,7 +72,17 @@ export interface Form_Auth_Signup {
   password: Input_Password
   passwordConfirm: Input_Password
 }
-export type Forms = Partial<Form_New_Task> & Partial<Form_Auth_Signup>
+//* Form Create Username
+export interface Form_Create_Username {
+  username: {
+    id: 'username',
+    label: 'Username',
+    type: 'text',
+    required: true
+  }
+}
+
+export type Forms = Partial<Form_New_Task> & Partial<Form_Auth_Signup> & Partial<Form_Create_Username>
 
 //* Form Errors
 export interface ErrorMessage { errorMessage: string }
