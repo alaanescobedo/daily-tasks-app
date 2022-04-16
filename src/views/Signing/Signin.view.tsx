@@ -1,11 +1,18 @@
-import { AuthInput } from '@components/Form'
+import { Input, InputGroup } from '@components/Form'
+import { SIGNIN_USER_INPUT_CONFIG } from '@config/auth-form.config'
+import { useForm } from '@hooks'
 import { AuthLayout } from '@layouts'
+import { objectValues } from '@utils/Typescript/values'
 
 export const SigninView = (): JSX.Element => {
+  const { fields, handleSubmit, handleFieldsChange } = useForm(SIGNIN_USER_INPUT_CONFIG)
   return (
-    <AuthLayout title='Sign In' navigateTo='/'>
-      <AuthInput label='Email' name='email' type='email' />
-      <AuthInput label='Password' name='password' type='password' />
+    <AuthLayout title='Sign In' id='signin' handleSubmit={handleSubmit}>
+      {objectValues(fields).map(({ id, label, type }) => (
+        <InputGroup htmlFor={id} label={label} key={id}>
+          <Input id={id} type={type} handleChange={handleFieldsChange} />
+        </InputGroup>
+      ))}
     </AuthLayout>
   )
 }

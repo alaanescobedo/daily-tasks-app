@@ -10,7 +10,7 @@ export interface Input_Base {
   label?: string
   type: string
   handleChange: (e: Event_Change_Types) => void
-  required?: boolean,
+  required?: boolean
   value?: string
   defaultValue?: string | boolean
 }
@@ -72,13 +72,18 @@ export interface Form_Auth_Signup {
   password: Input_Password
   passwordConfirm: Input_Password
 }
+//* Form Auth Signin Interfaces
+export interface Form_Auth_Signin {
+  email: Input_Email
+  password: Input_Password
+}
 //* Form Create Username
 export interface Form_Create_Username {
   username: {
-    id: 'username',
-    label: 'Username',
-    type: 'text',
-    required: true
+    id: string
+    label: string
+    type: string
+    required: boolean
   }
 }
 

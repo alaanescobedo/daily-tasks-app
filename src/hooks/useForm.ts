@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useState } from 'react'
 import { Forms, Input_Types, Form_Errors, Input_Base, ErrorMessage } from '@interfaces'
 import { validateInput } from '@utils/Form'
 import { useTasks } from './useTasks'
-import { signup } from 'services/auth.service'
+import { signin, signup } from 'services/auth.service'
 
 const buildFieldsErrors = <T extends Forms>(fieldsConfig: T): Form_Errors<T> => {
   const fieldsArr = Object.values(fieldsConfig) as [Input_Base]
@@ -77,7 +77,7 @@ export const useForm = <T extends Forms>(fieldsConfig: T): UseForm<T> => {
     const listErrors = Object.values(updatedErrors)
     const { errorMessage } = listErrors.find(({ errorMessage }: ErrorMessage) => errorMessage !== '') ?? { errorMessage: '' }
 
-    if (errorMessage === '') {
+    if (errorMessage.length >= 1) {
       setIsValid(() => false)
       return setErrors(() => updatedErrors)
     }
@@ -85,10 +85,11 @@ export const useForm = <T extends Forms>(fieldsConfig: T): UseForm<T> => {
 
     setIsValid(() => true)
 
-    const { id } = currentTarget as { id: 'newTask' | 'signup' }
+    const { id } = currentTarget as { id: 'newTask' | 'signup' | 'signin' }
     const Formulary = {
       newTask: () => submitNewTask(data as any), // TODO: Remove any
-      signup: async () => await signup(data as any) // TODO: Remove any
+      signup: async () => await signup(data as any), // TODO: Remove any
+      signin: async () => await signin(data as any) // TODO: Remove any
     }
     Formulary[id]() ?? console.log('Formulary not found')
 
