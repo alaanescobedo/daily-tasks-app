@@ -1,25 +1,26 @@
-import { AuthInput } from '@components/Form'
+import { Input, InputGroup } from '@components/Form'
 import { SIGNUP_INPUT_CONFIG } from '@config/auth-form.config'
 import { useForm } from '@hooks'
 import { AuthLayout } from '@layouts'
-import { signup } from 'services/auth.service'
-import { entries } from 'views/NewTask'
+import { objectValues } from '@utils/Typescript/values'
+import { FormEvent } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export const SignupView = (): JSX.Element => {
-  const handleSignup = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
-    e.preventDefault()
-    const data = await signup({ username: 'username', email: 'user@gmail.com', password: 'password123' })
-    // navigate('/signup/create-username')
-    console.log(data)
+  const { fields, handleFieldsChange } = useForm(SIGNUP_INPUT_CONFIG)
+  const navigate = useNavigate()
+  const handleContinue = (e: FormEvent<HTMLFormElement>): void => {
+    const { id } = e.currentTarget
+    navigate('/create-username', { state: { fields, id } })
   }
 
-  const { fields } = useForm(entries(SIGNUP_INPUT_CONFIG))
-  console.log(fields)
   return (
-    <AuthLayout title='Sign up' handleSubmit={handleSignup}>
-      <AuthInput label='Email' type='email' name='email' />
-      <AuthInput label='Password' type='password' name='password' />
-      <AuthInput label='Confirm Password' type='password' name='passwordConfirm' />
+    <AuthLayout title='Sign up' handleSubmit={handleContinue} id='Signup'>
+      {objectValues(fields).map((field) => (
+        <InputGroup htmlFor={field.id} label={field.label} key={field.id}>
+          <Input type={field.type} id={field.id} handleChange={handleFieldsChange} value={field.value} />
+        </InputGroup>
+      ))}
     </AuthLayout>
   )
 }

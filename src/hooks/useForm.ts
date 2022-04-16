@@ -2,6 +2,7 @@ import { ChangeEvent, FormEvent, useState } from 'react'
 import { Forms, Input_Types, Form_Errors, Input_Base, ErrorMessage } from '@interfaces'
 import { validateInput } from '@utils/Form'
 import { useTasks } from './useTasks'
+import { signup } from 'services/auth.service'
 
 const buildFieldsErrors = <T extends Forms>(fieldsConfig: T): Form_Errors<T> => {
   const fieldsArr = Object.values(fieldsConfig) as [Input_Base]
@@ -84,11 +85,12 @@ export const useForm = <T extends Forms>(fieldsConfig: T): UseForm<T> => {
 
     setIsValid(() => true)
 
-    const { id } = currentTarget as { id: 'New Task' }
+    const { id } = currentTarget as { id: 'newTask' | 'signup' }
     const Formulary = {
-      'New Task': () => submitNewTask(data as any) // TODO: Remove any
+      newTask: () => submitNewTask(data as any), // TODO: Remove any
+      signup: async () => await signup(data as any) // TODO: Remove any
     }
-    Formulary[id]()
+    Formulary[id]() ?? console.log('Formulary not found')
 
     //* Clear Values
     // TODO Iterate over each field and reset to defaulValue

@@ -1,10 +1,10 @@
-import { Forms_Values } from '@interfaces'
+import { Forms } from '@interfaces'
 import { getCurrentDate } from '@utils/getCurrentDate'
 
 // * Validate New Task form
 export const validateInput = <T>(input: [keyof T, string]): any => {
   const errors: Object = {}
-  const [key, value] = input as [keyof Forms_Values, string]
+  const [key, value] = input as [keyof Forms, string]
 
   const inputs = {
     title: () => validateTextArea({ value, errors }),
@@ -14,7 +14,8 @@ export const validateInput = <T>(input: [keyof T, string]): any => {
     recurrent: () => validateRecurrent({ value, errors }),
     email: () => validateEmail({ value, errors }),
     password: () => validatePassword({ value, errors }),
-    passwordConfirm: () => validatePassword({ value, errors })
+    passwordConfirm: () => validatePassword({ value, errors }),
+    username: () => validateUsername({ value, errors })
   }
   const validatedErrors = inputs[key]() ?? errors
   return validatedErrors
@@ -90,6 +91,13 @@ const validateEmail = ({ value, errors }: any): any => {
 const validatePassword = ({ value, errors }: any): any => {
   if (value === undefined) {
     errors.password = 'Password is required'
+    return errors
+  }
+  return errors
+}
+const validateUsername = ({ value, errors }: any): any => {
+  if (value === undefined) {
+    errors.username = 'Username is required'
     return errors
   }
   return errors
