@@ -83,3 +83,12 @@ export const updateUserTasks = async (userId: string, taskId: string): Promise<I
   await disconnect()
   return user
 }
+
+// Forgot Password
+export const findEmail = async (email: string): Promise<IUserEntity> => {
+  await connect()
+  const usersRepository = client.fetchRepository(userSchema)
+  const user = await usersRepository.search().where('email').equalTo(email).returnFirst()
+  await disconnect()
+  return user
+}

@@ -7,3 +7,6 @@ export interface LoginUserClientData {
   password: string
   email: string
 }
+export interface ForgotPasswordClientData {
+  email: string
+}

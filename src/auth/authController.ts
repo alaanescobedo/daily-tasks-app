@@ -1,11 +1,11 @@
 import type { Request, Response } from 'express'
 import AppError from '@error/errorApp'
-import { createUser, searchUserToLogin } from '@lib/redis/userDB'
+import { createUser, findEmail, searchUserToLogin } from '@lib/redis/userDB'
 import { comparePassword, hashPassword } from '@lib/bcryptjs'
 import { catchAsync } from '@utils/errors/catchAsync'
 import { createToken } from '@lib/jsonwebtoken'
 import { EMPTY_STRING } from '@constants'
-import type { SignupUserClientData } from './auth.interfaces'
+import type { ForgotPasswordClientData, SignupUserClientData } from './auth.interfaces'
 
 export const signup = catchAsync(async (req: Request, res: Response) => {
   const { username, email, password }: SignupUserClientData = req.body
@@ -62,4 +62,11 @@ export const login = catchAsync(async (req: Request, res: Response) => {
       user
     }
   })
+})
+
+export const forgotPassword = catchAsync(async (req: Request, _res: Response) => {
+  const { email }: ForgotPasswordClientData = req.body
+
+  const user = await findEmail(email)
+  if (user === undefined) throw new AppError('User not found', 404)
 })
