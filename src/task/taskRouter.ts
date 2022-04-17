@@ -1,6 +1,8 @@
 import { Router } from 'express'
 import { deleteTask, getAllTask, getIndex, getTaskById, postTask } from '@task/taskController'
 import { authProtect } from 'middleware/authProtect'
+import validateRequest from 'middleware/validateRequest'
+import newTaskSchema from './validations/newTask.schema'
 
 const router = Router()
 
@@ -8,7 +10,7 @@ router.use(authProtect)
 
 router
   .route('/')
-  .post(postTask)
+  .post(validateRequest(newTaskSchema), postTask)
 
 router
   .route('/:id')

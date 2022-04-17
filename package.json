@@ -42,7 +42,8 @@
         "dotenv": "16.0.0",
         "express": "4.17.3",
         "jsonwebtoken": "^8.5.1",
-        "redis-om": "0.2.0"
+        "redis-om": "0.2.0",
+        "yup": "^0.32.11"
     },
     "lint-staged": {
         "**/*.{js,ts}": [

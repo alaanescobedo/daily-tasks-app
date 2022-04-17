@@ -1,11 +1,11 @@
 import agent from '@utils/tests/agent'
 import { signup } from '@utils/tests/auth/signup'
 import { flushDB } from '@utils/tests/seed'
-import type { NewUserClientData } from './userInterface'
+import type { SignupUserClientData } from '@auth/auth.interfaces'
 
-const TestSignupUser: NewUserClientData = {
-  username: 'user',
-  password: 'password123',
+const TestSignupUser: SignupUserClientData = {
+  username: 'userFixed01',
+  password: 'PasswordFixed1!',
   email: 'user@user.com'
 }
 

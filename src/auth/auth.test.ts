@@ -1,13 +1,13 @@
 import app from '@config/app'
 import { EMPTY_STRING } from '@constants'
 import { createIndex } from '@lib/redis/userDB'
-import type { NewUserClientData } from '@user/userInterface'
 import { signup } from '@utils/tests/auth/signup'
 import { agent } from 'supertest'
+import type { SignupUserClientData } from './auth.interfaces'
 
-const TestSignupUser: NewUserClientData = {
-  username: 'user',
-  password: 'password123',
+const TestSignupUser: SignupUserClientData = {
+  username: 'userFixed',
+  password: 'PasswordFixed1!',
   email: 'user@user.com'
 }
 

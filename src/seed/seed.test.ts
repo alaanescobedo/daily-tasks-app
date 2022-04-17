@@ -3,10 +3,11 @@ import { createIndex } from '@utils/tests/task'
 import { flushDB, generateSeed } from '@utils/tests/seed'
 import { searchTasks } from '@lib/redis/taskDB'
 import { signup } from '@utils/tests/auth/signup'
-import type { NewUserClientData } from '@user/userInterface'
-const TestUser: NewUserClientData = {
-  username: 'user',
-  password: 'password123',
+import type { SignupUserClientData } from '@auth/auth.interfaces'
+
+const TestUser: SignupUserClientData = {
+  username: 'userFixed',
+  password: 'PasswordFixed1!',
   email: 'user@user.com'
 }
 describe('SEED.TEST.TS -- TASK /api/v1/seeds/task', () => {

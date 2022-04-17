@@ -5,7 +5,7 @@ export interface TaskClientData {
 }
 
 export interface Task extends TaskClientData {
-  status: 'Pending' | 'Completed' | 'In-Progress'
+  status: 'Pending' | 'Completed' | 'In-Progress' | 'Outdated'
   userID: string
   createdAt: string
   completedAt?: string

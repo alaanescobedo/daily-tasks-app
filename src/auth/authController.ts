@@ -3,12 +3,12 @@ import AppError from '@error/errorApp'
 import { createUser, searchUserToLogin } from '@lib/redis/userDB'
 import { comparePassword, hashPassword } from '@lib/bcryptjs'
 import { catchAsync } from '@utils/errors/catchAsync'
-import type { NewUserClientData } from '@user/userInterface'
 import { createToken } from '@lib/jsonwebtoken'
 import { EMPTY_STRING } from '@constants'
+import type { SignupUserClientData } from './auth.interfaces'
 
 export const signup = catchAsync(async (req: Request, res: Response) => {
-  const { username, email, password }: NewUserClientData = req.body
+  const { username, email, password }: SignupUserClientData = req.body
 
   const passwordHashed = hashPassword(password)
 

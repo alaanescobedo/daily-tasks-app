@@ -3,8 +3,8 @@ import type { User } from '@user/userInterface'
 
 export const seedUsers: User[] = [
   {
-    username: 'admin',
-    password: 'admin',
+    username: 'admin_01',
+    password: 'adminFixed1!',
     email: 'admin@admin.com',
     tasks: [],
     active: true,
@@ -12,8 +12,8 @@ export const seedUsers: User[] = [
     updatedAt: EMPTY_STRING
   },
   {
-    username: 'user',
-    password: 'user',
+    username: 'user_01',
+    password: 'userFixed1!',
     email: 'user@user.com',
     tasks: [],
     active: true,
@@ -22,7 +22,7 @@ export const seedUsers: User[] = [
   },
   {
     username: 'inactive',
-    password: 'inactive',
+    password: 'inactiveFixed!',
     email: 'inactive@inactive.com',
     tasks: [],
     active: false,

@@ -1,15 +1,11 @@
+import type { SignupUserClientData } from '@auth/auth.interfaces'
 import type { Entity } from 'redis-om'
 
-export interface NewUserClientData {
-  username: string
-  password: string
-  email: string
-}
 export interface UserUpdateData {
   username: string
   email: string
 }
-export interface User extends NewUserClientData {
+export interface User extends SignupUserClientData {
   tasks: string[] | []
   active: boolean
   createdAt: string

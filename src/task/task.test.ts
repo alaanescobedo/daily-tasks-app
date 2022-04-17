@@ -2,16 +2,16 @@ import { postTask, getAllTasks, createIndex, deleteTask, getTaskById } from '@ut
 import { flushDB } from '@utils/tests/seed'
 import type { TaskClientData } from './taskInterface'
 import { signup } from '@utils/tests/auth/signup'
-import type { NewUserClientData } from '@user/userInterface'
+import type { SignupUserClientData } from '@auth/auth.interfaces'
 
 const TestTask: TaskClientData = {
   title: 'Add test to the daily-task app',
   scheduledFor: '2022-03-08T00:00:00.000Z',
   description: 'Add test to the daily-task app'
 }
-const TestUser: NewUserClientData = {
-  username: 'user',
-  password: 'password123',
+const TestUser: SignupUserClientData = {
+  username: 'userFixed01',
+  password: 'PasswordFixed1!',
   email: 'user@user.com'
 }
 // TODO implement type checking for the next code
