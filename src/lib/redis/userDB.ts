@@ -19,6 +19,7 @@ export const createUser = async (data: SignupUserClientData): Promise<IUserEntit
   const newUser: User = {
     ...data,
     active: true,
+    verified: false,
     createdAt: new Date().toISOString(),
     tasks: []
   }

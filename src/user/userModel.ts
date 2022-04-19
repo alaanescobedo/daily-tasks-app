@@ -13,7 +13,8 @@ const userSchema = new Schema(UserEntity, {
   tasks: { type: 'string[]' },
   active: { type: 'boolean' },
   createdAt: { type: 'string' },
-  updatedAt: { type: 'string' }
+  updatedAt: { type: 'string' },
+  verified: { type: 'boolean' }
 }, {
   prefix: 'user:'
 })

@@ -8,6 +8,7 @@ export interface UserUpdateData {
 export interface User extends SignupUserClientData {
   tasks: string[] | []
   active: boolean
+  verified: boolean
   createdAt: string
   updatedAt?: string
 }
