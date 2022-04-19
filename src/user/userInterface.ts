@@ -10,6 +10,6 @@ export interface User extends SignupUserClientData {
   active: boolean
   verified: boolean
   createdAt: string
-  updatedAt?: string
+  updatedAt: string | null
 }
 export interface IUserEntity extends User, Entity { }

@@ -1,6 +1,6 @@
 import type { Request, Response } from 'express'
 import AppError from '@error/errorApp'
-import { createUser, findEmail, searchUserById, searchUserToLogin, verifyAccount } from '@lib/redis/userDB'
+import { createUser, findUserByEmail, searchUserById, searchUserToLogin, updatePassword, verifyAccount } from '@lib/redis/userDB'
 import { comparePassword, hashPassword } from '@lib/bcryptjs'
 import { catchAsync } from '@utils/errors/catchAsync'
 import { createToken } from '@lib/jsonwebtoken'
@@ -68,17 +68,43 @@ export const login = catchAsync(async (req: Request, res: Response) => {
   })
 })
 
-export const forgotPassword = catchAsync(async (req: Request, _res: Response) => {
-  const { email }: ForgotPasswordClientData = req.body
+export const forgotPassword = catchAsync(async (req: Request, res: Response) => {
+  // Todo: refactor duplicated code
+  const { email = '' }: ForgotPasswordClientData = req.body
+  if (email === EMPTY_STRING) throw new AppError('Please provide email!', 400)
+  const user = await findUserByEmail(email)
+  if (user === null || !user.active) throw new AppError('User not found', 404)
+  const token = createToken({ id: user.entityId, expiresIn: 1000 * 60 * 15 }) // 1000 * 60 * 15 = 15 minutes
+  await sendEmail({ user: user, template: 'forgotPassword', token })
 
-  const user = await findEmail(email)
-  if (user === undefined) throw new AppError('User not found', 404)
+  return res.status(200).send({ status: 'success', message: 'Email sent' })
+})
+
+export const resetPassword = catchAsync(async (req: Request, res: Response) => {
+  // TODO refactor duplicated code
+  const { token = EMPTY_STRING } = req.query as { token: string }
+  if (token === EMPTY_STRING) throw new AppError('Token is not defined', 400)
+  const { id, exp } = verifyToken({ token })
+  if (id === undefined) throw new AppError('Token is not valid', 400)
+  const user = await searchUserById(id)
+  if (user === null || !user.active) throw new AppError('User not found', 404)
+  if (user.updatedAt === null || user.updatedAt === EMPTY_STRING) throw new AppError('User not found', 404)
+  const updatedAtTime = new Date(user.updatedAt).getTime()
+  if (updatedAtTime > exp) throw new AppError('Token is expired', 400)
+
+  const { password: newPassword = EMPTY_STRING } = req.body
+  if (newPassword === EMPTY_STRING) throw new AppError('Please provide password!', 400)
+  const passwordHashed = hashPassword(newPassword)
+  const userUpdated = await updatePassword(id, passwordHashed)
+  userUpdated.password = EMPTY_STRING
+
+  return res.status(200).send({ status: 'success', data: { user: userUpdated } })
 })
 
 export const confirmAccount = catchAsync(async (req: Request, res: Response) => {
   const { token = EMPTY_STRING } = req.query as { token: string }
   if (token === EMPTY_STRING) throw new AppError('Token is not defined', 400)
-  const id = verifyToken({ token })
+  const { id } = verifyToken({ token })
   if (id === undefined) throw new AppError('Token is not valid', 400)
   const user = await searchUserById(id)
   if (!user.active || user.active === null) throw new AppError('User not found', 404)

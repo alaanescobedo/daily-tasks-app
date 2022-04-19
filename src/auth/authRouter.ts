@@ -1,9 +1,10 @@
 import signupSchema from '@auth/validations/signup.schema'
 import express from 'express'
 import validateRequest from 'middleware/validateRequest'
-import { confirmAccount, forgotPassword, login, signup } from './authController'
+import { confirmAccount, forgotPassword, login, resetPassword, signup } from './authController'
 import forgotPasswordSchema from './validations/forgotPassword.schema'
 import loginSchema from './validations/login.schema'
+import passwordSchema from './validations/password.schema'
 
 const router = express.Router()
 
@@ -17,6 +18,10 @@ router
 router
   .route('/forgot-password')
   .post(validateRequest(forgotPasswordSchema), forgotPassword)
+router
+  .route('/reset-password')
+  .patch(validateRequest(passwordSchema), resetPassword)
+
 router
   .route('/verify')
   .patch(confirmAccount)

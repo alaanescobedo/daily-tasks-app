@@ -10,3 +10,6 @@ export interface LoginUserClientData {
 export interface ForgotPasswordClientData {
   email: string
 }
+export interface ResetPasswordClientData {
+  password: string
+}

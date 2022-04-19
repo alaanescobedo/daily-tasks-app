@@ -21,7 +21,8 @@ export const createUser = async (data: SignupUserClientData): Promise<IUserEntit
     active: true,
     verified: false,
     createdAt: new Date().toISOString(),
-    tasks: []
+    tasks: [],
+    updatedAt: null
   }
 
   const user = usersRepository.createAndSave({ ...newUser })
@@ -86,10 +87,22 @@ export const updateUserTasks = async (userId: string, taskId: string): Promise<I
 }
 
 // Forgot Password
-export const findEmail = async (email: string): Promise<IUserEntity> => {
+export const findUserByEmail = async (email: string): Promise<IUserEntity> => {
   await connect()
   const usersRepository = client.fetchRepository(userSchema)
   const user = await usersRepository.search().where('email').equalTo(email).returnFirst()
+  await disconnect()
+  return user
+}
+
+// Reset Password
+export const updatePassword = async (id: string, newPassword: string): Promise<IUserEntity> => {
+  await connect()
+  const usersRepository = client.fetchRepository(userSchema)
+  const user = await usersRepository.fetch(id)
+  user.password = newPassword
+  user.updatedAt = new Date().toISOString()
+  await usersRepository.save(user)
   await disconnect()
   return user
 }
@@ -101,6 +114,7 @@ export const verifyAccount = async (id: string): Promise<boolean> => {
 
   const user = await usersRepository.fetch(id)
   user.verified = true
+  user.updatedAt = new Date().toISOString()
   await usersRepository.save(user)
   await disconnect()
   return user.verified
