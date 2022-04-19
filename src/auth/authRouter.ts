@@ -1,7 +1,7 @@
 import signupSchema from '@auth/validations/signup.schema'
 import express from 'express'
 import validateRequest from 'middleware/validateRequest'
-import { forgotPassword, login, signup } from './authController'
+import { confirmAccount, forgotPassword, login, signup } from './authController'
 import forgotPasswordSchema from './validations/forgotPassword.schema'
 import loginSchema from './validations/login.schema'
 
@@ -17,5 +17,8 @@ router
 router
   .route('/forgot-password')
   .post(validateRequest(forgotPasswordSchema), forgotPassword)
+router
+  .route('/verify')
+  .patch(confirmAccount)
 
 export default router

@@ -2,12 +2,12 @@ import AppError from '@error/errorApp'
 import { EMPTY_STRING, JWT_SECRET } from '@constants'
 import jwt from 'jsonwebtoken'
 
-interface CreateJWT {
-  id: string
-  expiresIn?: string | number | undefined
+interface VerifyJWT {
+  token: string
 }
 
-export const createToken = ({ id, expiresIn = 1000 * 60 * 30 }: CreateJWT): string => {
+export const verifyToken = ({ token }: VerifyJWT): string => {
   if (JWT_SECRET === EMPTY_STRING) throw new AppError('JWT_SECRET is not defined', 400)
-  return jwt.sign({ id }, JWT_SECRET, { expiresIn })
+  const { id } = jwt.verify(token, JWT_SECRET) as { id: string }
+  return id
 }

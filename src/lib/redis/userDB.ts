@@ -93,3 +93,15 @@ export const findEmail = async (email: string): Promise<IUserEntity> => {
   await disconnect()
   return user
 }
+
+// Verify Account
+export const verifyAccount = async (id: string): Promise<boolean> => {
+  await connect()
+  const usersRepository = client.fetchRepository(userSchema)
+
+  const user = await usersRepository.fetch(id)
+  user.verified = true
+  await usersRepository.save(user)
+  await disconnect()
+  return user.verified
+}
