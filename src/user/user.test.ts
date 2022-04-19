@@ -9,7 +9,7 @@ const TestSignupUser: SignupUserClientData = {
   email: 'user@user.com'
 }
 
-const fields = [...Object.keys(TestSignupUser), 'tasks', 'active', 'createdAt', 'updatedAt', 'entityId']
+const fields = [...Object.keys(TestSignupUser), 'tasks', 'active', 'createdAt', 'updatedAt', 'entityId', 'verified']
 
 describe('Users Module', () => {
   let token: string

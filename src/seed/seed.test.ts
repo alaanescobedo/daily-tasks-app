@@ -3,20 +3,15 @@ import { createIndex } from '@utils/tests/task'
 import { flushDB, generateSeed } from '@utils/tests/seed'
 import { searchTasks } from '@lib/redis/taskDB'
 import { signup } from '@utils/tests/auth/signup'
-import type { SignupUserClientData } from '@auth/auth.interfaces'
+import { seedIndividualUser } from './seed-users'
 
-const TestUser: SignupUserClientData = {
-  username: 'userFixed',
-  password: 'PasswordFixed1!',
-  email: 'user@user.com'
-}
 describe('SEED.TEST.TS -- TASK /api/v1/seeds/task', () => {
   describe('Generate Seeds tasks', () => {
     let token: string
 
     beforeEach(async () => {
       await flushDB()
-      const { body } = await signup(TestUser)
+      const { body } = await signup(seedIndividualUser)
       token = body.token
     })
     test('should return status 200 and message "Seed DB created"', async () => {
@@ -36,7 +31,7 @@ describe('SEED.TEST.TS -- TASK /api/v1/seeds/task', () => {
     let token: string
 
     beforeEach(async () => {
-      const { body } = await signup(TestUser)
+      const { body } = await signup(seedIndividualUser)
       token = body.token
     })
 

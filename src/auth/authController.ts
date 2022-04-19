@@ -18,7 +18,7 @@ export const signup = catchAsync(async (req: Request, res: Response) => {
     email
   })
 
-  const token = createToken(userCreated.entityId)
+  const token = createToken({ id: userCreated.entityId })
 
   res.cookie('jwt', token, {
     httpOnly: true,
@@ -46,7 +46,7 @@ export const login = catchAsync(async (req: Request, res: Response) => {
 
   if (!passwordCorrect) throw new AppError('Invalid email or password', 400)
 
-  const token = createToken(user.entityId)
+  const token = createToken({ id: user.entityId })
 
   res.cookie('jwt', token, {
     httpOnly: true,
