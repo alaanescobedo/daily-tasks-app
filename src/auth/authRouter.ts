@@ -1,5 +1,6 @@
 import signupSchema from '@auth/validations/signup.schema'
 import express from 'express'
+import { authProtect } from 'middleware/authProtect'
 import validateRequest from 'middleware/validateRequest'
 import { confirmAccount, forgotPassword, login, resetPassword, signup } from './authController'
 import forgotPasswordSchema from './validations/forgotPassword.schema'
@@ -18,12 +19,14 @@ router
 router
   .route('/forgot-password')
   .post(validateRequest(forgotPasswordSchema), forgotPassword)
-router
-  .route('/reset-password')
-  .patch(validateRequest(passwordSchema), resetPassword)
+
+router.use(authProtect)
 
 router
   .route('/verify')
   .patch(confirmAccount)
+router
+  .route('/reset-password')
+  .patch(validateRequest(passwordSchema), resetPassword)
 
 export default router

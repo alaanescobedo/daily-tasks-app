@@ -1,25 +1,34 @@
 import type { NextFunction, Request, Response } from 'express'
-import jwt from 'jsonwebtoken'
 import AppError from '@error/errorApp'
 import { catchAsync } from '@utils/errors/catchAsync'
 import { searchUserById } from '@lib/redis/userDB'
+import { EMPTY_STRING, JWT_SECRET } from '@constants'
+import { verifyToken } from 'lib/jsonwebtoken/token.verify'
 
 export const authProtect = catchAsync(async (req: Request, _res: Response, next: NextFunction) => {
-  const { authorization = '' } = req.headers
+  const { authorization = EMPTY_STRING } = req.headers
   const { cookies } = req as { cookies: { jwt: string } }
+  const query = req.query as { token: string }
 
-  const token: string = authorization?.toLocaleLowerCase().startsWith('bearer ')
-    ? authorization.substring(7)
-    : cookies?.jwt ??
-    ''
+  let token: string = ''
 
-  if (token === '' || process.env['JWT_SECRET'] === undefined) throw new AppError('You are not logged in', 401)
+  if (authorization?.toLocaleLowerCase().startsWith('bearer ')) {
+    token = authorization.substring(7)
+  } else if (cookies?.jwt !== undefined) {
+    token = cookies.jwt
+  } else if (query?.token !== undefined) {
+    token = query.token
+  }
+  if (token === EMPTY_STRING || JWT_SECRET === undefined) throw new AppError('Token is not defined', 400)
 
-  const { id } = jwt.verify(token, process.env['JWT_SECRET']) as { id: string }
-
+  const { id, exp } = verifyToken({ token })
+  if (id === undefined) throw new AppError('Token is not valid', 400)
   const currentUser = await searchUserById(id)
+  if (!currentUser.active || currentUser.active === null) throw new AppError('User not found', 404)
 
-  req.cookies = { ...req.cookies, user: currentUser }
-
+  req.locals = {
+    user: currentUser,
+    token: { id, exp }
+  }
   next()
 })

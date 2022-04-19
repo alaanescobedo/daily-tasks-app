@@ -1,12 +1,11 @@
 import type { Request, Response } from 'express'
 import AppError from '@error/errorApp'
-import { createUser, findUserByEmail, searchUserById, searchUserToLogin, updatePassword, verifyAccount } from '@lib/redis/userDB'
+import { createUser, findUserByEmail, searchUserToLogin, updatePassword, verifyAccount } from '@lib/redis/userDB'
 import { comparePassword, hashPassword } from '@lib/bcryptjs'
 import { catchAsync } from '@utils/errors/catchAsync'
 import { createToken } from '@lib/jsonwebtoken'
 import { EMPTY_STRING } from '@constants'
 import type { ForgotPasswordClientData, SignupUserClientData } from './auth.interfaces'
-import { verifyToken } from 'lib/jsonwebtoken/token.verify'
 import sendEmail from '@utils/email/sendEmail'
 
 export const signup = catchAsync(async (req: Request, res: Response) => {
@@ -82,33 +81,27 @@ export const forgotPassword = catchAsync(async (req: Request, res: Response) => 
 
 export const resetPassword = catchAsync(async (req: Request, res: Response) => {
   // TODO refactor duplicated code
-  const { token = EMPTY_STRING } = req.query as { token: string }
-  if (token === EMPTY_STRING) throw new AppError('Token is not defined', 400)
-  const { id, exp } = verifyToken({ token })
-  if (id === undefined) throw new AppError('Token is not valid', 400)
-  const user = await searchUserById(id)
-  if (user === null || !user.active) throw new AppError('User not found', 404)
+  const user = req.locals.user
   if (user.updatedAt === null || user.updatedAt === EMPTY_STRING) throw new AppError('User not found', 404)
+
+  const { id, exp } = req.locals.token as { id: string, exp: number }
+  const expirationInMilliseconds = exp * 1000
   const updatedAtTime = new Date(user.updatedAt).getTime()
-  if (updatedAtTime > exp) throw new AppError('Token is expired', 400)
+  if (updatedAtTime > expirationInMilliseconds) throw new AppError('Token is expired', 400)
 
   const { password: newPassword = EMPTY_STRING } = req.body
   if (newPassword === EMPTY_STRING) throw new AppError('Please provide password!', 400)
+
   const passwordHashed = hashPassword(newPassword)
   const userUpdated = await updatePassword(id, passwordHashed)
-  userUpdated.password = EMPTY_STRING
 
+  userUpdated.password = EMPTY_STRING
   return res.status(200).send({ status: 'success', data: { user: userUpdated } })
 })
 
 export const confirmAccount = catchAsync(async (req: Request, res: Response) => {
-  const { token = EMPTY_STRING } = req.query as { token: string }
-  if (token === EMPTY_STRING) throw new AppError('Token is not defined', 400)
-  const { id } = verifyToken({ token })
-  if (id === undefined) throw new AppError('Token is not valid', 400)
-  const user = await searchUserById(id)
-  if (!user.active || user.active === null) throw new AppError('User not found', 404)
-  const verified = await verifyAccount(id)
+  const user = req.locals.user
+  const verified = await verifyAccount(user.entityId)
   if (!verified) throw new AppError('Account could not be verified', 400)
 
   return res.status(200).send({ status: 'success', verified })

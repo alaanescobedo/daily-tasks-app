@@ -9,7 +9,6 @@ interface VerifyJWT {
 export const verifyToken = ({ token }: VerifyJWT): { id: string, exp: number } => {
   if (JWT_SECRET === EMPTY_STRING) throw new AppError('JWT_SECRET is not defined', 400)
   const tokenVerified = jwt.verify(token, JWT_SECRET)
-  console.log(tokenVerified)
   const { id, exp } = tokenVerified as { id: string, exp: number }
   return { id, exp }
 }
