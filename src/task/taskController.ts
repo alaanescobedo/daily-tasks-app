@@ -8,6 +8,7 @@ import { catchAsync } from '@utils/errors/catchAsync'
 import jwt from 'jsonwebtoken'
 import AppError from '@error/errorApp'
 import { EMPTY_STRING, JWT_SECRET } from '@constants'
+import { updateUserTasks } from '@lib/redis/userDB'
 
 // JWT
 const getTokenFrom = (request: Request): string | null => {
@@ -25,25 +26,19 @@ export const getIndex = async (_req: Request, res: Response): Promise<Response> 
 // CRUD Operations
 export const postTask = catchAsync(async (req: Request, res: Response): Promise<Response> => {
   const { title, scheduledFor, description = EMPTY_STRING }: TaskClientData = req.body
-  // const { entityId: userID } = req.cookies.currentUser
-  const token = getTokenFrom(req)
+  const user = req.locals.user
 
-  // TODO - Refactor in middleware
-  if (token === null) throw new AppError('Token is missing', 401)
-  if (JWT_SECRET === EMPTY_STRING) throw new AppError('JWT_SECRET is missing', 400)
-
-  const { id } = jwt.verify(token, JWT_SECRET) as any
   const data: Task = {
     title,
     description,
     scheduledFor,
-    userID: id,
+    userID: user.entityId,
     status: 'Pending',
     createdAt: new Date().toISOString()
   }
 
   const taskCreated = await createTask(data)
-  // await updateUserTasks(id, taskCreated.entityId)
+  await updateUserTasks(user.entityId, taskCreated.entityId)
 
   return res.status(201).send(taskCreated)
 })

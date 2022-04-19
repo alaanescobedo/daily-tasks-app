@@ -25,10 +25,13 @@
               <%- include('welcome.ejs',{user, redirectURL}) %>
                 <% break;
               case 'forgotPassword' : %>
-                  <%- include('forgot-password.ejs',{redirectURL}) %>
-                    <% break;       
+                  <%- include('password-forgot.ejs',{redirectURL}) %>
+                    <% break;    
+                    case 'passwordChanged' : %>
+                      <%- include('password-changed.ejs',{redirectURL}) %>
+                        <% break;       
               } %>
-                      <!-- END MAIN CONTENT AREA -->
+                          <!-- END MAIN CONTENT AREA -->
           </table>
           <!-- END CENTERED WHITE CONTAINER -->
 

@@ -1,32 +1,21 @@
 import { postTask, getAllTasks, createIndex, deleteTask, getTaskById } from '@utils/tests/task'
 import { flushDB } from '@utils/tests/seed'
-import type { TaskClientData } from './taskInterface'
 import { signup } from '@utils/tests/auth/signup'
-import type { SignupUserClientData } from '@auth/auth.interfaces'
+import { seedIndividualUser } from '@seed/seed-users'
+import { seedIndividualTask } from '@seed/seed-tasks'
 
-const TestTask: TaskClientData = {
-  title: 'Add test to the daily-task app',
-  scheduledFor: '2022-03-08T00:00:00.000Z',
-  description: 'Add test to the daily-task app'
-}
-const TestUser: SignupUserClientData = {
-  username: 'userFixed01',
-  password: 'PasswordFixed1!',
-  email: 'user@user.com'
-}
 // TODO implement type checking for the next code
-const fields = [...Object.keys(TestTask), 'status', 'userID', 'createdAt', 'completedAt', 'updatedAt', 'entityId']
+const fields = [...Object.keys(seedIndividualTask), 'entityId']
 
 describe('TASK TESTS /api/v1/tasks', () => {
   describe('GET /createindex', () => {
     let token: string
     beforeAll(async () => {
-      const { body } = await signup(TestUser)
+      const { body } = await signup(seedIndividualUser)
       token = body.token
     })
     test('should return status 200 and message Index created', async () => {
       const { status, body } = await createIndex(token)
-
       expect(status).toBe(200)
       expect(body).toHaveProperty('message', 'Index created')
     })
@@ -36,14 +25,14 @@ describe('TASK TESTS /api/v1/tasks', () => {
     let token: string
     beforeEach(async () => {
       await flushDB()
-      const response = await signup(TestUser)
+      const response = await signup(seedIndividualUser)
       token = response.body.token
       await createIndex(token)
     })
 
     describe('POST /api/v1/tasks', () => {
       test('should return a new task created', async () => {
-        const { status, body } = await postTask(TestTask, token)
+        const { status, body } = await postTask(seedIndividualTask, token)
 
         expect(status).toBe(201)
         for (const field of fields) {
@@ -62,7 +51,7 @@ describe('TASK TESTS /api/v1/tasks', () => {
 
     describe('GET /api/v1/tasks/search/:id', () => {
       test('should return status 200 and a task', async () => {
-        const { body: task } = await postTask(TestTask, token)
+        const { body: task } = await postTask(seedIndividualTask, token)
         const { entityId } = task
 
         const { status, body } = await getTaskById(entityId, token)
@@ -76,7 +65,7 @@ describe('TASK TESTS /api/v1/tasks', () => {
 
     describe('DELETE /api/v1/tasks/:id', () => {
       test('should return status 200 and message Task deleted', async () => {
-        const { body: task } = await postTask(TestTask, token)
+        const { body: task } = await postTask(seedIndividualTask, token)
         const { entityId } = task
 
         const { status, body } = await deleteTask(entityId, token)

@@ -2,7 +2,7 @@ import type { NextFunction, Request, Response } from 'express'
 import AppError from '@error/errorApp'
 import { catchAsync } from '@utils/errors/catchAsync'
 import { searchUserById } from '@lib/redis/userDB'
-import { EMPTY_STRING, JWT_SECRET } from '@constants'
+import { EMPTY_STRING } from '@constants'
 import { verifyToken } from 'lib/jsonwebtoken/token.verify'
 
 export const authProtect = catchAsync(async (req: Request, _res: Response, next: NextFunction) => {
@@ -19,7 +19,6 @@ export const authProtect = catchAsync(async (req: Request, _res: Response, next:
   } else if (query?.token !== undefined) {
     token = query.token
   }
-  if (token === EMPTY_STRING || JWT_SECRET === undefined) throw new AppError('Token is not defined', 400)
 
   const { id, exp } = verifyToken({ token })
   if (id === undefined) throw new AppError('Token is not valid', 400)

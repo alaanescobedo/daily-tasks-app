@@ -4,31 +4,31 @@ import nodemailer from 'nodemailer'
 //* Config Transport
 const transports = {
   production: {
-    host: 'smtp-mail.outlook.com',
+    host: process.env['APP_EMAIL_HOST_PRODUCTION'],
+    port: Number(process.env['APP_EMAIL_PORT_PRODUCTION']), // port for secure SMTP
     secure: false, // true for 465, false for other ports
-    port: 587, // port for secure SMTP
     tls: {
       ciphers: 'SSLv3'
     },
     auth: {
-      user: process.env['APP_EMAIL_URL'],
-      pass: process.env['APP_EMAIL_PASSWORD'] // generated ethereal password
+      user: process.env['APP_EMAIL_USER_PRODUCTION'],
+      pass: process.env['APP_EMAIL_PASSWORD_PRODUCTION'] // generated ethereal password
     }
   },
   development: {
     host: 'smtp.mailtrap.io',
     port: 2525,
     auth: {
-      user: 'afd1ec1d5f048d',
-      pass: '5b1ebedf4f4231'
+      user: process.env['APP_EMAIL_USER_DEVELOPMENT'],
+      pass: process.env['APP_EMAIL_PASSWORD_DEVELOPMENT']
     }
   },
   test: {
     host: 'smtp.ethereal.email',
     port: 587,
     auth: {
-      user: 'brice.bartell74@ethereal.email',
-      pass: 'AgNgTQhVAUrn1NFACz'
+      user: process.env['APP_EMAIL_USER_TEST'],
+      pass: process.env['APP_EMAIL_PASSWORD_TEST']
     }
   }
 }
@@ -38,15 +38,24 @@ const transporter = nodemailer.createTransport(transport)
 //* Config Template
 const pathTemplate = path.join(__dirname, './templates/_base.ejs')
 
-//* Config redirect
-const endpoint = {
-  welcome: 'http://localhost:3000/api/v1/auth/verify?token=',
-  forgotPassword: 'http://localhost:3000/api/v1/auth/reset-password?token='
+//* Config renderData
+const renderDataConfig = {
+  welcome: {
+    endpoint: 'http://localhost:3000/api/v1/auth/verify?token=',
+    btnLabel: 'Verify Email'
+  },
+  forgotPassword: {
+    endpoint: 'http://localhost:3000/api/v1/auth/reset-password?token=',
+    btnLabel: 'Reset Password'
+  },
+  passwordChanged: {
+    endpoint: 'http://localhost:3000/api/v1/auth/reset-password?token=',
+    btnLabel: 'Reset Password'
+  }
 }
-
 export {
   transport,
   pathTemplate,
   transporter,
-  endpoint
+  renderDataConfig
 }

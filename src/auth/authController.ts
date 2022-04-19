@@ -18,7 +18,6 @@ export const signup = catchAsync(async (req: Request, res: Response) => {
     password: passwordHashed,
     email
   })
-
   const token = createToken({ id: userCreated.entityId })
 
   res.cookie('jwt', token, {
@@ -94,8 +93,11 @@ export const resetPassword = catchAsync(async (req: Request, res: Response) => {
 
   const passwordHashed = hashPassword(newPassword)
   const userUpdated = await updatePassword(id, passwordHashed)
-
   userUpdated.password = EMPTY_STRING
+
+  const token = createToken({ id: user.entityId, expiresIn: 1000 * 60 * 15 }) // 1000 * 60 * 15 = 15 minutes
+  await sendEmail({ user: userUpdated, template: 'passwordChanged', token })
+
   return res.status(200).send({ status: 'success', data: { user: userUpdated } })
 })
 

@@ -1,17 +1,19 @@
 import { EMPTY_STRING } from '@constants'
 import type { Task } from '@task/taskInterface'
 
+export const seedIndividualTask: Task = {
+  title: 'Learn Figma',
+  scheduledFor: '2020-5-10T00:00:00.000Z',
+  userID: 'ABC123',
+  status: 'Pending',
+  createdAt: new Date().toISOString(),
+  completedAt: EMPTY_STRING,
+  description: 'Learn how to use Figma',
+  updatedAt: EMPTY_STRING
+}
+
 export const seedTasks: Task[] = [
-  {
-    title: 'Learn Figma',
-    scheduledFor: '2020-5-10T00:00:00.000Z',
-    userID: 'ABC123',
-    status: 'Pending',
-    createdAt: new Date().toISOString(),
-    completedAt: EMPTY_STRING,
-    description: 'Learn how to use Figma',
-    updatedAt: EMPTY_STRING
-  },
+  seedIndividualTask,
   {
     title: 'Learn React',
     scheduledFor: '2020-02-04T00:00:00.000Z',
