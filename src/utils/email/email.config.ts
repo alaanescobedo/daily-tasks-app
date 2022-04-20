@@ -45,11 +45,11 @@ const renderDataConfig = {
     btnLabel: 'Verify Email'
   },
   forgotPassword: {
-    endpoint: 'http://localhost:3000/api/v1/auth/reset-password?token=',
+    endpoint: 'http://localhost:3000/reset-password?token=',
     btnLabel: 'Reset Password'
   },
   passwordChanged: {
-    endpoint: 'http://localhost:3000/api/v1/auth/reset-password?token=',
+    endpoint: 'http://localhost:3000/reset-password?token=',
     btnLabel: 'Reset Password'
   }
 }

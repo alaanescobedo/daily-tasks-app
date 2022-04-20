@@ -79,17 +79,11 @@ export const forgotPassword = catchAsync(async (req: Request, res: Response) => 
 })
 
 export const resetPassword = catchAsync(async (req: Request, res: Response) => {
-  // TODO refactor duplicated code
-  const user = req.locals.user
-  if (user.updatedAt === null || user.updatedAt === EMPTY_STRING) throw new AppError('User not found', 404)
-
-  const { id, exp } = req.locals.token as { id: string, exp: number }
-  const expirationInMilliseconds = exp * 1000
-  const updatedAtTime = new Date(user.updatedAt).getTime()
-  if (updatedAtTime > expirationInMilliseconds) throw new AppError('Token is expired', 400)
-
   const { password: newPassword = EMPTY_STRING } = req.body
   if (newPassword === EMPTY_STRING) throw new AppError('Please provide password!', 400)
+
+  const user = req.locals.user
+  const { id } = req.locals.token as { id: string, exp: number }
 
   const passwordHashed = hashPassword(newPassword)
   const userUpdated = await updatePassword(id, passwordHashed)
