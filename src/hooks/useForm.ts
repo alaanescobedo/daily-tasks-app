@@ -35,6 +35,7 @@ export const useForm = <T extends Forms>(fieldsConfig: T): UseForm<T> => {
 
   const handleFieldsChange = (e: ChangeEvent<Input_Types>): void => {
     const { id, value } = e.target as { id: keyof T, value: string }
+    handleValidateErrors([[id, value]])
 
     if (id === 'title' && value.includes('\n')) return
 
@@ -48,14 +49,7 @@ export const useForm = <T extends Forms>(fieldsConfig: T): UseForm<T> => {
     setFields(() => updatedFields)
   }
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>, token?: string): Promise<void> => {
-    e.preventDefault()
-    const { currentTarget } = e
-
-    const data = Object.fromEntries(new FormData(currentTarget))
-    const entries = Object.entries(data)
-
-    // TODO: Refactor -- Validate Input and Errors
+  const handleValidateErrors = (entries: Array<[any, any]>): { isValid: boolean } => {
     const updatedErrors = entries.reduce<Form_Errors<T>>((acc, entry) => {
       const [id, value] = entry as [keyof T, string]
       const error = validateInput([id, value])
@@ -72,14 +66,27 @@ export const useForm = <T extends Forms>(fieldsConfig: T): UseForm<T> => {
     const { errorMessage } = listErrors.find(({ errorMessage }: ErrorMessage) => errorMessage !== '') ?? { errorMessage: '' }
 
     if (errorMessage.length >= 1) {
+      setErrors(() => updatedErrors)
       setIsValid(() => false)
-      return setErrors(() => updatedErrors)
+      return { isValid: false }
     }
-    // TODO: --- END TODO
-
+    setErrors(() => updatedErrors)
     setIsValid(() => true)
+    return { isValid: true }
+  }
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>, token?: string): Promise<void> => {
+    e.preventDefault()
+    const { currentTarget } = e
+
+    const data = Object.fromEntries(new FormData(currentTarget))
+    const entries = Object.entries(data)
+
+    const { isValid } = handleValidateErrors(entries)
+    if (!isValid) return console.log('No Valid')
 
     const { id } = currentTarget as { id: 'newTask' | 'signup' | 'signin' | 'forgotPassword' | 'resetPassword' }
+
     const Formulary = {
       newTask: () => submitNewTask(data as any), // TODO: Remove any
       signup: async () => await signup(data as any), // TODO: Remove any
@@ -87,7 +94,8 @@ export const useForm = <T extends Forms>(fieldsConfig: T): UseForm<T> => {
       forgotPassword: async () => await forgotPassword(data as any), // TODO: Remove any
       resetPassword: async () => await resetPassword({ ...data, token } as any) // TODO: Remove any
     }
-    const res = await Formulary[id]() ?? console.log('Formulary not found')
+    const res = await Formulary[id]()
+
     if (res.status === 'failure') return setErrors(() => res.errors)
 
     //* Clear Values
