@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import { Activities, CreateUserView, ForgotPasswordView, HomeView, NewTaskView, SigninView, SignupView } from '@views'
 import { PrivateRoute } from './PrivateRoute'
 import { PublicRoute } from './PublicRoute'
+import { ResetPasswordView } from 'views/ResetPassword'
 
 export const AppRouter = (): JSX.Element => {
   return (
@@ -15,6 +16,7 @@ export const AppRouter = (): JSX.Element => {
         <Route path='/auth/signup' element={<SignupView />} />
         <Route path='/auth/signin' element={<SigninView />} />
         <Route path='/forgot-password' element={<ForgotPasswordView />} />
+        <Route path='/reset-password' element={<ResetPasswordView />} />
         <Route path='/create-username' element={<CreateUserView />} />
       </Route>
       <Route path='*' element={<Navigate to='/' />} />

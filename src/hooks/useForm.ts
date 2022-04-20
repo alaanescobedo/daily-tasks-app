@@ -3,7 +3,7 @@ import { Forms, Input_Types, Form_Errors, Input_Base, ErrorMessage } from '@inte
 import { validateInput } from '@utils/Form'
 import { useTasks } from './useTasks'
 import { signin, signup } from 'services/auth.service'
-import { forgotPassword } from 'services/user.service'
+import { forgotPassword, resetPassword } from 'services/user.service'
 
 const buildFieldsErrors = <T extends Forms>(fieldsConfig: T): Form_Errors<T> => {
   const fieldsArr = Object.values(fieldsConfig) as [Input_Base]
@@ -22,7 +22,7 @@ interface UseForm<T extends Forms> {
   isValid: boolean
   handleFieldsChange: (e: ChangeEvent<Input_Types>) => void
   handleSetFields: (updatedFields: T) => void
-  handleSubmit: (e: FormEvent<HTMLFormElement>) => void
+  handleSubmit: (e: FormEvent<HTMLFormElement>, token?: string) => void
 }
 
 export const useForm = <T extends Forms>(fieldsConfig: T): UseForm<T> => {
@@ -55,7 +55,7 @@ export const useForm = <T extends Forms>(fieldsConfig: T): UseForm<T> => {
     setFields(() => updatedFields)
   }
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>, token?: string): Promise<void> => {
     e.preventDefault()
     const { currentTarget } = e
 
@@ -86,18 +86,20 @@ export const useForm = <T extends Forms>(fieldsConfig: T): UseForm<T> => {
 
     setIsValid(() => true)
 
-    const { id } = currentTarget as { id: 'newTask' | 'signup' | 'signin' | 'forgotPassword' }
+    const { id } = currentTarget as { id: 'newTask' | 'signup' | 'signin' | 'forgotPassword' | 'resetPassword' }
     const Formulary = {
       newTask: () => submitNewTask(data as any), // TODO: Remove any
       signup: async () => await signup(data as any), // TODO: Remove any
       signin: async () => await signin(data as any), // TODO: Remove any
-      forgotPassword: async () => await forgotPassword(data as any) // TODO: Remove any
+      forgotPassword: async () => await forgotPassword(data as any), // TODO: Remove any
+      resetPassword: async () => await resetPassword({ ...data, token } as any) // TODO: Remove any
     }
-    Formulary[id]() ?? console.log('Formulary not found')
+    const res = await Formulary[id]() ?? console.log('Formulary not found')
+    console.log(res)
 
     //* Clear Values
     // TODO Iterate over each field and reset to defaulValue
-    console.log(fields)
+    console.log(data)
     // handleSetFields({ ...fields, title: { ...fields.title, value: '' } })
   }
 

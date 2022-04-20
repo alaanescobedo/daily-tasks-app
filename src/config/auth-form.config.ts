@@ -1,4 +1,4 @@
-import { Form_Auth_Signin, Form_Auth_Signup, Form_Create_Username, Form_Forgot_Password } from '@interfaces'
+import { Form_Auth_Signin, Form_Auth_Signup, Form_Create_Username, Form_Forgot_Password, Form_Reset_Password } from '@interfaces'
 
 const emailConfig = {
   type: 'email',
@@ -25,7 +25,8 @@ const usernameConfig = {
   id: 'username',
   label: 'Username',
   type: 'text',
-  required: true
+  required: true,
+  handleChange: () => { }
 }
 
 export const SIGNUP_INPUT_CONFIG: Form_Auth_Signup = {
@@ -42,4 +43,7 @@ export const SIGNIN_USER_INPUT_CONFIG: Form_Auth_Signin = {
 }
 export const FORGOT_PASSWORD_INPUT_CONFIG: Form_Forgot_Password = {
   email: emailConfig
+}
+export const RESET_PASSWORD_INPUT_CONFIG: Form_Reset_Password = {
+  password: passwordConfig
 }

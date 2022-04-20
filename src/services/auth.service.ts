@@ -1,4 +1,5 @@
 import { BASE_URL } from '@config/constants'
+import { UsernameProps } from './user.service'
 interface SignupProps {
   email: string
   password: string
@@ -9,7 +10,7 @@ interface SigninProps {
   password: string
 }
 
-export const signup = async ({ email, password, passwordConfirm }: SignupProps): Promise<any> => {
+export const signup = async ({ email, password, passwordConfirm, username }: SignupProps & UsernameProps): Promise<any> => {
   try {
     const res = await fetch(`${BASE_URL}/auth/signup`, {
       method: 'POST',
@@ -19,6 +20,7 @@ export const signup = async ({ email, password, passwordConfirm }: SignupProps):
       body: JSON.stringify({
         email,
         password,
+        username,
         passwordConfirm
       })
     })
@@ -29,7 +31,7 @@ export const signup = async ({ email, password, passwordConfirm }: SignupProps):
 }
 export const signin = async ({ email, password }: SigninProps): Promise<any> => {
   try {
-    const res = await fetch(`${BASE_URL}/auth/signin`, {
+    const res = await fetch(`${BASE_URL}/auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
