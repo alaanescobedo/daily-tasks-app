@@ -8,9 +8,9 @@ export const ForgotPasswordView = (): JSX.Element => {
   const { fields, handleFieldsChange, handleSubmit } = useForm(FORGOT_PASSWORD_INPUT_CONFIG)
   return (
     <AuthLayout title='Forgot Password' handleSubmit={handleSubmit} id='forgotPassword'>
-      {objectValues(fields).map(({ label, id, type }) => (
+      {objectValues(fields).map(({ label, id, type, value }) => (
         <InputGroup htmlFor={id} label={label} key={id}>
-          <Input id={id} type={type} handleChange={handleFieldsChange} />
+          <Input id={id} type={type} handleChange={handleFieldsChange} value={value} />
         </InputGroup>
       ))}
     </AuthLayout>
