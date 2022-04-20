@@ -3,6 +3,7 @@ import { Activities, CreateUserView, ForgotPasswordView, HomeView, NewTaskView, 
 import { PrivateRoute } from './PrivateRoute'
 import { PublicRoute } from './PublicRoute'
 import { ResetPasswordView } from 'views/ResetPassword'
+import { StatusOperation } from 'views/StatusOperation/StatusOperation'
 
 export const AppRouter = (): JSX.Element => {
   return (
@@ -15,6 +16,7 @@ export const AppRouter = (): JSX.Element => {
       <Route element={<PrivateRoute />}>
         <Route path='/auth/signup' element={<SignupView />} />
         <Route path='/auth/signin' element={<SigninView />} />
+        <Route path='/status-operation' element={<StatusOperation />} />
         <Route path='/forgot-password' element={<ForgotPasswordView />} />
         <Route path='/reset-password' element={<ResetPasswordView />} />
         <Route path='/create-username' element={<CreateUserView />} />

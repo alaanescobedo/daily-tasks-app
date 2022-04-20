@@ -4,13 +4,22 @@ import { useForm } from '@hooks'
 import { Form_Auth_Signup } from '@interfaces'
 import { AuthLayout } from '@layouts'
 import { objectValues, type ValueOf } from '@utils/Typescript/values'
-import { useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 export const CreateUserView = (): JSX.Element => {
-  const { fields, handleFieldsChange, handleSubmit } = useForm(CREATE_USER_INPUT_CONFIG)
+  const { fields, handleFieldsChange, handleSubmit, successForm } = useForm(CREATE_USER_INPUT_CONFIG)
   const location = useLocation()
   const { state } = location as { state: { data: [ValueOf<Form_Auth_Signup>], id: string } }
   const { data } = state ?? { data: [], id: '' }
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (successForm) {
+      navigate('/status-operation', { replace: true })
+    }
+  }, [successForm])
 
   return (
     <AuthLayout title='Create Username' handleSubmit={handleSubmit} id={state.id}>

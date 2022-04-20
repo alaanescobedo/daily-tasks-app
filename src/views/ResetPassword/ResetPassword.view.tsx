@@ -3,10 +3,11 @@ import { RESET_PASSWORD_INPUT_CONFIG } from '@config/auth-form.config'
 import { useForm } from '@hooks'
 import { AuthLayout } from '@layouts'
 import { objectValues } from '@utils/Typescript/values'
+import { useEffect } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 
 export const ResetPasswordView = (): JSX.Element => {
-  const { fields, handleFieldsChange, handleSubmit } = useForm(RESET_PASSWORD_INPUT_CONFIG)
+  const { fields, handleFieldsChange, handleSubmit, successForm } = useForm(RESET_PASSWORD_INPUT_CONFIG)
   const [searchParams] = useSearchParams()
 
   const token = searchParams.get('token') ?? ''
@@ -15,6 +16,12 @@ export const ResetPasswordView = (): JSX.Element => {
   if (token === '') {
     navigate('/')
   }
+
+  useEffect(() => {
+    if (successForm) {
+      navigate('/status-operation', { replace: true })
+    }
+  }, [successForm])
 
   return (
     <AuthLayout title='Reset Password' handleSubmit={(e) => handleSubmit(e, token)} id='resetPassword'>

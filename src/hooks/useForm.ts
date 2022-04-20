@@ -20,6 +20,7 @@ interface UseForm<T extends Forms> {
   fields: T
   errors: Form_Errors<T>
   isValid: boolean
+  successForm: boolean
   handleFieldsChange: (e: ChangeEvent<Input_Types>) => void
   handleSetFields: (updatedFields: T) => void
   handleSubmit: (e: FormEvent<HTMLFormElement>, token?: string) => void
@@ -29,6 +30,7 @@ export const useForm = <T extends Forms>(fieldsConfig: T): UseForm<T> => {
   const [fields, setFields] = useState(fieldsConfig)
   const [errors, setErrors] = useState(buildFieldsErrors(fieldsConfig))
   const [isValid, setIsValid] = useState(false)
+  const [successForm, setSuccesForm] = useState(false)
   const { submitNewTask } = useTasks()
 
   const handleFieldsChange = (e: ChangeEvent<Input_Types>): void => {
@@ -95,18 +97,21 @@ export const useForm = <T extends Forms>(fieldsConfig: T): UseForm<T> => {
       resetPassword: async () => await resetPassword({ ...data, token } as any) // TODO: Remove any
     }
     const res = await Formulary[id]() ?? console.log('Formulary not found')
-    console.log(res)
+    if (res.status === 'failure') return setErrors(() => res.errors)
 
     //* Clear Values
     // TODO Iterate over each field and reset to defaulValue
     console.log(data)
     // handleSetFields({ ...fields, title: { ...fields.title, value: '' } })
+
+    setSuccesForm(() => true)
   }
 
   return {
     fields,
     errors,
     isValid,
+    successForm,
     handleFieldsChange,
     handleSetFields,
     handleSubmit
