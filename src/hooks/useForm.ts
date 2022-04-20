@@ -35,22 +35,13 @@ export const useForm = <T extends Forms>(fieldsConfig: T): UseForm<T> => {
 
   const handleFieldsChange = (e: ChangeEvent<Input_Types>): void => {
     const { id, value } = e.target as { id: keyof T, value: string }
+
     if (id === 'title' && value.includes('\n')) return
 
     const updatedConfig = { ...fields[id], value }
     const updatedFields = { ...fields, [id]: updatedConfig }
 
     handleSetFields(updatedFields)
-
-    // TODO: Refactor -- Resize textarea
-    if (id === 'title') {
-      const textarea = e.target
-      textarea.style.height = '2.6rem'
-      if (textarea.scrollHeight < textarea.offsetHeight) return
-
-      const scrollHeight = textarea.scrollHeight
-      textarea.style.height = `${scrollHeight.toString()}px`
-    }
   }
 
   const handleSetFields = (updatedFields: T): void => {

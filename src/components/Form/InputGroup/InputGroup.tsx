@@ -10,8 +10,8 @@ export interface InputGroupProps {
 export const InputGroup = ({ children, label, htmlFor, className }: InputGroupProps): JSX.Element => {
   return (
     <div className={className ?? styles.form_group}>
-      <label htmlFor={htmlFor}>{label}</label>
       {children}
+      <label htmlFor={htmlFor}>{label}</label>
     </div>
   )
 }
