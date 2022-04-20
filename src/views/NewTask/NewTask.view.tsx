@@ -27,19 +27,19 @@ export const NewTaskView = (): JSX.Element => {
       </div>
       <TextArea value={title.value} handleChange={handleFieldsChange} placeholder={title.placeholder} id={title.id} />
 
-      <InputGroup label={day.label} htmlFor={day.id} className={styles.group_date_day}>
+      <InputGroup label={day.label} htmlFor={day.id} className={styles.group_date_day} labelPosition='bottom'>
         <Select options={weekdays} id={day.id} handleChange={handleFieldsChange} defaultValue={day.defaultValue} />
       </InputGroup>
 
-      <InputGroup label='Hour' htmlFor={hour.id} className={styles.group_date_hour}>
+      <InputGroup label='Hour' htmlFor={hour.id} className={styles.group_date_hour} labelPosition='bottom'>
         <Time id={hour.id} handleChange={handleFieldsChange} defaultValue={getCurrentTimePlus5minutes()} minTime={minTime} />
       </InputGroup>
 
-      <InputGroup label='Recurrent' htmlFor={recurrent.id} className={styles.group_recurrent}>
+      <InputGroup label='Recurrent' htmlFor={recurrent.id} className={styles.group_recurrent} labelPosition='bottom'>
         <Checkbox id={recurrent.id} checked />
       </InputGroup>
 
-      <InputGroup label='Priority' htmlFor={priority.id} className={styles.group_priority}>
+      <InputGroup label='Priority' htmlFor={priority.id} className={styles.group_priority} labelPosition='bottom'>
         <Select options={priority.options} id={priority.id} handleChange={handleFieldsChange} defaultValue={priority.defaultValue} />
       </InputGroup>
     </NewTaskFormLayout>

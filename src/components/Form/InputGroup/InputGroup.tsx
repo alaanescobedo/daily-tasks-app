@@ -5,13 +5,15 @@ export interface InputGroupProps {
   label?: string
   htmlFor: string
   className?: string
+  labelPosition?: 'top' | 'bottom'
 }
 
-export const InputGroup = ({ children, label, htmlFor, className }: InputGroupProps): JSX.Element => {
+export const InputGroup = ({ children, label, htmlFor, className, labelPosition = 'top' }: InputGroupProps): JSX.Element => {
   return (
     <div className={className ?? styles.form_group}>
+      {labelPosition === 'top' && <label htmlFor={htmlFor}>{label}</label>}
       {children}
-      <label htmlFor={htmlFor}>{label}</label>
+      {labelPosition === 'bottom' && <label htmlFor={htmlFor}>{label}</label>}
     </div>
   )
 }
