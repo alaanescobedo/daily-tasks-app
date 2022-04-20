@@ -1,3 +1,4 @@
+import { KeyboardEvent } from 'react'
 import styles from './AuthLayout.module.css'
 
 export interface AuthLayoutProps {
@@ -8,6 +9,10 @@ export interface AuthLayoutProps {
 }
 
 export const AuthLayout = ({ children, title, handleSubmit, id }: AuthLayoutProps): JSX.Element => {
+  const onEnterPress = (e: KeyboardEvent<HTMLFormElement>): void => {
+    if (e.key === 'Enter') handleSubmit(e)
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.container_heading}>
@@ -15,7 +20,7 @@ export const AuthLayout = ({ children, title, handleSubmit, id }: AuthLayoutProp
           {title}
         </h1>
       </div>
-      <form className={styles.form} onSubmit={handleSubmit} id={id}>
+      <form className={styles.form} onSubmit={handleSubmit} id={id} onKeyDown={onEnterPress}>
         {children}
         <div className={styles.btn_container}>
           <button className={styles.btn_continue}>Continue</button>

@@ -7,17 +7,21 @@ import styles from './NewTask.module.css'
 import { getSevenDays } from '@utils/getSevenDays'
 import { getCurrentTimePlus5minutes } from '@utils/getCurrentTimePlus5minutes'
 import { getCurrentDate } from '@utils/getCurrentDate'
+import { KeyboardEvent } from 'react'
 
 const weekdays = getSevenDays() as Array<{ id: WeekdaysId, label: WeekdaysLabel }>
 
 export const NewTaskView = (): JSX.Element => {
   const { fields, handleFieldsChange, handleSubmit, errors } = useForm(NEW_TASK_INPUT_CONFIG)
   const { title, day, hour, recurrent, priority } = fields
+  const onEnterPress = (e: KeyboardEvent<HTMLFormElement>): void => {
+    if (e.key === 'Enter') handleSubmit(e)
+  }
 
   const minTime = getCurrentDate().split(',')[2].split(':').slice(0, 2).join(':').trim()
 
   return (
-    <NewTaskFormLayout sendLabel='Create Task' handleSubmit={handleSubmit} id='newTask'>
+    <NewTaskFormLayout sendLabel='Create Task' handleSubmit={handleSubmit} id='newTask' handleKeyDown={onEnterPress}>
       <div style={{ gridColumn: '1 / -1', color: 'tomato', backgroundColor: 'rebeccapurple', padding: '0 1rem' }}>
         <p>{errors.title.errorMessage}</p>
         <p>{errors.day.errorMessage}</p>
