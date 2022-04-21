@@ -1,6 +1,5 @@
 import app from '@config/app'
 import { EMPTY_STRING } from '@constants'
-import { createIndex } from '@lib/redis/userDB'
 import { seedIndividualUser } from '@seed/seed-users'
 import { signup } from '@utils/tests/auth/signup'
 import { agent } from 'supertest'
@@ -34,7 +33,6 @@ describe('AUTH MODULE', () => {
 
   describe('/LOGIN ROUTE', () => {
     test('should return the correct user', async () => {
-      await createIndex()
       const { status, body } = await agent(app).post('/api/v1/auth/login').send({ email: seedIndividualUser.email, password: seedIndividualUser.password })
       expect(status).toBe(200)
       expect(body.data.user).toHaveProperty('password', EMPTY_STRING)

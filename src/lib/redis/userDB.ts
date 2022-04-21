@@ -3,14 +3,6 @@ import client, { connect, disconnect } from '@lib/redis/client'
 import type { User, IUserEntity, UserUpdateData } from '@user/userInterface'
 import type { SignupUserClientData } from '@auth/auth.interfaces'
 
-export const createIndex = async (): Promise<void> => {
-  await connect()
-  const usersRepository = client.fetchRepository(userSchema)
-
-  await usersRepository.createIndex()
-  await disconnect()
-}
-
 // CRUD Operations
 export const createUser = async (data: SignupUserClientData): Promise<IUserEntity> => {
   await connect()

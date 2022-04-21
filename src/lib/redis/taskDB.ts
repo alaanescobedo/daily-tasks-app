@@ -16,12 +16,6 @@ export const searchTasks = async (userID: string): Promise<TaskEntity[]> => {
   await disconnect()
   return tasks
 }
-export const createIndex = async (): Promise<void> => {
-  await connect()
-  const repository = client.fetchRepository(taskSchema)
-  await repository.createIndex()
-  await disconnect()
-}
 export const deleteTaskDB = async (id: string): Promise<{ status: number, message: string }> => {
   await connect()
   const repository = client.fetchRepository(taskSchema)

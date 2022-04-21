@@ -1,5 +1,5 @@
 import type { Request, Response } from 'express'
-import { createIndex, searchUserById, searchUsers, updateUserDB, updateUserStatusAccount } from '@lib/redis/userDB'
+import { searchUserById, searchUsers, updateUserDB, updateUserStatusAccount } from '@lib/redis/userDB'
 import { catchAsync } from '@utils/errors/catchAsync'
 import type { UserUpdateData } from '@user/userInterface'
 
@@ -24,8 +24,3 @@ export const deactivateUser = catchAsync(async (req: Request, res: Response): Pr
   const { status, message } = await updateUserStatusAccount(id, false)
   return res.status(status).send({ message })
 })
-
-export const getIndex = async (_req: Request, res: Response): Promise<Response> => {
-  await createIndex()
-  return res.status(200).send({ message: 'Index created' })
-}

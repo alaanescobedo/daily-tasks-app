@@ -15,12 +15,6 @@ describe('Users Module', () => {
     userId = body.data.user.entityId
   })
 
-  test('should return status 200 and message Index created', async () => {
-    const { status, body } = await agent.get('/api/v1/users/create-index').set('Authorization', `Bearer ${token}`)
-    expect(status).toBe(200)
-    expect(body).toHaveProperty('message', 'Index created')
-  })
-
   test('shoudl return all Users', async () => {
     const response = await agent.get('/api/v1/users').set('Authorization', `Bearer ${token}`)
     expect(response.status).toBe(200)

@@ -1,4 +1,4 @@
-import { postTask, getAllTasks, createIndex, deleteTask, getTaskById } from '@utils/tests/task'
+import { postTask, getAllTasks, deleteTask, getTaskById } from '@utils/tests/task'
 import { flushDB } from '@utils/tests/seed'
 import { signup } from '@utils/tests/auth/signup'
 import { seedIndividualUser } from '@seed/seed-users'
@@ -8,26 +8,12 @@ import { seedIndividualTask } from '@seed/seed-tasks'
 const fields = [...Object.keys(seedIndividualTask), 'entityId']
 
 describe('TASK TESTS /api/v1/tasks', () => {
-  describe('GET /createindex', () => {
-    let token: string
-    beforeAll(async () => {
-      const { body } = await signup(seedIndividualUser)
-      token = body.token
-    })
-    test('should return status 200 and message Index created', async () => {
-      const { status, body } = await createIndex(token)
-      expect(status).toBe(200)
-      expect(body).toHaveProperty('message', 'Index created')
-    })
-  })
-
   describe('CRUD Operations', () => {
     let token: string
     beforeEach(async () => {
       await flushDB()
       const response = await signup(seedIndividualUser)
       token = response.body.token
-      await createIndex(token)
     })
 
     describe('POST /api/v1/tasks', () => {

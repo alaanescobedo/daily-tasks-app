@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { deleteTask, getAllTask, getIndex, getTaskById, postTask } from '@task/taskController'
+import { deleteTask, getAllTask, getTaskById, postTask } from '@task/taskController'
 import { authProtect } from 'middleware/authProtect'
 import validateRequest from 'middleware/validateRequest'
 import newTaskSchema from './validations/newTask.schema'
@@ -23,9 +23,5 @@ router
 router
   .route('/search/:id')
   .get(getTaskById)
-
-router
-  .route('/create-index')
-  .get(getIndex)
 
 export default router
