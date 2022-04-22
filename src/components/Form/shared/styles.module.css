@@ -54,12 +54,6 @@
     box-sizing: border-box;
     display: block;
 }
-
-.input_recurrent svg {
-    fill: rgba(var(--tertiary), var(--opacity-7));
-    transform: scale(0.8);
-}
-
 .input_recurrent .checkbox {
     display: none;
 }

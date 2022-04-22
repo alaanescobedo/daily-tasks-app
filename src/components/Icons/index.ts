@@ -1,2 +1,1 @@
-export * from './Check'
-export * from './Trash'
+export * from './Icon'
