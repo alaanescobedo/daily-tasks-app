@@ -1,4 +1,4 @@
 export const options = {
   status: ['success', 'warning', 'error'],
-  variant: ['default', 'outline', 'filled']
+  variants: ['default', 'outline', 'filled']
 } as const

@@ -6,7 +6,7 @@ export interface AlertProps {
   children: React.ReactNode
   status?: typeof options.status[number]
   className?: string
-  variant?: typeof options.variant[number]
+  variant?: typeof options.variants[number]
   prepend?: React.ReactNode
   append?: React.ReactNode
 }
@@ -23,8 +23,8 @@ AlertProps): JSX.Element => {
   return (
     <div className={cx(
       styles.alert_root,
-      styles[variant],
       styles[status],
+      styles[variant],
       className
     )}
     >
