@@ -18,12 +18,7 @@ const IconStory: ComponentMeta<typeof Icon> = {
       description: 'This will be called when the button is clicked',
       type: 'function'
     },
-    className: {
-      defaultValue: null,
-      control: false,
-      description: 'Classes for the element',
-      type: 'string'
-    },
+    className: { table: { disable: true } },
     isClickable: {
       defaultValue: false,
       control: { type: 'boolean' }

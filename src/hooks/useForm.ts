@@ -1,9 +1,9 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { Forms, Input_Types, Form_Errors, Input_Base, ErrorMessage } from '@interfaces'
-import { validateInput } from '@utils/Form'
+import { Forms, Input_Types, Form_Errors, ErrorMessage } from '@interfaces'
 import { useTasks } from './useTasks'
 import { signin, signup } from 'services/auth.service'
 import { forgotPassword, resetPassword } from 'services/user.service'
+import { buildFieldsErrors } from '@utils/Form/buildFieldsErrors'
 
 const buildFieldsErrors = <T extends Forms>(fieldsConfig: T): Form_Errors<T> => {
   const fieldsArr = Object.values(fieldsConfig) as [Input_Base]
@@ -22,7 +22,6 @@ interface UseForm<T extends Forms> {
   isValid: boolean
   successForm: boolean
   handleFieldsChange: (e: ChangeEvent<Input_Types>) => void
-  handleSetFields: (updatedFields: T) => void
   handleSubmit: (e: FormEvent<HTMLFormElement>, token?: string) => void
 }
 
@@ -42,10 +41,6 @@ export const useForm = <T extends Forms>(fieldsConfig: T): UseForm<T> => {
     const updatedConfig = { ...fields[id], value }
     const updatedFields = { ...fields, [id]: updatedConfig }
 
-    handleSetFields(updatedFields)
-  }
-
-  const handleSetFields = (updatedFields: T): void => {
     setFields(() => updatedFields)
   }
 
@@ -112,7 +107,6 @@ export const useForm = <T extends Forms>(fieldsConfig: T): UseForm<T> => {
     isValid,
     successForm,
     handleFieldsChange,
-    handleSetFields,
     handleSubmit
   }
 }

@@ -14,13 +14,7 @@ const AlertStory: ComponentMeta<typeof Alert> = {
       control: { type: 'select', options: options.status },
       type: 'string'
     },
-    className: {
-      defaultValue: null,
-      control: false,
-      description: 'className',
-      type: 'string',
-      name: 'className'
-    },
+    className: { table: { disable: true } },
     children: { control: 'text' },
     prepend: { type: 'string' },
     append: { type: 'string' }

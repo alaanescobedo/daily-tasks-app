@@ -33,20 +33,7 @@ export const useTasks = (): any => {
     window.localStorage.setItem('tasks', JSON.stringify(updatedState))
   }
 
-  const getActiveTasks = (tasks: any): any => {
-    return Object.values(tasks).reduce((acc: any, currentTasks: any) => {
-      if (currentTasks.length === 0) return acc
-
-      const currentDate = new Date(currentTasks[0]?.scheduledFor).toISOString().split('T')[0]
-      const activeTasks = currentTasks.filter((task: any) => task.status !== 'Outdated')
-
-      if (activeTasks.length === 0) return acc
-
-      acc[currentDate] = activeTasks
-      return acc
-    }, {})
-  }
-
+  // TODO: Refactor - this is just necessary for in one place
   const submitNewTask = (data: Form_Values_New_Task): void => {
     const { title, day, hour } = data
     const date = new Date(`${day}, ${hour}`)
@@ -67,7 +54,7 @@ export const useTasks = (): any => {
     saveTask,
     tasks,
     updateTask,
-    getActiveTasks,
+
     submitNewTask
   }
 }

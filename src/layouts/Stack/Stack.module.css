@@ -1,0 +1,11 @@
+.flex {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.vertical {
+    flex-direction: column;
+}
+.noWrap {
+    flex-wrap: nowrap;
+}
