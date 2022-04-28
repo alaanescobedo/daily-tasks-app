@@ -1,19 +1,18 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { Input as InputComponent, InputProps } from './Input'
+import { Input as InputComponent } from './Input'
 
 const InputStory: ComponentMeta<typeof InputComponent> = {
-  title: 'Form/Auth',
-  component: InputComponent
+  title: 'Form/Input',
+  component: InputComponent,
+  argTypes: {
+    disabled: {
+      control: {
+        type: 'boolean'
+      }
+    }
+  }
 }
 export default InputStory
 
-const Template: ComponentStory<typeof InputComponent> = (args) => <InputComponent {...args} />
-
-export const Input = Template.bind({})
-const emailArgs: InputProps = {
-  type: 'email',
-  id: 'email',
-  handleChange: () => { }
-}
-Input.args = emailArgs
+export const Base: ComponentStory<typeof InputComponent> = (args) => <InputComponent {...args} />

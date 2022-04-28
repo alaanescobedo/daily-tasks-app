@@ -1,9 +1,0 @@
-.input {
-    border: 1px solid rgb(var(--primary));
-    background-color: rgb(var(--primary), var(--opacity-1));
-    border-radius: 10px;
-    padding: .4rem 1rem;
-    font-size: 1.2rem;
-    color: rgb(var(--text));
-    height: 2.6rem;
-}
