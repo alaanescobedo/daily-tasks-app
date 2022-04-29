@@ -1,20 +1,26 @@
+// TODO: Update types and interfaces
 import { Icon } from '@components/Icons'
+import { forwardRef, useState } from 'react'
+import { CheckboxBase } from '../Input/BaseCheckbox/CheckboxBase'
 import sharedStyles from '../shared/styles.module.css'
 
 export interface InputCheckboxProps {
-  id: string
-  checked: boolean
-  handleCheckbox?: (id: string) => void
   idIcon?: string
 }
 
-export const Checkbox = ({ id, checked, handleCheckbox, idIcon = 'recurrent-icon' }: InputCheckboxProps): JSX.Element => {
+export const Checkbox = forwardRef(({ idIcon = 'recurrent-icon', checked, onChange, ...props }: any, ref: any): JSX.Element => {
+  const [isChecked, setIsChecked] = useState(checked ?? false)
+
+  const handleChange = (e: any): void => {
+    setIsChecked(() => isChecked !== true)
+    if (onChange !== undefined) onChange(e)
+  }
+
   return (
-    <span className={sharedStyles.input_recurrent} onClick={() => (handleCheckbox != null) ? handleCheckbox(id) : null}>
-      {checked
-        ? <Icon id={idIcon} icon='check' />
-        : null}
-      <input name={id} id={id} type='checkbox' className={sharedStyles.checkbox} checked={checked} readOnly />
+    <span className={sharedStyles.input_recurrent}>
+      {isChecked === true && <Icon id={idIcon} icon='check' />}
+      <CheckboxBase ref={ref} checked={isChecked} onChange={handleChange} {...props} />
     </span>
   )
 }
+)
