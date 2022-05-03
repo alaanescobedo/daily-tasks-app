@@ -1,32 +1,30 @@
-.container {
+.scroll_container {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     overflow: auto;
-    height: 65vh;
     border-radius: 10px;
 }
 
-.container::-webkit-scrollbar {
+.scroll_container::-webkit-scrollbar {
     width: 10px;
     height: 10px;
     background-color: transparent;
 }
 
-.container::-webkit-scrollbar-thumb {
+.scroll_container::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background-color: rgba(var(--primary), .4);
 }
 
-.container::-webkit-scrollbar-thumb:hover {
+.scroll_container::-webkit-scrollbar-thumb:hover {
     background-color: rgba(var(--primary), var(--opacity-7));
 }
 
-.container::-webkit-scrollbar-track {
+.scroll_container::-webkit-scrollbar-track {
     border-radius: 10px;
     background-color: transparent;
 }
 
-.container::-webkit-scrollbar-corner {
+.scroll_container::-webkit-scrollbar-corner {
     background-color: transparent;
 }

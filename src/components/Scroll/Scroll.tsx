@@ -6,7 +6,7 @@ export interface ScrollProps {
 
 export const Scroll = ({ children }: ScrollProps): JSX.Element => {
   return (
-    <div className={styles.container}>
+    <div className={styles.scroll_container}>
       {children}
     </div>
   )
