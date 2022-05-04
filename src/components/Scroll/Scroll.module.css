@@ -28,3 +28,7 @@
 .scroll_container::-webkit-scrollbar-corner {
     background-color: transparent;
 }
+
+.full_height {
+    flex:1;
+}
