@@ -21,7 +21,7 @@ export const authProtect = catchAsync(async (req: Request, _res: Response, next:
   }
 
   const { id, exp } = verifyToken({ token })
-  if (id === undefined) throw new AppError('Token is not valid', 400)
+  if (id === undefined || exp === undefined) throw new AppError('Token is not valid', 400)
   if (exp * 1000 < Date.now()) throw new AppError('Token is expired', 400)
 
   const currentUser = await searchUserById(id)

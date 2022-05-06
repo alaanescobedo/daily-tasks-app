@@ -8,8 +8,12 @@ import errorHandler from '@error/errorHandler'
 import createIndex from 'middleware/createIndex'
 
 const app = express()
+
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+  origin: '*' ,
+}))
+
 
 app.use(createIndex) // generate index of repositories
 app.use('/api/v1/auth', authRouter)

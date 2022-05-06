@@ -2,3 +2,5 @@
 /dist
 /redis
 .env
+/.github
+/.husky

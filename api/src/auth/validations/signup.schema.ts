@@ -23,5 +23,5 @@ const signupSchema: SchemaOf<SignupUserClientData> = object({
       )
 })
 
-export interface TaskValidation extends InferType<typeof signupSchema> { }
+export interface SignupValidation extends InferType<typeof signupSchema> { }
 export default signupSchema
