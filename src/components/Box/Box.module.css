@@ -1,0 +1,67 @@
+.box {
+  border: 1px solid transparent;
+  border-radius: 10px;
+}
+.textColor--highlight {
+  color: rgb(var(--highlight));
+}
+.textColor--base {
+  color: rgb(var(--text));
+}
+.textWeight--bold {
+  font-weight: bold;
+}
+.textWeight--light {
+  font-weight: 300;
+}
+.textWeight--base {
+  font-weight: 400;
+}
+
+.borderColor--primary {
+  border-color: rgb(var(--primary));
+}
+.borderColor--secondary {
+  border-color: rgb(var(--secondary));
+}
+.borderColor--tertiary {
+  border-color: rgb(var(--tertiary));
+}
+.borderColor--success {
+  border-color: rgb(var(--success));
+}
+.borderColor--warning {
+  border-color: rgb(var(--warning));
+}
+.borderColor--danger {
+  border-color: rgb(var(--danger));
+}
+.borderWidth--small {
+  border-width: 1px;
+}
+.borderWidth--medium {
+  border-width: 2px;
+}
+.borderWidth--large {
+  border-width: 3px;
+}
+.backgroundColor--primary {
+  background-color: rgb(var(--primary));
+}
+.backgroundColor--secondary {
+  background-color: rgb(var(--secondary));
+}
+.backgroundColor--tertiary {
+  background-color: rgb(var(--tertiary));
+}
+
+.variant--outline {
+  background-color: rgba(var(--secondary), 0.1);
+}
+
+.draggable {
+  cursor: grab;
+}
+.is_dragging {
+  cursor: grabbing;
+}
