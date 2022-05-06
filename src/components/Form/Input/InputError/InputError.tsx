@@ -1,7 +1,7 @@
 import { Typography } from '@components/Typography/Typography'
-import { useInput } from '../Input.context'
+import { useInput } from '../InputField/Input.context'
 
-export const InputError = (): JSX.Element => {
+export const InputError = (): JSX.Element | null => {
   const { id, error } = useInput()
 
   if (error === '') return null

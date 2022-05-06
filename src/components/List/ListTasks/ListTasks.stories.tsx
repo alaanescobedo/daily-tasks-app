@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { tasks } from '../../../config/test-tasks'
+import { tasks } from '../../../setup/config/test-tasks'
 
 import { ListTasks as ListTasksComponent, ListTasksProps } from './ListTasks'
 

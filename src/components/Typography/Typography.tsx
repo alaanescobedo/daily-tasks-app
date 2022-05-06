@@ -52,9 +52,23 @@ export interface TypographyProps {
   className?: string
   style?: React.CSSProperties
   onClick?: (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void
+  textSelect?: boolean
+  htmlFor?: string
 }
 
-export const Typography = ({ children, onClick, style, center, variant = 'body', color = 'base', weight = 'normal', size, className }: TypographyProps): JSX.Element => {
+export const Typography = ({
+  children,
+  onClick,
+  style,
+  center,
+  variant = 'body',
+  color = 'base',
+  weight = 'normal',
+  size,
+  className,
+  textSelect = true,
+  ...props
+}: TypographyProps): JSX.Element => {
   const customClassName = cx(
     styles.typography,
     styles[`typography--${variant}`],
@@ -62,6 +76,7 @@ export const Typography = ({ children, onClick, style, center, variant = 'body',
     weight !== undefined && styles[`weight--${weight}`],
     size !== undefined && styles[`size--${size}`],
     center === true && styles.center,
+    !textSelect && styles.text_no_select,
     className
   )
   return createElement(
@@ -69,7 +84,8 @@ export const Typography = ({ children, onClick, style, center, variant = 'body',
     {
       className: customClassName,
       style: { ...style },
-      onClick
+      onClick,
+      ...props
     },
     children
   )

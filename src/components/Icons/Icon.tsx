@@ -9,6 +9,8 @@ export interface IconProps {
   color?: 'base' | 'inherit'
   onClick?: (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => void
   isClickable?: boolean
+  width?: string
+  height?: string
 }
 
 export const Icon = ({
@@ -17,7 +19,10 @@ export const Icon = ({
   icon,
   onClick,
   isClickable = false,
-  color = 'inherit'
+  color = 'inherit',
+  width = '1.5rem',
+  height = '1.5rem',
+  ...props
 }: IconProps): JSX.Element => (
 
   <svg
@@ -32,6 +37,8 @@ export const Icon = ({
     onClick={onClick}
     viewBox={icons[icon].viewBox ?? '0 0 20 20'}
     preserveAspectRatio='xMidYMid meet'
+    style={{ width, height }}
+    {...props}
   >
     <path d={icons[icon].path} />
   </svg>

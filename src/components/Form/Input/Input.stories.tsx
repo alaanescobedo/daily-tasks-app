@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { Input as InputComponent } from './Input'
+import { Input as InputComponent } from './InputGroup'
 
 const InputStory: ComponentMeta<typeof InputComponent> = {
   title: 'Form/Input',

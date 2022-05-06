@@ -90,3 +90,6 @@
 .size--3xl {
   font-size: var(--font-size-3xl);
 }
+.text_no_select {
+  user-select: none;
+}

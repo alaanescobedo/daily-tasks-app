@@ -6,9 +6,11 @@
   font-weight: 600;
   display: flex;
   align-items: center;
-  font-size: .8rem;
+  font-size: .9rem;
+  width: 100%;
+  text-transform: capitalize;
 }
-@media (min-width: 400px) {
+@media (min-width: 480px) {
   .alert_root{
     padding: .8rem 1rem;
     font-size: 1rem;
@@ -109,3 +111,19 @@
   color: rgba(var(--text));
 }
 
+/* Info */
+.info.outline {
+  background-color: rgba(var(--info),.1);
+  border-color: rgba(var(--info-dark));
+  color: rgba(var(--info-dark));
+}
+.info.default {
+  background-color: rgba(var(--info-light));
+  border-color: rgba(var(--info));
+  color: rgba(var(--info-dark));
+}
+.info.filled{
+  background-color: rgba(var(--info-dark));
+  border-color: rgba(var(--info-dark));
+  color: rgba(var(--text));
+}

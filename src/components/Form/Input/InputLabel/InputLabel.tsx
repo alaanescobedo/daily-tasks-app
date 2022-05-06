@@ -1,14 +1,21 @@
-import { useInput } from '../Input.context'
+// TODO: update types and interfaces
+import cx from 'classnames'
+import { useInput } from '../InputField/Input.context'
+import styles from './InputLabel.module.css'
 
-export const InputLabel = (): JSX.Element | null => {
-  const { label, required } = useInput()
+export const InputLabel = ({ label }: any): JSX.Element | null => {
+  const { id, required, size } = useInput()
 
-  if (label === '') return null
+  if (label === '' || label === undefined) return null
+
+  const customClassName = cx(
+    styles[`size_${size as string}`]
+  )
 
   return (
-    <label>
+    <label htmlFor={id} className={customClassName}>
       {label}
-      {required && <span>*</span>}
+      {required === true && <span>*</span>}
     </label>
   )
 }

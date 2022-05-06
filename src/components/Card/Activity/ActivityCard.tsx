@@ -1,4 +1,4 @@
-import { TrashIcon } from '@components/Icons'
+import { Icon } from '@components/Icons/Icon'
 import styles from './ActivityCard.module.css'
 
 export interface ActivityCardProps {
@@ -8,14 +8,14 @@ export interface ActivityCardProps {
 export const ActivityCard = ({ title }: ActivityCardProps): JSX.Element => {
   return (
     <div className={styles.container}>
-      <span className={styles.title_container}>
+      <div className={styles.title_container}>
         <p className={styles.title}>{title}</p>
-      </span>
-      <span className={styles.remove_container}>
+      </div>
+      <div className={styles.remove_container}>
         <span className={styles.icon_container}>
-          <TrashIcon />
+          <Icon icon='trash' id='trash-icon' />
         </span>
-      </span>
+      </div>
     </div>
   )
 }

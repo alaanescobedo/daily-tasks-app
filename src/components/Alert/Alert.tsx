@@ -1,9 +1,10 @@
 import cx from 'classnames'
+import { useEffect } from 'react'
 import { options } from './Alert.config'
 import styles from './Alert.module.css'
 
 export interface AlertProps {
-  children: React.ReactNode
+  message: string
   status?: typeof options.status[number]
   className?: string
   variant?: typeof options.variants[number]
@@ -12,10 +13,11 @@ export interface AlertProps {
 }
 
 export const Alert = ({
-  children,
+  message,
   className,
   prepend,
   append,
+  timer,
   status = 'success',
   variant = 'default'
 }:
@@ -36,7 +38,7 @@ AlertProps): JSX.Element => {
           )
         : null}
       <span className={styles.main}>
-        {children}
+        {message}
       </span>
       {append !== false
         ? (

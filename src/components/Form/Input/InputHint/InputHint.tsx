@@ -1,12 +1,18 @@
 import { Typography } from '@components/Typography/Typography'
-import { useInput } from '../Input.context'
+import { useInput } from '../InputField/Input.context'
 
-export const InputHint = (): JSX.Element | null => {
-  const { id, hint, error } = useInput()
+export const InputHint = ({ keepHint }: any): JSX.Element | null => {
+  const { id, hint, error, size = 'sm' } = useInput()
 
-  if (hint === '' || error.length > 0) return null
+  if ((hint === '') || (error && error?.length > 0) && (keepHint === false)) return null
+
+  const sizes = {
+    sm: 'xs',
+    md: 'sm',
+    lg: 'base'
+  } as const
 
   return (
-    <Typography id={`${id}-hint`} weight='bold' size='xs'>{hint}</Typography>
+    <Typography htmlFor={id} variant='label' id={`${id}-hint`} weight='bold' size={sizes[size]}>{hint}</Typography>
   )
 }
