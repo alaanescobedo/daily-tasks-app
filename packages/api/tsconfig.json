@@ -1,8 +1,6 @@
 {
-  "extends": "@tsconfig/node16-strictest-esm/tsconfig.json",
+  "extends": "./tsconfig.build.json",
   "compilerOptions": {
-    "outDir": "./dist/",
-    "module": "CommonJS",
     "baseUrl": "./src",
     "paths": {
       "@task/*": ["task/*"],
@@ -17,7 +15,5 @@
       "@utils/*": ["utils/*"],
       "@error/*": ["error/*"]
     }
-  },
-  "include": ["src"],
-  "exclude": ["node_modules","src/utils/tests"]
+  }
 }

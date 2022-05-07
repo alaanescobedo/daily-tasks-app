@@ -1,5 +1,6 @@
 {
     "name": "daily-draft-api",
+    "private": true,
     "version": "1.0.0",
     "description": "",
     "main": "src/config/server.ts",
@@ -27,8 +28,7 @@
         "nodemon": "2.0.15",
         "supertest": "6.2.2",
         "ts-jest": "27.1.4",
-        "ts-node": "10.7.0",
-        "tsc-alias": "1.6.5"
+        "ts-node": "10.7.0"
     },
     "dependencies": {
         "bcryptjs": "2.4.3",
