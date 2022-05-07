@@ -1,7 +1,7 @@
 import { addDecorator } from '@storybook/react';
 import { MemoryRouter } from 'react-router-dom';
 import { ThemeProvider } from '../src/context/Theme/ThemeProvider';
-import { TaskProvider } from '../src/context/Task/Task.provider';
+import { TaskProvider } from '../src/modules/task/api/Task.provider';
 
 addDecorator((story) => <ThemeProvider> {story()} </ThemeProvider>)
 addDecorator((story) => <TaskProvider > {story()} </TaskProvider>)

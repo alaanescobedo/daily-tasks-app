@@ -1,6 +1,6 @@
+import { TaskContext } from 'modules/task/api'
 import { useContext, useEffect, useState } from 'react'
-import { TaskContext } from '@context/Task'
-import { useTasks } from './useTasks'
+import { useTasks } from '../modules/task/api/useTasks'
 
 interface UseTimer {
   currentDate: Date
@@ -9,7 +9,7 @@ interface UseTimer {
 export const useTimer = (): UseTimer => {
   const [currentDate, setCurrentDate] = useState(new Date())
 
-  const { tasks } = useContext(TaskContext)
+  const { activeTasks } = useContext(TaskContext)
   const { updateTask } = useTasks()
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export const useTimer = (): UseTimer => {
   useEffect(() => {
     // TODO: Refactor - Add state to Task with min schedulefor date
     const date = currentDate.toISOString().split('T')[0]
-    const currentDayTasks = tasks[date]
+    const currentDayTasks = activeTasks.find((task: any) => task.scheduledFor.split('T')[0] === date)
 
     return currentDayTasks?.map((task: any) => {
       if (task.status === 'Outdated') return task

@@ -1,7 +1,0 @@
-export * from './Activities'
-export * from './CreateUser'
-export * from './ForgotPassowrd'
-export * from './Home'
-export * from './NewTask'
-export * from './Signing'
-export * from './Signup'

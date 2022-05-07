@@ -5,39 +5,14 @@ export type Input_Types = HTMLTextAreaElement | HTMLSelectElement | HTMLInputEle
 type Event_Change_Types = React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | Input_Types>
 
 //* Input Base
-export interface Input_Base {
-  id: string
-  label?: string
-  type: string
-  handleChange: (e: Event_Change_Types) => void
-  required?: boolean
-  value?: string
-  defaultValue?: string | boolean
+export interface Input_Base extends HTMLInputElement {
+  isInvalid?: boolean
 }
-//* Input New Task Interfaces
-interface Input_New_Task_Hour extends Input_Base { }
-interface Input_New_Task_Title extends Input_Base {
-  placeholder: string
-  maxLength: number
-  value: string
-}
-interface Input_New_Task_Day extends Input_Base {
-  placeholder: string
-  defaultValue: string
-}
-interface Input_New_Task_Recurrent extends Input_Base {
-  defaultValue: boolean
-}
-interface Input_New_Task_Priority extends Input_Base {
-  defaultValue: string
-  options: Input_New_Task_Priority_Options[]
-}
-interface Input_New_Task_Priority_Options {
-  id: Task_Priority_Id
-  label: Task_Priority
-}
+
 //* Input Auth Interfaces
-export interface Input_Email extends Input_Base { }
+export interface Input_Email extends Input_Base {
+
+}
 export interface Input_Password extends Input_Base { }
 export interface Input_Username extends Input_Base { }
 
@@ -60,11 +35,11 @@ export interface Input_Fields_Auth_Signup {
 // ? Forms
 //* Form New Task Interfaces
 export interface Form_New_Task {
-  title: Input_New_Task_Title
-  day: Input_New_Task_Day
-  hour: Input_New_Task_Hour
-  recurrent: Input_New_Task_Recurrent
-  priority: Input_New_Task_Priority
+  title: any
+  day: any
+  hour: any
+  recurrent: any
+  priority: any
 }
 //* Form Auth Signup Interfaces
 export interface Form_Auth_Signup {
