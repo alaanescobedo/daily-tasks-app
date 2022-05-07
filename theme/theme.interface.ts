@@ -1,4 +1,4 @@
-import { Color } from '../modules/theme/config/config'
+import { Color } from "themes/config"
 
 export type ThemeType = 'dark' | 'light'
 

@@ -33,7 +33,7 @@
       "@config/*":["config/*"]
     }
   },
-  "include": ["src","vite.config.ts","Storyshot.test.ts",".storybook/decorators.tsx"],
+  "include": ["src","vite.config.ts","Storyshot.test.ts",".storybook/decorators.tsx", "theme/theme.ts", "theme"],
   "exclude": ["node_modules"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
