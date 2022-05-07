@@ -1,18 +1,25 @@
 // TODO: Update types and interfaces and styles
-import { forwardRef, useState } from 'react'
+import { forwardRef, HTMLAttributes, useState } from 'react'
 import { Icon } from '@components/Icons'
 import { useInput } from '../../Input/InputField/Input.context'
 import sharedStyles from '../../shared/styles.module.css'
 import cx from 'classnames'
 
+export interface CheckboxBaseProps extends HTMLAttributes<HTMLInputElement> {
+  idIcon?: string
+  checked?: boolean
+  sizeBox?: string
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+}
+
 export const CheckboxBase = forwardRef(({
   idIcon = 'recurrent-icon',
   checked,
-  size = 'sm',
+  sizeBox = 'sm',
   onChange,
   className,
   ...props
-}: any, ref: any) => {
+}: CheckboxBaseProps, ref: any) => {
   const { id, name, error } = useInput()
 
   const [isChecked, setIsChecked] = useState(checked ?? false)
@@ -24,7 +31,7 @@ export const CheckboxBase = forwardRef(({
 
   const customClassName = cx(
     sharedStyles.input_recurrent,
-    sharedStyles[`checkbox_size_${size as string}`],
+    sharedStyles[`checkbox_size_${sizeBox}`],
     error !== undefined && error.length > 0 && sharedStyles.error,
     className
   )

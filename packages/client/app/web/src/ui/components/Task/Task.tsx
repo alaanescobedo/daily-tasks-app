@@ -1,5 +1,5 @@
 import { Box } from '@components/Box'
-import { useDailyTaskViewer } from '@components/DailyTask/DailyTaskViewer.context'
+import { useDailyTaskViewer } from '@ui/components/DailyTask/Dragger.provider'
 import { Stack } from '@components/Stack'
 import { Typography } from '@components/Typography'
 import { DragEvent } from 'react'

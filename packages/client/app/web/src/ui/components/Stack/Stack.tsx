@@ -1,18 +1,19 @@
 import cx from 'classnames'
-import { HTMLProps } from 'react'
+import { CSSProperties } from 'react'
+import { HTMLAttributes } from 'react'
 import styles from './Stack.module.css'
 
-export interface StackProps extends HTMLProps<HTMLDivElement> {
+export interface StackProps extends HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
   vertical?: boolean
-  gap?: string
-  mt?: string
-  mb?: string
+  gap?: CSSProperties['gap']
+  mt?: CSSProperties['marginTop']
+  mb?: CSSProperties['marginBottom']
   noWrap?: boolean
   reverse?: boolean
-  align?: 'start' | 'end' | 'center' | 'between' | 'around' | 'stretch'
-  justify?: 'start' | 'end' | 'center' | 'between' | 'around' | 'stretch'
-  width?: string
+  align?: CSSProperties['alignItems']
+  justify?: CSSProperties['justifyContent']
+  width?: CSSProperties['width']
   fullHeight?: boolean
   className?: string
 }

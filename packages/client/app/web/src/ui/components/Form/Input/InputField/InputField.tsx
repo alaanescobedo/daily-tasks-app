@@ -1,6 +1,6 @@
 import InputContext, { InputContextProps } from './Input.context'
 
-interface InputFieldProps extends InputContextProps {
+export interface InputFieldProps extends InputContextProps {
   children: React.ReactNode
 }
 

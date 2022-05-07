@@ -1,11 +1,9 @@
 // TODO: Update types and interfaces
 import { forwardRef } from 'react'
-import { InputGroup } from '../Input'
+import { InputGroup, InputGroupProps } from '../Input'
 import { CheckboxBase } from './BaseCheckbox/CheckboxBase'
 
-export interface InputCheckboxProps {
-  idIcon?: string
-}
+export interface InputCheckboxProps extends InputGroupProps { }
 
 export const CheckboxField = forwardRef(({
   id,
@@ -22,7 +20,7 @@ export const CheckboxField = forwardRef(({
   hideErrorField = false,
   keepHint = false,
   ...props
-}: any, ref: any): JSX.Element => {
+}: InputCheckboxProps, ref: any): JSX.Element => {
   const fieldProps = {
     id,
     name,

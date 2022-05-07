@@ -1,9 +1,9 @@
+import { HTMLAttributes } from 'react'
 import cx from 'classnames'
-import { useEffect } from 'react'
 import { options } from './Alert.config'
 import styles from './Alert.module.css'
 
-export interface AlertProps {
+export interface AlertProps extends HTMLAttributes<HTMLDivElement>  {
   message: string
   status?: typeof options.status[number]
   className?: string
@@ -17,9 +17,9 @@ export const Alert = ({
   className,
   prepend,
   append,
-  timer,
   status = 'success',
-  variant = 'default'
+  variant = 'default',
+  ...props
 }:
 AlertProps): JSX.Element => {
   return (
@@ -37,9 +37,9 @@ AlertProps): JSX.Element => {
           </span>
           )
         : null}
-      <span className={styles.main}>
+      <div className={styles.main} {...props}>
         {message}
-      </span>
+      </div>
       {append !== false
         ? (
           <span className={styles.addon_append}>

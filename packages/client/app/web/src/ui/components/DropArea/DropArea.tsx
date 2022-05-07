@@ -1,9 +1,16 @@
-import { Box } from '@components/Box'
+import { Box, BoxProps } from '@components/Box'
 import { Typography } from '@components/Typography'
 import cx from 'classnames'
 import styles from './DropArea.module.css'
 
-export const DropArea = () => {
+interface DropAreaProps extends BoxProps {
+  label: string
+}
+
+export const DropArea = ({
+  label = 'Drop here',
+  ...props
+}: DropAreaProps) => {
   const customClassName = cx(
     styles.drop_area
   )
@@ -12,8 +19,9 @@ export const DropArea = () => {
     <Box
       padding='.5rem 1rem'
       className={customClassName}
+      {...props}
     >
-      <Typography>Drop Here</Typography>
+      <Typography>{label}</Typography>
     </Box>
   )
 }

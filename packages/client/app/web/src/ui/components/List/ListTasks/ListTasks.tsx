@@ -1,6 +1,6 @@
 import { Stack } from '@components/Stack'
-import { useTasks } from '@hooks'
-import { DailyTask } from '@components/DailyTask/DailyTaskViewer.copy'
+import { useTasks } from '@modules/task/api/useTasks'
+import { DailyTask } from '@ui/components/DailyTask/DailyTask'
 
 // export interface ListTasksProps {
 //   tasks: { [key: string]: TaskI[] }

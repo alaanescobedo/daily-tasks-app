@@ -6,7 +6,7 @@ import { Typography } from '@components/Typography'
 import { TaskI, useTasks } from '@hooks'
 import { objectValues } from '@utils/Typescript/values'
 import { DragEvent, useEffect } from 'react'
-import { useDailyTaskViewer } from './DailyTaskViewer.context'
+import { useDailyTaskViewer } from './Dragger.provider'
 
 const getWeekdayFromDate = (date: any) => {
   const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']

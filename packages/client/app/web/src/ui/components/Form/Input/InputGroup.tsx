@@ -1,8 +1,19 @@
 import { Stack } from '@components/Stack'
+import { CSSProperties } from 'react'
 import { InputError } from './InputError/InputError'
-import InputField from './InputField/InputField'
+import InputField, { InputFieldProps } from './InputField/InputField'
 import { InputHint } from './InputHint/InputHint'
 import { InputLabel } from './InputLabel/InputLabel'
+
+export interface InputGroupProps extends InputFieldProps {
+  label?: string
+  gap?: CSSProperties['gap']
+  align?: CSSProperties['alignItems']
+  labelPosition?: 'top' | 'bottom'
+  vertical?: boolean
+  hideErrorField?: boolean
+  keepHint?: boolean
+}
 
 export const InputGroup = ({
   children,
@@ -18,7 +29,7 @@ export const InputGroup = ({
   hideErrorField = false,
   keepHint = false,
   ...props
-}: any): JSX.Element => {
+}: InputGroupProps): JSX.Element => {
   const fieldProps = {
     id,
     name,

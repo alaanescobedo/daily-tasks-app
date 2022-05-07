@@ -1,7 +1,8 @@
 import cx from 'classnames'
 import { Typography } from '@components/Typography/Typography'
 import styles from './Button.module.css'
-import { ElementType } from 'react'
+import { ButtonHTMLAttributes, ElementType } from 'react'
+import { NavLink } from 'react-router-dom'
 
 export const colorsMap = {
   primary: 'primary',
@@ -15,20 +16,27 @@ export const variantsMap = {
   filled: 'filled'
 }
 
-export interface ButtonProps {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   label: string
-  type?: 'button' | 'submit'
   color?: keyof typeof colorsMap
   variant?: keyof typeof variantsMap
-  onClick?: () => void
   disabled?: boolean
-  as?: ElementType
+  as?: any  // Error if we use ElementType
   to?: string
   isInline?: boolean
   className?: string
 }
 
-export const Button = ({ label, type, onClick, isInline, color = 'primary', disabled, variant = 'default', as = 'button', className, to = '', ...props }: ButtonProps): JSX.Element => {
+export const Button = ({
+  label,
+  isInline,
+  color = 'primary',
+  disabled,
+  variant = 'default',
+  as = 'button',
+  to = '',
+  className,
+  ...props }: ButtonProps): JSX.Element => {
   const Element = as
 
   const customClassName = cx(
@@ -41,8 +49,6 @@ export const Button = ({ label, type, onClick, isInline, color = 'primary', disa
   )
 
   const elementProps = {
-    onClick: disabled ? undefined : onClick,
-    type: type || 'button',
     disabled,
     className: customClassName,
     to,
