@@ -1,0 +1,58 @@
+{
+    "name": "daily-draft-api",
+    "version": "1.0.0",
+    "description": "",
+    "main": "src/config/server.ts",
+    "scripts": {
+        "compile": "tsc && tsc-alias",
+        "postinstall": "yarn compile",
+        "start": "node dist/config/server.js",
+        "dev": "nodemon --exec ts-node --files -r tsconfig-paths/register src/config/server.ts",
+        "docker": "docker-compose up",
+        "lint": "ts-standard",
+        "test": "jest --runInBand"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@tsconfig/node16-strictest-esm": "1.0.0",
+        "@types/bcryptjs": "2.4.2",
+        "@types/cors": "2.8.12",
+        "@types/ejs": "3.1.0",
+        "@types/express": "4.17.13",
+        "@types/jest": "27.4.1",
+        "@types/jsonwebtoken": "8.5.8",
+        "@types/node": "17.0.23",
+        "@types/nodemailer": "6.4.4",
+        "@types/supertest": "2.0.12",
+        "husky": "7.0.4",
+        "jest": "27.5.1",
+        "lint-staged": "12.3.7",
+        "nodemon": "2.0.15",
+        "supertest": "6.2.2",
+        "ts-jest": "27.1.4",
+        "ts-node": "10.7.0",
+        "ts-standard": "11.0.0",
+        "tsc-alias": "1.6.5",
+        "tsconfig-paths": "3.14.1",
+        "typescript": "4.6.3"
+    },
+    "dependencies": {
+        "bcryptjs": "2.4.3",
+        "cors": "2.8.5",
+        "dotenv": "16.0.0",
+        "ejs": "3.1.6",
+        "express": "4.17.3",
+        "jsonwebtoken": "8.5.1",
+        "nodemailer": "6.7.3",
+        "redis-om": "0.2.0",
+        "yup": "0.32.11"
+    },
+    "lint-staged": {
+        "**/*.{js,ts}": [
+            "yarn lint --fix",
+            "yarn test --watchAll=false --findRelatedTests"
+        ]
+    }
+}
