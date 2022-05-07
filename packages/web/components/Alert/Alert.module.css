@@ -1,0 +1,129 @@
+.alert_root {
+  border: 2px solid;
+  border-radius: 4px;
+  /* padding: 1rem 1.2rem; high*/
+  padding: .6rem .8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  font-size: .9rem;
+  width: 100%;
+  text-transform: capitalize;
+}
+@media (min-width: 480px) {
+  .alert_root{
+    padding: .8rem 1rem;
+    font-size: 1rem;
+  }
+}
+@media (min-width: 900px) {
+  .alert_root{
+    padding: 1rem 1.2rem;
+    font-size: 1.2rem;
+  }
+}
+
+.main{
+  flex:1
+}
+
+.addon_prepend{
+  padding-right:0.6rem;
+  width:auto;
+  height:14px;
+  display:flex;
+}
+@media (min-width: 400px) {
+  .addon_prepend{
+    height:16px;
+  }
+}
+@media (min-width: 900px) {
+  .addon_prepend{
+    height:20px;
+  }
+}
+.addon_append{
+  width:auto;
+  height:14px;
+  display:flex;
+}
+@media (min-width: 400px) {
+  .addon_append{
+    height:16px;
+  }
+}
+@media (min-width: 900px) {
+  .addon_append{
+    height:20px;
+  }
+}
+
+/**** Status ****/
+/* Success */
+.success.outline {
+  background-color: rgba(var(--success),.1);
+  border-color: rgba(var(--success-dark));
+  color: rgba(var(--success-dark));
+}
+.success.default {
+  background-color: rgba(var(--success-light));
+  border-color: rgba(var(--success));
+  color: rgba(var(--success-dark));
+}
+.success.filled{
+  background-color: rgba(var(--success-dark));
+  border-color: rgba(var(--success-dark));
+  color: rgba(var(--text));
+}
+
+/* Error */
+.error.outline {
+  background-color: rgba(var(--error),.1);
+  border-color: rgba(var(--error-dark));
+  color: rgba(var(--error-dark));
+}
+.error.default {
+  background-color: rgba(var(--error-light));
+  border-color: rgba(var(--error));
+  color: rgba(var(--error-dark));
+}
+.error.filled {
+  background-color: rgba(var(--error-dark));
+  border-color: rgba(var(--error-dark));
+  color: rgba(var(--text));
+}
+
+/* Warning */
+.warning.outline {
+  background-color: rgba(var(--warning),.1);
+  border-color: rgba(var(--warning-dark));
+  color: rgba(var(--warning-dark));
+}
+.warning.default {
+  background-color: rgba(var(--warning-light));
+  border-color: rgba(var(--warning));
+  color: rgba(var(--warning-dark));
+}
+.warning.filled{
+  background-color: rgba(var(--warning-dark));
+  border-color: rgba(var(--warning-dark));
+  color: rgba(var(--text));
+}
+
+/* Info */
+.info.outline {
+  background-color: rgba(var(--info),.1);
+  border-color: rgba(var(--info-dark));
+  color: rgba(var(--info-dark));
+}
+.info.default {
+  background-color: rgba(var(--info-light));
+  border-color: rgba(var(--info));
+  color: rgba(var(--info-dark));
+}
+.info.filled{
+  background-color: rgba(var(--info-dark));
+  border-color: rgba(var(--info-dark));
+  color: rgba(var(--text));
+}

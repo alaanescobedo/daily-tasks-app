@@ -1,0 +1,21 @@
+.container {
+    height: 55px;
+    background-color: rgb(var(--primary), var(--opacity-1));
+    border: 2px solid rgb(var(--primary));
+    border-radius: 10px;
+    padding: 10px;
+    display: grid;
+    place-content: center;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    align-content: center;
+    color: rgb(var(--highlight));
+}
+
+.username {
+    color: rgb(var(--primary));
+}
+
+.date {
+    color: var(--highlight)
+}

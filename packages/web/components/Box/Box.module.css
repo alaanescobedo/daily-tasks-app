@@ -1,0 +1,67 @@
+.box {
+  border: 1px solid transparent;
+  border-radius: 10px;
+}
+.textColor__highlight {
+  color: rgb(var(--highlight));
+}
+.textColor__base {
+  color: rgb(var(--text));
+}
+.textWeight__bold {
+  font-weight: bold;
+}
+.textWeight__light {
+  font-weight: 300;
+}
+.textWeight__base {
+  font-weight: 400;
+}
+
+.borderColor__primary {
+  border-color: rgb(var(--primary));
+}
+.borderColor__secondary {
+  border-color: rgb(var(--secondary));
+}
+.borderColor__tertiary {
+  border-color: rgb(var(--tertiary));
+}
+.borderColor__success {
+  border-color: rgb(var(--success));
+}
+.borderColor__warning {
+  border-color: rgb(var(--warning));
+}
+.borderColor__danger {
+  border-color: rgb(var(--danger));
+}
+.borderWidth__small {
+  border-width: 1px;
+}
+.borderWidth__medium {
+  border-width: 2px;
+}
+.borderWidth__large {
+  border-width: 3px;
+}
+.backgroundColor__primary {
+  background-color: rgb(var(--primary));
+}
+.backgroundColor__secondary {
+  background-color: rgb(var(--secondary));
+}
+.backgroundColor__tertiary {
+  background-color: rgb(var(--tertiary));
+}
+
+.variant--outline {
+  background-color: rgba(var(--secondary), 0.1);
+}
+
+.draggable {
+  cursor: grab;
+}
+.is_dragging {
+  cursor: grabbing;
+}

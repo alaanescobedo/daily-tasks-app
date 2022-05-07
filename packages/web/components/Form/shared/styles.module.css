@@ -1,0 +1,81 @@
+.input_select,
+.input_date_hour,
+.input_recurrent {
+    box-shadow: 0 0 0 2px rgb(var(--tertiary)) inset;
+    background-color: rgba(var(--background), var(--opacity-7));
+    color: rgba(var(--tertiary), var(--opacity-7));
+    border:none;
+    border-radius: 10px;
+    font-weight: 600;
+    text-align: center;
+    position: relative;
+    width: 100%;
+}
+
+.input_select:focus,
+.input_date_hour:focus,
+.input_date_hour:focus-within,
+.input_recurrent:focus,
+.input_recurrent:focus-within {
+    outline: 2px solid rgba(var(--highlight));
+    box-shadow: 0 0 0 2px rgb(var(--highlight)) inset;
+}
+
+.error {
+    outline: 2px solid rgba(var(--error-dark));
+    box-shadow: 0 0 0 2px rgb(var(--error-dark)) inset;
+}
+
+.isInline {
+    display: inline-block;;
+    width: auto;
+}
+.size_sm {
+    font-size: 0.8rem;
+    height: 1.5rem;
+}
+.size_md {
+    font-size: 1.0rem;
+    height: 2rem;
+}
+.size_lg {
+    font-size: 1.2rem;
+    height: 2.2rem;
+}
+.checkbox_size_sm {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.checkbox_size_md {
+    width: 2rem;
+    height: 2rem;
+}
+.checkbox_size_lg {
+    width: 2.2rem;
+    height: 2.2rem;
+}
+
+.input_date_hour {
+    text-align: center;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.input_date_hour::-webkit-calendar-picker-indicator {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-10px);
+    opacity: 0;
+}
+
+.input_recurrent {
+    /* width: 2rem; */
+    box-sizing: border-box;
+    display: block;
+}
+
+
+.input_recurrent .checkbox {
+    display: none;
+}

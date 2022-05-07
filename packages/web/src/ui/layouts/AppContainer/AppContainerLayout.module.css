@@ -1,0 +1,36 @@
+.super_container {
+    position: relative;
+    display: contents;
+}
+
+.container {
+    background-color: rgb(var(--secondary), var(--opacity-1));
+    border: 2px solid rgb(var(--secondary));
+    border-radius: 10px;
+    padding: 20px;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    align-content: center;
+    display: flex;
+    flex-direction: column;
+    height: inherit;
+    flex: 1;
+}
+
+.return_container {
+    display: inherit;
+    position: absolute;
+}
+
+.return {
+    position: absolute;
+    bottom: 40px;
+    background-color: rgb(var(--background));
+    color: rgb(var(--tertiary));
+    font-size: 1.6rem;
+    padding: .6rem 1.6rem;
+    border-radius: 0 10px 10px 0;
+    border: 2px solid rgb(var(--primary));
+    border-left: none;
+    transform: translateX(-.3px);
+}

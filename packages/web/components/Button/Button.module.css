@@ -1,0 +1,65 @@
+.btn {
+    background-color: rgb(var(--primary));
+    border-radius: 10px;
+    display: grid;
+    place-content: center;
+    padding: .4rem 1.5rem;
+    border: 3px solid rgba(var(--background), var(--opacity-7));
+    cursor: pointer;
+    display:block;
+    width: 100%;
+    text-align: center;
+}
+.btn:focus {
+    outline: 2px solid rgba(var(--highlight));
+    border: 3px solid rgba(var(--highlight));
+}
+
+.label {
+    font-weight: 600;
+}
+
+.primary .label,
+.secondary .label{
+    color: rgb(var(--background), var(--opacity-7));
+}
+
+.isInline { 
+    display: inline-block;
+    width: fit-content;
+}
+.primary {
+    background-color: rgb(var(--primary));
+    border: 3px solid rgb(var(--primary));
+}
+.secondary {
+    background-color: rgb(var(--secondary));
+    border: 3px solid rgb(var(--secondary));
+}
+.clean {
+    background-color: transparent;
+    border: 3px solid transparent;
+    color: rgb(var(--text));	
+}
+.outline{
+    background-color: rgb(var(--background));
+    color: rgb(var(--tertiary));
+    font-size: 1.6rem;
+    padding: .6rem 1.6rem;
+    border-radius: 0 10px 10px 0;
+    border: 2px solid rgb(var(--primary));
+    border-left: none;
+    transform: translateX(-2.4px);
+}
+/* .clean .label {
+    color: var(--text)
+} */
+.disabled {
+    background-color: #666666;
+    border: 3px solid #666666;
+    cursor: default;
+}
+.disabled p {
+    color: rgba(var(--text), .4);
+    user-select: none;
+}
