@@ -9,7 +9,10 @@
     "packages/**"
   ],
   "scripts": {
-    "lint": "ts-standard"
+    "lint": "ts-standard",
+    "dev:web": "yarn workspace client-app-web dev",
+    "dev:api": "yarn workspace api dev",
+    "docker:api-up": "yarn workspace api docker"
   },
   "dependencies": {
     "yup": "0.32.11"
