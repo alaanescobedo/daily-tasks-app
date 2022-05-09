@@ -1,2 +1,1 @@
-export * from './Task.provider'
-export * from './task.context'
+export * from './task.service'

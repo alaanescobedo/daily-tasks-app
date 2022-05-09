@@ -1,8 +1,7 @@
 import cx from 'classnames'
 import { Typography } from '@components/Typography/Typography'
 import styles from './Button.module.css'
-import { ButtonHTMLAttributes, ElementType } from 'react'
-import { NavLink } from 'react-router-dom'
+import { ButtonHTMLAttributes } from 'react'
 
 export const colorsMap = {
   primary: 'primary',

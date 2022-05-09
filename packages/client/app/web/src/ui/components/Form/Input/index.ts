@@ -1,1 +1,5 @@
 export * from './InputGroup'
+export * from './InputError/InputError'
+export * from './InputLabel/InputLabel'
+export * from './InputHint/InputHint'
+export * from './InputField/InputField'

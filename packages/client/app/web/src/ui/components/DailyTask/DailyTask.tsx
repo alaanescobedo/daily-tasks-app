@@ -1,12 +1,11 @@
 import { Box } from '@components/Box'
 import { DropArea } from '@components/DropArea/DropArea'
 import { Stack } from '@components/Stack'
-import { Task } from '@components/Task/Task'
 import { Typography } from '@components/Typography'
-import { TaskI, useTasks } from '@hooks'
-import { objectValues } from '@utils/Typescript/values'
-import { DragEvent, useEffect } from 'react'
-import { useDailyTaskViewer } from './Dragger.provider'
+import { TaskI } from '@modules/task/task.interface'
+import { DragEvent } from 'react'
+import { useDragger } from '../Dragger'
+import { Task } from '../Task'
 
 const getWeekdayFromDate = (date: any) => {
   const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
@@ -14,7 +13,7 @@ const getWeekdayFromDate = (date: any) => {
 }
 
 export const DailyTask = ({ day, tasks }: any) => {
-  const { isDragging, selectedDay } = useDailyTaskViewer()
+  const { isDragging, item } = useDragger()
 
   const allowDrop = (event: DragEvent<HTMLDivElement>) => {
     event.preventDefault()
@@ -31,6 +30,7 @@ export const DailyTask = ({ day, tasks }: any) => {
     // updateTask(taskToUpdate)
   }
 
+
   return (
     <Box>
       <Box padding='.5rem 1rem' borderColor='secondary'>
@@ -39,8 +39,10 @@ export const DailyTask = ({ day, tasks }: any) => {
         </Typography>
       </Box>
       <Stack vertical gap='.4rem' width='95%' onDrop={handleDrop} onDragOver={allowDrop}>
-
-        {isDragging && selectedDay !== day && <DropArea />}
+        {tasks.map((task: TaskI) => (
+          <Task task={task} />
+        ))}
+        {isDragging && item !== day && <DropArea />}
       </Stack>
     </Box>
   )

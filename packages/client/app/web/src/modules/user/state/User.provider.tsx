@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { UserContext } from './User.context'
+import { UserContext } from '@modules/user/state'
 
 const getInitialUser = (): any => {
   const tasks = window.localStorage.getItem('user') ?? '{}'

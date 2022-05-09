@@ -1,9 +1,9 @@
+import { TaskI } from '@modules/task/task.interface'
 import { NavLink } from 'react-router-dom'
-import { Task } from '@hooks'
 import styles from './TaskCard.module.css'
 
 export interface TaskCardProps {
-  tasks: Task[]
+  tasks: TaskI[]
   day: string
   navigateTo: string
 }

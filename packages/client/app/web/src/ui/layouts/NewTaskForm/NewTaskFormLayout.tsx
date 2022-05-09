@@ -1,5 +1,5 @@
-import { AppContainerLayout } from '@layouts'
 import { KeyboardEvent } from 'react'
+import { AppContainerLayout } from '../AppContainer'
 import styles from './NewTaskFormLayout.module.css'
 
 export interface NewTaskFormLayoutProps {

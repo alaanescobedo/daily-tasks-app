@@ -1,9 +1,9 @@
-import { Input } from '@components/Form'
-import { RESET_PASSWORD_INPUT_CONFIG } from 'modules/auth/config/auth-form.config'
-import { useForm } from '@hooks'
-import { AuthLayout } from '@layouts'
-import { objectValues } from '@utils/Typescript/values'
-import { useEffect } from 'react'
+// import { Input } from '@components/Form'
+// import { RESET_PASSWORD_INPUT_CONFIG } from 'modules/auth/config/auth-form.config'
+// import { useForm } from '@hooks'
+// import { AuthLayout } from '@layouts'
+// import { objectValues } from '@utils/Typescript/values'
+// import { useEffect } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 
 export const ResetPasswordView = (): JSX.Element => {

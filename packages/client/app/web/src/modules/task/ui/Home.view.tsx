@@ -1,10 +1,8 @@
-import { useContext } from 'react'
-import { MainCard, Button, ListTasks, Scroll } from '@components/index'
-import { TaskContext } from '@context/Task'
-import { getCurrentDate } from '@utils/getCurrentDate'
-import { useUser } from 'modules/user/api/useUser'
 import { NavLink } from 'react-router-dom'
-import { DailyTaskViewerProvider } from '@components/DailyTask/DailyTaskViewer'
+
+import { Button, Dragger, ListTasks, MainCard, Scroll } from '@ui/components'
+import { useUser } from '@modules/user/state'
+import { getCurrentDate } from '@utils/getCurrentDate'
 
 const currentDate = getCurrentDate().split(',').slice(0, 1).join(',')
 
@@ -14,11 +12,11 @@ export const HomeView = (): JSX.Element => {
   return (
     <>
       <MainCard currentDate={currentDate} username={user.username} />
-      <DailyTaskViewerProvider>
+      <Dragger>
         <Scroll fullHeight>
           <ListTasks />
         </Scroll>
-      </DailyTaskViewerProvider>
+      </Dragger>
       <Button as={NavLink} to='/new-task' label='Add Task' />
     </>
   )

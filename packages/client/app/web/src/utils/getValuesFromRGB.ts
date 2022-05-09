@@ -1,5 +1,6 @@
-import { Theme } from '@interfaces'
-import { Color } from '../modules/theme/config/config'
+import { Color } from "@ui/theme/config/config"
+import { Theme } from "@ui/theme/theme.interface"
+
 
 export const getValuesFromRGB = (theme: Theme): Theme => {
   const entries = Object.entries(theme)

@@ -1,6 +1,6 @@
-import { Task } from '@hooks'
+import { TaskI } from "../task.interface";
 
-export const tasks: { [key: string]: Task[] } = {
+export const tasks: { [key: string]: TaskI[] } = {
   '2022-04-11': [
     {
       title: 'Task 1',

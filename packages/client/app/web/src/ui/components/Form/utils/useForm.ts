@@ -1,10 +1,11 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { Forms, Input_Types, Form_Errors, ErrorMessage } from '@interfaces'
-import { useTasks } from '../../modules/task/api/useTasks'
 // import { signup } from 'services/auth.service'
 import { forgotPassword, resetPassword } from 'modules/user/api/user.service'
 import { buildFieldsErrors } from '@utils/Form/buildFieldsErrors'
 import signupSchema from '@utils/Form/validations/signup.schema'
+import { useTasks } from '@modules/task/state'
+import { ErrorMessage, Forms, Form_Errors, Input_Types } from '@modules/form.interface'
+import { signup } from '@modules/auth/api'
 
 interface UseForm<T extends Forms> {
   fields: T
@@ -36,8 +37,8 @@ export const useForm = <T extends Forms>(fieldsConfig: T): UseForm<T> => {
 
   const handleValidateErrors = (entries: Array<[any, any]>): { isValid: boolean } => {
     const updatedErrors = entries.reduce<Form_Errors<T>>((acc, entry) => {
-      const [id, value] = entry as [keyof T, string]
-      const error = signupSchema.validateAt(id as string, { [id]: value }).catch(err => err)
+      const [id, value] = entry as ['email' | 'password' | 'passwordConfirm', string] // ?Fix [keyof T, string]
+      const error = signupSchema.validateSyncAt(id as string, { [id]: value })
       const isError = Object.keys(error).length > 0
 
       const errorMessage = { errorMessage: isError ? error[id] : '' }
@@ -75,7 +76,7 @@ export const useForm = <T extends Forms>(fieldsConfig: T): UseForm<T> => {
     const Formulary = {
       newTask: () => submitNewTask(data as any), // TODO: Remove any
       signup: async () => await signup(data as any), // TODO: Remove any
-      signin: async () => await signin(data as any), // TODO: Remove any
+      signin: async () => await signup(data as any), // TODO: Remove any
       forgotPassword: async () => await forgotPassword(data as any), // TODO: Remove any
       resetPassword: async () => await resetPassword({ ...data, token } as any) // TODO: Remove any
     }

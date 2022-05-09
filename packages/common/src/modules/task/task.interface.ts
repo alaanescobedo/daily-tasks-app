@@ -1,6 +1,3 @@
-import { useContext } from 'react'
-import { TaskContext } from '@context/Task'
-
 export interface TaskI {
   title: string
   scheduledFor: string
@@ -12,5 +9,3 @@ export interface TaskI {
   updatedAt?: string
   entityId: string
 }
-
-export const useTasks = (): any => useContext(TaskContext)

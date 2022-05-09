@@ -3,7 +3,7 @@ import { forwardRef } from 'react'
 import { InputGroup, InputGroupProps } from '../Input'
 import { CheckboxBase } from './BaseCheckbox/CheckboxBase'
 
-export interface InputCheckboxProps extends InputGroupProps { }
+export interface InputCheckboxProps extends Omit<InputGroupProps, 'children'> { }
 
 export const CheckboxField = forwardRef(({
   id,

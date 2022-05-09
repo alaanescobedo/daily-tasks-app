@@ -2,7 +2,7 @@ import { forwardRef } from 'react'
 import { InputGroup } from '../Input'
 import { InputBase } from './InputBase/InputBase'
 
-export const SelectField = forwardRef(({
+export const TextField = forwardRef(({
   id,
   name,
   error,
@@ -16,7 +16,6 @@ export const SelectField = forwardRef(({
   keepHint = false,
   labelPosition,
   vertical,
-  isInline,
   ...props
 }: any, ref): JSX.Element => {
   const fieldProps = {
@@ -36,7 +35,7 @@ export const SelectField = forwardRef(({
   }
 
   const baseProps = {
-    isInline,
+    isInline: true,
     size,
     ...props
   }

@@ -1,4 +1,4 @@
-import { BASE_URL } from 'setup/config/api'
+import { BASE_URL } from '@setup/constants/api'
 
 interface ForgotPasswordProps {
   email: string

@@ -1,25 +1,34 @@
-import { NEW_TASK_INPUT_CONFIG } from 'modules/task/config/new-task.config'
-import { CheckboxField, SelectField, TextAreaField, TimeField } from '@components/Form'
+import { useEffect } from 'react'
+import { useController, useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { v4 as uuidv4 } from 'uuid'
+
+import {
+  Alert,
+  Button,
+  CheckboxField,
+  Form,
+  Grid,
+  GridItem,
+  SelectField,
+  Stack,
+  TextAreaField,
+  TimeField,
+  Typography
+} from '@ui/components'
+import { Container } from '@ui/layouts'
+import { WeekdaysId, WeekdaysLabel } from '@ui/components/Form/Select/BaseSelect/SelectBase'
+
+import { NEW_TASK_INPUT_CONFIG } from '@modules/task/config'
+import { createTask } from '@modules/task/api'
+import { useTasks } from '@modules/task/state'
+import { useUser } from '@modules/user/state'
+
+import { getCurrentTimePlus5minutes } from '@utils/getCurrentTimePlus5minutes'
+import newTaskSchema from '@utils/Form/validations/new-task.schema'
+import { objectValues } from '@utils/Typescript/values'
 import { getSevenDays } from '@utils/getSevenDays'
 import { getCurrentDate } from '@utils/getCurrentDate'
-import { useController, useForm } from 'react-hook-form'
-import { Form } from '@components/Form/Form'
-import { Typography } from '@components/Typography/Typography'
-import { Button } from '@components/Button'
-import { WeekdaysId, WeekdaysLabel } from '@components/Form/Select/BaseSelect/SelectBase'
-import { getCurrentTimePlus5minutes } from '@utils/getCurrentTimePlus5minutes'
-import { Grid } from '@components/Grid/Grid'
-import { yupResolver } from '@hookform/resolvers/yup'
-import newTaskSchema from '@utils/Form/validations/new-task.schema'
-import { Alert } from '@components/Alert/Alert'
-import { objectValues } from '@utils/Typescript/values'
-import { useUser } from 'modules/user/api/useUser'
-import { Container } from 'layouts/Container/Container'
-import { Stack } from '@components/Stack'
-import { useTasks } from '@hooks'
-import { useEffect } from 'react'
-import { v4 as uuidv4 } from 'uuid'
-import { createTask } from '../api/task.service'
 
 export const setInStorage = ({ key, value }: any) => {
   window.localStorage.setItem(key, JSON.stringify(value))

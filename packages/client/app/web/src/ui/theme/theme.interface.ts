@@ -1,4 +1,4 @@
-import { Color } from "themes/config"
+import { Color } from "./config/config"
 
 export type ThemeType = 'dark' | 'light'
 

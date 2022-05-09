@@ -1,6 +1,6 @@
 import { CSSProperties, FC, useState } from 'react'
-import { ThemeType } from '@interfaces'
-import { GENERAL_CONFIGURATION, THEMES } from '@themes'
+import { GENERAL_CONFIGURATION, THEMES } from '../config'
+import { ThemeType } from '../theme.interface'
 import { ThemeContext } from './ThemeContext'
 
 export const ThemeProvider: FC = ({ children }) => {

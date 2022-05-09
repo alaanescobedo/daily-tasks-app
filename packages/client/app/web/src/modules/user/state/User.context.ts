@@ -1,4 +1,4 @@
-import { createContext, Dispatch, SetStateAction } from 'react'
+import { createContext, Dispatch, SetStateAction, useContext } from 'react'
 
 export interface UserContextProps {
   user: {
@@ -18,3 +18,5 @@ export const UserContext = createContext<UserContextProps>({
   setCurrentUser: () => { },
   setAuthenticated: () => { }
 } as any)
+
+export const useUser = (): UserContextProps => useContext(UserContext)

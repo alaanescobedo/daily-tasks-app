@@ -1,4 +1,4 @@
-import { Forms, Form_Errors, Input_Base } from "@interfaces"
+import { Forms, Form_Errors, Input_Base } from "@modules/form.interface"
 
 export const buildFieldsErrors = <T extends Forms>(fieldsConfig: T): Form_Errors<T> => {
   const fieldsArr = Object.values(fieldsConfig) as [Input_Base]

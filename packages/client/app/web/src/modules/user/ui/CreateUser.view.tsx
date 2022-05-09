@@ -1,22 +1,16 @@
-import { Alert } from '@components/Alert/Alert'
-import { Button } from '@components/Button'
-import { InputGroup } from '@components/Form'
-import { Form } from '@components/Form/Form'
-import { InputBase } from '@components/Form/TextField/InputBase/InputBase'
-import { Stack } from '@components/Stack'
-import { Typography } from '@components/Typography/Typography'
-import { CREATE_USER_INPUT_CONFIG } from 'modules/auth/config/auth-form.config'
+import { useEffect } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 
-import { AuthLayout } from '@layouts'
+import { Alert, Button, Form, Stack, TextField, Typography } from '@ui/components'
 import usernameSchema from '@utils/Form/validations/username.schema'
 import { objectValues } from '@utils/Typescript/values'
-import { useUser } from 'modules/user/api/useUser'
-import { useEffect } from 'react'
-
-import { useForm } from 'react-hook-form'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { AuthLayout } from '@ui/layouts'
+import { CREATE_USER_INPUT_CONFIG } from '@modules/auth/config'
 import { signup } from 'modules/auth/api/auth.service'
+import { useUser } from '@modules/user/state'
+
 
 const fields = CREATE_USER_INPUT_CONFIG
 type FormInputs = {
@@ -59,22 +53,15 @@ export const CreateUserView = (): JSX.Element => {
         <Stack vertical gap='2rem' mb='2.4rem'>
           <Typography variant='h1' color='primary' size='3xl' weight='bold'>Create username</Typography>
           {objectValues(fields).map(({ id, type, label, required, placeholder }) => (
-            <InputGroup
+            <TextField
+              {...register(id)}
               key={id}
-              id={id}
-              name={id}
-              error={errors[id]?.message}
+              type={type}
               label={label}
-              required
-            >
-              <InputBase
-                {...register(id)}
-                type={type}
-                placeholder={placeholder}
-                required={required}
-                disabled={isSubmitting}
-              />
-            </InputGroup>
+              required={required}
+              placeholder={placeholder}
+              error={errors[id]?.message}
+            />
           ))}
         </Stack>
         <Button type='submit' label='Submit' />

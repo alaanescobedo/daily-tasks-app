@@ -1,6 +1,6 @@
-import { UserProvider } from 'modules/user/api/User.provider'
+import { UserProvider } from '@modules/user/state'
 import { BrowserRouter } from 'react-router-dom'
-import { AppRouter } from 'setup/routes'
+import { AppRouter } from '@setup/routes'
 import styles from './App.module.css'
 
 function App (): JSX.Element {

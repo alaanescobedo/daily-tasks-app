@@ -1,11 +1,6 @@
 import { useState } from 'react'
 import { getActiveTasks } from '@utils/Task'
-import { TaskI } from '@hooks'
-import { TaskContext } from './Task.context'
-
-interface TasksState {
-  tasks: TaskI[]
-}
+import { TaskContext } from '@modules/task/state'
 
 export const setInStorage = ({ key, value }: any) => {
   window.localStorage.setItem(key, JSON.stringify(value))

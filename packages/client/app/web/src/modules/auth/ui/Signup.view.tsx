@@ -1,17 +1,13 @@
-import { InputGroup } from '@components/Form'
-import { Form } from '@components/Form/Form'
-import { SIGNUP_INPUT_CONFIG } from 'modules/auth/config/auth-form.config'
-import { AuthLayout } from '@layouts'
-import { objectValues } from '@utils/Typescript/values'
-import { useForm } from 'react-hook-form'
-
-import { yupResolver } from '@hookform/resolvers/yup'
-import signupSchema from '@utils/Form/validations/signup.schema'
-import { Stack } from '@components/Stack'
-import { Typography } from '@components/Typography/Typography'
-import { Button } from '@components/Button'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { InputBase } from '@components/Form/TextField/InputBase/InputBase'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+
+import { Button, Form, Stack, TextField, Typography } from '@ui/components'
+import { AuthLayout } from '@ui/layouts'
+import { objectValues } from '@utils/Typescript/values'
+import signupSchema from '@utils/Form/validations/signup.schema'
+import { SIGNUP_INPUT_CONFIG } from '@modules/auth/config'
+
 
 const fields = SIGNUP_INPUT_CONFIG
 
@@ -37,21 +33,15 @@ export const SignupView = (): JSX.Element => {
         <Typography variant='h1' color='primary' center size='3xl' weight='bold'>Singup</Typography>
         <Stack vertical gap='2rem' mb='2.4rem'>
           {objectValues(fields).map(({ id, type, label, required, placeholder }) => (
-            <InputGroup
+            <TextField
+              {...register(id)}
               key={id}
-              id={id}
-              name={id}
-              error={errors[id]?.message}
+              type={type}
+              placeholder={placeholder}
+              required={required}
               label={label}
-              required
-            >
-              <InputBase
-                {...register(id)}
-                type={type}
-                placeholder={placeholder}
-                required={required}
-              />
-            </InputGroup>
+              error={errors[id]?.message}
+            />
           ))}
         </Stack>
         <Button type='submit' label='Continue' />

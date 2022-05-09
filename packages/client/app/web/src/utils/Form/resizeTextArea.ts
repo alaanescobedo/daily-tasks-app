@@ -1,7 +1,5 @@
-import { ChangeEvent } from 'react'
-
 interface resizeTextareaProps {
-  e: ChangeEvent<HTMLTextAreaElement>
+  e: React.ChangeEvent<HTMLTextAreaElement>
   initialHeight?: string
 }
 export const resizeTextArea = ({ e, initialHeight = '2.6rem' }: resizeTextareaProps): void => {

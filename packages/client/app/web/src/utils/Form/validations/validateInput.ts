@@ -1,4 +1,4 @@
-import { Forms } from '@interfaces'
+import { Forms } from '@modules/form.interface'
 import { getCurrentDate } from '@utils/getCurrentDate'
 
 // * Validate New Task form

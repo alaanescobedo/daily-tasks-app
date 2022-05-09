@@ -1,4 +1,4 @@
-import { BASE_URL } from 'setup/config/api'
+import { BASE_URL } from '@setup/constants/api'
 import { fetch } from '@utils/Fetch'
 import { UsernameProps } from '../../user/api/user.service'
 interface SignupProps {

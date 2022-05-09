@@ -2,7 +2,6 @@ import cx from 'classnames'
 import { CSSProperties } from 'react'
 import { HTMLAttributes } from 'react'
 import styles from './Stack.module.css'
-
 export interface StackProps extends HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
   vertical?: boolean

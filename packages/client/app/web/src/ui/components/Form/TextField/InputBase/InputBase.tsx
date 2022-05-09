@@ -10,6 +10,7 @@ interface InputBaseProps {
   isValid?: boolean
   required?: boolean
   placeholder?: string
+  isInline?: boolean
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void
   className?: string
 }
@@ -21,6 +22,7 @@ export const InputBase = forwardRef(({
   isValid,
   className,
   required,
+  isInline,
   placeholder,
   ...props
 }: InputBaseProps, ref: any): JSX.Element => {
@@ -54,7 +56,7 @@ export const InputBase = forwardRef(({
 
   const btnProps: ButtonProps = {
     color: 'clean',
-    isInline: true,
+    isInline,
     onClick: () => setPasswordShown(!passwordShown),
     label: passwordShown ? 'Hide' : 'Show',
     className: styles.passwordButton

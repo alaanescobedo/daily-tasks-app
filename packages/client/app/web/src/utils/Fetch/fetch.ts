@@ -1,10 +1,10 @@
-import { BASE_URL } from 'setup/config/api'
+import { BASE_URL } from '@setup/constants/api'
 
-const recoverToken = () => {
-  const token = window.localStorage.getItem('key_user')
-  if (token === null) return null
-  return JSON.parse(token)
-}
+// const recoverToken = () => {
+//   const token = window.localStorage.getItem('key_user')
+//   if (token === null) return null
+//   return JSON.parse(token)
+// }
 
 interface GetParams {
   endpoint: string

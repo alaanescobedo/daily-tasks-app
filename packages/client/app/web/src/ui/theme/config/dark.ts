@@ -1,4 +1,4 @@
-import { Theme } from '../interfaces'
+import { Theme } from '../theme.interface'
 import { Color } from './config'
 
 export const themeDark: Theme = {

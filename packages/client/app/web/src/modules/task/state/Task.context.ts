@@ -1,7 +1,8 @@
-import { TaskI } from '@hooks'
-import { createContext, Dispatch, SetStateAction } from 'react'
+import { createContext, Dispatch, SetStateAction, useContext } from 'react'
+import { TaskI } from '../task.interface'
 
 interface TaskContextProps {
+  allTasks: TaskI[]
   activeTasks: TaskI[]
   setTasks: Dispatch<SetStateAction<TaskI[]>>
   saveNewTask: (task: TaskI) => void
@@ -9,8 +10,12 @@ interface TaskContextProps {
 }
 
 export const TaskContext = createContext<TaskContextProps>({
+  allTasks: [],
   activeTasks: [],
   setTasks: () => { },
   saveNewTask: () => { },
   updateTask: () => { }
 })
+
+export const useTasks = (): any => useContext(TaskContext)
+

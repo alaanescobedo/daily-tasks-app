@@ -19,7 +19,7 @@ const StackStory: ComponentMeta<typeof Stack> = {
       description: 'The gap between items',
       defaultValue: '1rem'
     },
-    wrap: {
+    noWrap: {
       control: {
         type: 'boolean'
       },

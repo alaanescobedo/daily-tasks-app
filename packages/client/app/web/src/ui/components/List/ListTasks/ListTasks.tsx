@@ -1,26 +1,28 @@
 import { Stack } from '@components/Stack'
-import { useTasks } from '@modules/task/api/useTasks'
-import { DailyTask } from '@ui/components/DailyTask/DailyTask'
+import { useTasks } from '@modules/task/state'
+import { TaskI } from '@modules/task/task.interface'
 
-// export interface ListTasksProps {
-//   tasks: { [key: string]: TaskI[] }
+export interface ListTasksProps {
+  tasks: { [key: string]: TaskI[] }
+}
+
+// const sortTasksByDay = (tasks: any): any => {
+//   return tasks.reduce((acc: any, task: any) => {
+//     const date = task.scheduledFor.split('T')[0]
+//     acc[date] = acc[date] ?? []
+//     acc[date] = [...acc[date], task]
+//     return acc
+//   }, [])
 // }
 
 export const ListTasks = (): JSX.Element => {
   const { activeTasks } = useTasks()
 
-  const tasksByDay = activeTasks.reduce((acc: any, task: any) => {
-    const date = task.scheduledFor.split('T')[0]
-    acc[date] = acc[date] ?? []
-    acc[date] = [...acc[date], task]
-    return acc
-  }, [])
+  console.log(activeTasks)
 
   return (
     <Stack width='95%' vertical align='stretch' gap='1rem'>
-      {tasksByDay.map(([day, tasks]: any) => (
-        <DailyTask day={day} tasks={tasks} key={day} />
-      ))}
+
     </Stack>
   )
 }

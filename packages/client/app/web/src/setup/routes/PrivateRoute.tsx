@@ -1,4 +1,4 @@
-import { useUser } from 'modules/user/api/useUser'
+import { useUser } from '@modules/user/state'
 import { Navigate, Outlet } from 'react-router-dom'
 
 export const PrivateRoute = (): JSX.Element => {

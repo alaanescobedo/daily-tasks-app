@@ -1,10 +1,10 @@
-import { Task } from '@hooks'
 import styles from './ListActivities.module.css'
 import { ActivityCard } from '@components/Card/Activity'
 import { Scroll } from '@components/Scroll'
+import { TaskI } from '@modules/task/task.interface'
 
 export interface ListActivitiesProps {
-  tasks: Task[]
+  tasks: TaskI[]
   day: string
 }
 

@@ -4,7 +4,7 @@ import cx from 'classnames'
 import styles from './DropArea.module.css'
 
 interface DropAreaProps extends BoxProps {
-  label: string
+  label?: string
 }
 
 export const DropArea = ({
