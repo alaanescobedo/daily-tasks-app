@@ -1,5 +1,6 @@
 import express from 'express'
 import cors from 'cors'
+import morgan from 'morgan'
 import taskRouter from '@task/taskRouter'
 import seedRouter from '@seed/seedRouter'
 import userRouter from '@user/userRouter'
@@ -11,14 +12,19 @@ const app = express()
 
 app.use(express.json())
 app.use(cors({
-  origin: '*' ,
+  origin: '*',
 }))
-
+app.use(morgan('tiny'))
 
 app.use(createIndex) // generate index of repositories
+
+app.get('/', (_req, res) => res.send('<h1>Welcome to the API</h1>'))
+
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/tasks', taskRouter)
 app.use('/api/v1/users', userRouter)
+
+
 
 if (process.env['NODE_ENV'] === 'development' || process.env['NODE_ENV'] === 'test') {
   app.use('/api/v1/seeds', seedRouter)

@@ -4,11 +4,12 @@
     "outDir": "./dist",
     "module": "CommonJS",
     "esModuleInterop": true,
+    "sourceMap": true
   },
   "include": ["src"],
   "exclude": [
     "node_modules",
     "src/utils/tests",
-    "**/tests.ts",
+    "**/*.test.ts",
   ]
 }

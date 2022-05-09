@@ -12,7 +12,12 @@
     "lint": "ts-standard",
     "dev:web": "yarn workspace client-app-web dev",
     "dev:api": "yarn workspace api dev",
-    "docker:api-up": "yarn workspace api docker"
+    "docker:api-up": "yarn workspace api docker",
+    "build:web": "yarn workspace client-app-web build",
+    "build:api": "yarn workspace api compile",
+    "start:api": "yarn workspace api start",
+    "start:web": "yarn workspace client-app-web preview",
+    "start": "yarn start:api && yarn start:web"
   },
   "dependencies": {
     "yup": "0.32.11"
